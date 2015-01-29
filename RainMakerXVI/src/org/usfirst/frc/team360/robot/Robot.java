@@ -44,7 +44,8 @@ public class Robot extends IterativeRobot {
 	DoubleSolenoid intake = new DoubleSolenoid(8, 1, 2);
 	
 	//Compressor = new Compressor(0);
-	private Compressor compressor = new Compressor(4, 1, 4, 1);
+	public Compressor compressor = new Compressor(0);
+	//SetClosedLoopControl(false);
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -57,6 +58,7 @@ public class Robot extends IterativeRobot {
     	myRobot.setExpiration(0.1);
     	stickR = new Joystick(1); 
     	stickL = new Joystick(0);
+    	//SetClosedLoopControl(false);
     	//halfSpeed = true;
 //    	Button buttonUp = new JoystickButton(stickR, 1);
 //       Button buttonDown = new JoystickButton(stickL, 1);

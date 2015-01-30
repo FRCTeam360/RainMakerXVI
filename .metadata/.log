@@ -4967,3 +4967,30 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY WPILib_Java_Robot_Development 1 0 2015-01-29 17:09:27.438
 !MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-29 17:44:05.161
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-29 17:44:05.162
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-29 18:42:48.682
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-29 18:42:48.682
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-29 18:44:39.114
+!MESSAGE Project: RainMakerXVItest Package: org.usfirst.frc.team360.robot Project Type: edu.wpi.first.wpilib.plugins.java.wizards.newproject.JavaProjectType$3@1a4175b
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-29 18:45:19.484
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-29 18:45:19.484
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-29 18:46:08.652
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-29 18:46:08.652
+!MESSAGE Targets: deploy, Mode: run

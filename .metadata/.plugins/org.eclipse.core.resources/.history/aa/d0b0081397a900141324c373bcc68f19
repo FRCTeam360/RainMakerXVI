@@ -214,7 +214,7 @@ public class Robot extends IterativeRobot {
     	joyR *= .95;
     	joyL *= .95;
     	
-    	myRobot.tankDrive(-joyR, -joyL);
+    	myRobot.tankDrive(joyR, -joyL);
     	
     	System.out.println("speed = high");
     	
@@ -230,7 +230,7 @@ public class Robot extends IterativeRobot {
     	joyR *= .7;
     	joyL *= .7;
     	
-    	myRobot.tankDrive(-joyR, -joyL);
+    	myRobot.tankDrive(joyR, -joyL);
     	
     	System.out.println("speed = low");
     	

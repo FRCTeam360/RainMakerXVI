@@ -2,4 +2,5 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.buttons.Button"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.buttons.JoystickButton"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.VictorSP"/>
 </qualifiedTypeNameHistroy>

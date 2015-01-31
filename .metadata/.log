@@ -4994,3 +4994,81 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY WPILib_Java_Robot_Development 1 0 2015-01-29 18:46:08.652
 !MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 15:46:42.382
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 15:46:42.383
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 16:44:39.115
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 16:44:39.115
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 16:45:21.468
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 16:45:21.469
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-30 17:43:03.981
+!MESSAGE [edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@94e709, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@356c21, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@9f5cf9, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@deb838, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@13fa885, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@bc8267, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@a86e5d, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1da04c8, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@189ffb6, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1c0ef1a, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@37aa79, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1180ef3, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1083369]
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-01-30 17:43:03.981
+!MESSAGE [edu.wpi.first.wpilib.plugins.core.wizards.Tag@17abead, edu.wpi.first.wpilib.plugins.core.wizards.Tag@43ab19, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1df4a74, edu.wpi.first.wpilib.plugins.core.wizards.Tag@15aa41d, edu.wpi.first.wpilib.plugins.core.wizards.Tag@19df9cd, edu.wpi.first.wpilib.plugins.core.wizards.Tag@5b8c04, edu.wpi.first.wpilib.plugins.core.wizards.Tag@11efc91, edu.wpi.first.wpilib.plugins.core.wizards.Tag@194c5e3, edu.wpi.first.wpilib.plugins.core.wizards.Tag@145168d, edu.wpi.first.wpilib.plugins.core.wizards.Tag@112804d, edu.wpi.first.wpilib.plugins.core.wizards.Tag@166024a, edu.wpi.first.wpilib.plugins.core.wizards.Tag@f27958, edu.wpi.first.wpilib.plugins.core.wizards.Tag@120ee75, edu.wpi.first.wpilib.plugins.core.wizards.Tag@c30a74, edu.wpi.first.wpilib.plugins.core.wizards.Tag@16e2eb4]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 18:04:15.988
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 18:04:15.988
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 18:04:55.366
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 18:04:55.367
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 18:05:58.225
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 18:05:58.225
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 18:08:38.701
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 18:08:38.701
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 18:09:09.454
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 18:09:09.454
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 18:09:39.642
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 18:09:39.642
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 19:36:38.844
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-30 19:36:38.844
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-31 11:46:51.830
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-31 11:46:51.831
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-31 12:12:31.914
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-01-31 12:12:31.914
+!MESSAGE Targets: deploy, Mode: run

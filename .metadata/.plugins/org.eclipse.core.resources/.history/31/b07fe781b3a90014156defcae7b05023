@@ -1,0 +1,7 @@
+package org.usfirst.frc.team360.robot;
+
+public class Const {
+	public static int aChannel = 0; // encoder a channel
+	public static int bChannel = 1; // encoder b channel
+	public static boolean encoderDirection = false; // true = reverse false = forward.
+}

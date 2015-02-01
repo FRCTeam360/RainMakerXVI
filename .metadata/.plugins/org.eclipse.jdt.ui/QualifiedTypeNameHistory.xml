@@ -3,4 +3,8 @@
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.buttons.Button"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.buttons.JoystickButton"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.VictorSP"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Encoder"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDController"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CounterBase.EncodingType"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter"/>
 </qualifiedTypeNameHistroy>

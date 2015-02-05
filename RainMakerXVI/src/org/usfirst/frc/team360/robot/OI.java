@@ -20,12 +20,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-RobotDrive myRobot;
+
+
+	RobotDrive myRobot;
 	
 	VictorSP liftMotor;
-	VictorSP motorL;
-	VictorSP motorR;
-	
 	
 	Joystick stickR;
 	Joystick stickL;
@@ -34,7 +33,7 @@ RobotDrive myRobot;
 	DoubleSolenoid intakeSol = new DoubleSolenoid(0, 1);
 	
 	Compressor compressor = new Compressor(0);//init compressor and maps it
-	Encoder encoder = new Encoder(Const.aChannel, Const.bChannel, Const.encoderDirection, EncodingType.k1X/* EncodingType.?? */);
+	//Encoder encoder = new Encoder(Const.aChannel, Const.bChannel, Const.encoderDirection, EncodingType.k1X/* EncodingType.?? */);
 	PIDController PID;
 	
 	int autoLoopCounter;
@@ -52,6 +51,8 @@ RobotDrive myRobot;
     double valJoyR;
     double valJoyL;
     
+
+    
 	boolean grab;
 	boolean release; 
 	boolean up;
@@ -62,7 +63,7 @@ RobotDrive myRobot;
     
     // pid cotrol variables
     
-	double output;
+	public static double output;
 	double integral;
 	double derivative;
 	
@@ -71,15 +72,15 @@ RobotDrive myRobot;
 	float armPosition;
 	float armTarget;
 	float arm;
-	float P;
-	float I;
-	float D;
-	float dt;
+
 	
 	int exp1;
 	int exp2;
 	int setPoint;
 	int position;
+	
+	VictorSP motorL = new VictorSP(2);
+	VictorSP motorR = new VictorSP(1);
 	
     // CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
@@ -95,25 +96,35 @@ RobotDrive myRobot;
 	
 	public void init(){
 		
-		myRobot = new RobotDrive(0,1);
+		myRobot = new RobotDrive(motorL, motorR);
     	
     	myRobot.setExpiration(0.1);
-    	
     	stickR = new Joystick(1); 
     	stickL = new Joystick(0);
     	gamePad = new Joystick(2);
     	
-    	liftMotor = new VictorSP(2);
+//    	Encoder encoder;
+//    	encoder = new Encoder( 0, 1, true, EncodingType.k4X);
+//     	encoder.setMaxPeriod(.1);
+//      	encoder.setMinRate(10);
+//    	encoder.setDistancePerPulse(5);
+//      	encoder.setReverseDirection(true);
+//      	encoder.setSamplesToAverage(7);
+//      	encoder.reset();
+//      	
+//      	int encVal = encoder.get();
+      	
+      	 
     	
-    	liftMotor.enableDeadbandElimination(true);
+    	//liftMotor.enableDeadbandElimination(true);
     	
     	halfSpeed = true; 
     	/* initialize the PID controller 
     	 * PID code is prototype
     	 * */
     	
-    	 encoder.setPIDSourceParameter(PIDSourceParameter.kRate);
-    	//PID = new PIDController(Const.KP, Const.KI, Const.KD, encoder, liftMotor, Const.PIDPeriod); 
+    	//encoder.setPIDSourceParameter(PIDSourceParameter.kRate);
+//    	PID = new PIDController(Const.KP, Const.KI, Const.KD, encoder, liftMotor, Const.PIDPeriod); 
 	}
 		
 	public void varsForTeleop() {

@@ -30,7 +30,7 @@ public class Robot extends IterativeRobot {
 	
 	
     public void robotInit() {
-    	myRobot = new RobotDrive(0,1);
+    	myRobot = new RobotDrive(2,1);
     	myRobot.setExpiration(0.1);
     	stickR = new Joystick(0); 
     	stickL = new Joystick(1);
@@ -51,11 +51,13 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
     	if(autoLoopCounter < 200) //Check if we've completed 50 loops (approximately 1 seconds)
 		{
+    		System.out.println("hele");
 			myRobot.drive(0.8, 0.8); 	// drive forwards half speed
 			autoLoopCounter++;
 			} else {
 			myRobot.drive(0.0, 0.0);
 			//autoLoopCounter = 0;// stop robot
+			
 		}
     }
     

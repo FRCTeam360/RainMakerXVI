@@ -5265,3 +5265,1075 @@ org.eclipse.recommenders.utils.Logs$LogTraceException
 
 !ENTRY WPILib_Java_Robot_Development 1 0 2015-01-31 17:51:46.527
 !MESSAGE Targets: deploy, Mode: run
+!SESSION 2015-02-02 16:13:06.469 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_31
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-02-02 16:13:10.165
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-02-02 16:13:15.317
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-02-02 16:13:15.317
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\user'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-02 16:13:15.346
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-02 16:13:15.346
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-02 16:13:15.349
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-02 16:13:15.350
+!MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:17:40.679
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:17:40.679
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:39:22.557
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:39:22.558
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-02 16:45:48.089
+!MESSAGE [edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@54821c, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@70c8ec, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@c41b93, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1833638, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1211f76, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@18293d6, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1b809b6, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1eac84f, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@a7b4ab, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1a4908a, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@b8c4b1, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@10fd959, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@ee31ff]
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-02 16:45:48.089
+!MESSAGE [edu.wpi.first.wpilib.plugins.core.wizards.Tag@12bcb28, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1581cf0, edu.wpi.first.wpilib.plugins.core.wizards.Tag@d4d353, edu.wpi.first.wpilib.plugins.core.wizards.Tag@11069bf, edu.wpi.first.wpilib.plugins.core.wizards.Tag@d967e, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1adbe93, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1d3b3fe, edu.wpi.first.wpilib.plugins.core.wizards.Tag@13e71aa, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1b0b1d5, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1c7d016, edu.wpi.first.wpilib.plugins.core.wizards.Tag@165c413, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1e650f4, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1ae7744, edu.wpi.first.wpilib.plugins.core.wizards.Tag@a5e87, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1525509]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:46:57.097
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:46:57.098
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:47:26.588
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:47:26.589
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:47:50.791
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:47:50.791
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:48:46.612
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:48:46.612
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:49:18.570
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:49:18.570
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:50:09.545
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:50:09.545
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:50:58.350
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:50:58.350
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:51:32.777
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:51:32.777
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:52:14.320
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:52:14.320
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:52:26.168
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:52:26.168
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:52:46.913
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:52:46.913
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:54:24.724
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:54:24.724
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:55:01.680
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:55:01.680
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:57:46.167
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:57:46.167
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:58:31.851
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 16:58:31.852
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:01:05.518
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:01:05.518
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:06:35.065
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:06:35.065
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:07:09.036
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:07:09.036
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:07:48.632
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:07:48.632
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:08:34.688
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:08:34.688
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:09:22.144
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:09:22.144
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:10:22.831
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:10:22.831
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:10:56.048
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:10:56.048
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:11:43.588
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:11:43.588
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:12:25.739
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:12:25.740
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:12:52.407
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:12:52.407
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:13:19.055
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:13:19.056
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:14:41.769
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:14:41.769
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:15:15.747
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:15:15.747
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:16:38.492
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:16:38.493
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:17:48.519
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:17:48.519
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:19:25.497
+!MESSAGE Last deploy running
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:19:25.497
+!MESSAGE Waiting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:19:25.498
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:19:25.498
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:21:15.604
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:21:15.604
+!MESSAGE Targets: deploy, Mode: run
+!SESSION 2015-02-02 17:35:09.410 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_31
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-02-02 17:35:18.897
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-02-02 17:35:42.258
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-02-02 17:35:42.258
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\user'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-02 17:35:44.113
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-02 17:35:44.114
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-02 17:35:44.115
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-02 17:35:44.115
+!MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:50:25.073
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:50:25.073
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:50:45.098
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:50:45.098
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:54:18.006
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:54:18.006
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:59:17.830
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVItest\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 17:59:17.830
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 18:18:07.444
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 18:18:07.444
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 18:23:07.086
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 18:23:07.086
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 18:26:06.531
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 18:26:06.532
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 18:27:07.116
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-02 18:27:07.117
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:10:17.572
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:10:17.572
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:10:43.718
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:10:43.719
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:12:16.754
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:12:16.754
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:14:09.217
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:14:09.217
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:15:54.479
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:15:54.479
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:19:46.614
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:19:46.614
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:20:34.373
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:20:34.374
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:21:00.336
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:21:00.337
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:21:53.013
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:21:53.013
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:24:24.545
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:24:24.545
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.recommenders.calls.rcp 2 1 2015-02-03 16:27:04.586
+!MESSAGE Cannot obtain JDT’s lookup environment (debug only).
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:377)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:130)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:122)
+	at org.eclipse.recommenders.internal.calls.rcp.CallCompletionSessionProcessor.startSession(CallCompletionSessionProcessor.java:104)
+	at org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.fireStartSession(IntelligentCompletionProposalComputer.java:229)
+	at org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.computeCompletionProposals(IntelligentCompletionProposalComputer.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.CompletionProposalComputerDescriptor.computeCompletionProposals(CompletionProposalComputerDescriptor.java:333)
+	at org.eclipse.jdt.internal.ui.text.java.CompletionProposalCategory.computeCompletionProposals(CompletionProposalCategory.java:337)
+	at org.eclipse.jdt.internal.ui.text.java.ContentAssistProcessor.collectProposals(ContentAssistProcessor.java:325)
+	at org.eclipse.jdt.internal.ui.text.java.ContentAssistProcessor.computeCompletionProposals(ContentAssistProcessor.java:282)
+	at org.eclipse.jface.text.contentassist.ContentAssistant.computeCompletionProposals(ContentAssistant.java:1861)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.computeProposals(CompletionProposalPopup.java:573)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$16(CompletionProposalPopup.java:570)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup$2.run(CompletionProposalPopup.java:505)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:499)
+	at org.eclipse.jface.text.contentassist.ContentAssistant$2.run(ContentAssistant.java:378)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:136)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4147)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3764)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:27:07.349
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:27:07.350
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:52:11.028
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:52:11.028
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:52:32.898
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:52:32.898
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:55:45.874
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 16:55:45.874
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:16:05.560
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\testRobotDrive\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:16:05.560
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:16:37.538
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\testRobotDrive\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:16:37.538
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:17:13.232
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\testRobotDrive\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:17:13.232
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:19:21.459
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\testRobotDrive\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:19:21.459
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:19:51.984
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:19:51.984
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:20:56.818
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:20:56.819
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:21:40.662
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:21:40.662
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:22:47.602
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:22:47.602
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:23:13.315
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:23:13.315
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:25:03.134
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:25:03.134
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:26:41.920
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:26:41.921
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:29:29.163
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:29:29.163
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:32:16.807
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:32:16.808
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:34:31.101
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:34:31.101
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:35:25.243
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:35:25.244
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:49:44.153
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:49:44.153
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:51:07.928
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 17:51:07.928
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.jface 4 0 2015-02-03 18:01:57.753
+!MESSAGE Unable to resolve plug-in "platform:/plugin/org.eclipse.cdt.debug.ui/icons/obj16/exec_view_obj.gif".
+!STACK 0
+java.io.IOException: Unable to resolve plug-in "platform:/plugin/org.eclipse.cdt.debug.ui/icons/obj16/exec_view_obj.gif".
+	at org.eclipse.core.internal.runtime.PlatformURLPluginConnection.parse(PlatformURLPluginConnection.java:64)
+	at org.eclipse.core.internal.runtime.PlatformURLPluginConnection.resolve(PlatformURLPluginConnection.java:75)
+	at org.eclipse.core.internal.boot.PlatformURLHandler.openConnection(PlatformURLHandler.java:67)
+	at org.eclipse.osgi.internal.url.URLStreamHandlerProxy.openConnection(URLStreamHandlerProxy.java:114)
+	at java.net.URL.openConnection(Unknown Source)
+	at org.eclipse.core.internal.runtime.PlatformURLConverter.toFileURL(PlatformURLConverter.java:33)
+	at org.eclipse.core.runtime.FileLocator.toFileURL(FileLocator.java:206)
+	at org.eclipse.jface.resource.URLImageDescriptor.getFilePath(URLImageDescriptor.java:141)
+	at org.eclipse.jface.resource.URLImageDescriptor.createImage(URLImageDescriptor.java:162)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:230)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:208)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SWTPartRenderer.getImageFromURI(SWTPartRenderer.java:221)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SWTPartRenderer.getImage(SWTPartRenderer.java:233)
+	at org.eclipse.e4.ui.workbench.renderers.swt.StackRenderer.createTab(StackRenderer.java:828)
+	at org.eclipse.e4.ui.workbench.renderers.swt.LazyStackRenderer.processContents(LazyStackRenderer.java:136)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:674)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:766)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(PartRenderingEngine.java:737)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(PartRenderingEngine.java:731)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:715)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SWTPartRenderer.processContents(SWTPartRenderer.java:68)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SashRenderer.processContents(SashRenderer.java:185)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:674)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:766)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(PartRenderingEngine.java:737)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(PartRenderingEngine.java:731)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:715)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SWTPartRenderer.processContents(SWTPartRenderer.java:68)
+	at org.eclipse.e4.ui.workbench.renderers.swt.PerspectiveRenderer.processContents(PerspectiveRenderer.java:49)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:674)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:766)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(PartRenderingEngine.java:737)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(PartRenderingEngine.java:731)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:715)
+	at org.eclipse.e4.ui.workbench.renderers.swt.PerspectiveStackRenderer.showTab(PerspectiveStackRenderer.java:103)
+	at org.eclipse.e4.ui.workbench.renderers.swt.LazyStackRenderer$1.handleEvent(LazyStackRenderer.java:68)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler$1.run(UIEventHandler.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.syncExec(Synchronizer.java:187)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:156)
+	at org.eclipse.swt.widgets.Display.syncExec(Display.java:4734)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application$1.syncExec(E4Application.java:218)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler.handleEvent(UIEventHandler.java:36)
+	at org.eclipse.equinox.internal.event.EventHandlerWrapper.handleEvent(EventHandlerWrapper.java:197)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:197)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:148)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.dispatchEvent(EventAdminImpl.java:135)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.sendEvent(EventAdminImpl.java:78)
+	at org.eclipse.equinox.internal.event.EventComponent.sendEvent(EventComponent.java:39)
+	at org.eclipse.e4.ui.services.internal.events.EventBroker.send(EventBroker.java:81)
+	at org.eclipse.e4.ui.internal.workbench.UIEventPublisher.notifyChanged(UIEventPublisher.java:59)
+	at org.eclipse.emf.common.notify.impl.BasicNotifierImpl.eNotify(BasicNotifierImpl.java:374)
+	at org.eclipse.e4.ui.model.application.ui.advanced.impl.PerspectiveStackImpl.setSelectedElement(PerspectiveStackImpl.java:135)
+	at org.eclipse.e4.ui.model.application.ui.advanced.impl.PerspectiveStackImpl.setSelectedElement(PerspectiveStackImpl.java:1)
+	at org.eclipse.e4.ui.workbench.addons.perspectiveswitcher.PerspectiveSwitcher$16.widgetSelected(PerspectiveSwitcher.java:622)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:248)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4353)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1061)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4172)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3761)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 18:10:54.414
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 18:10:54.415
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 18:23:30.993
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 18:23:30.993
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 18:24:41.304
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 18:24:41.304
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.recommenders.calls.rcp 2 1 2015-02-03 18:29:36.565
+!MESSAGE Cannot obtain JDT’s lookup environment (debug only).
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:377)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:130)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:122)
+	at org.eclipse.recommenders.internal.calls.rcp.CallCompletionSessionProcessor.startSession(CallCompletionSessionProcessor.java:104)
+	at org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.fireStartSession(IntelligentCompletionProposalComputer.java:229)
+	at org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.computeCompletionProposals(IntelligentCompletionProposalComputer.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.CompletionProposalComputerDescriptor.computeCompletionProposals(CompletionProposalComputerDescriptor.java:333)
+	at org.eclipse.jdt.internal.ui.text.java.CompletionProposalCategory.computeCompletionProposals(CompletionProposalCategory.java:337)
+	at org.eclipse.jdt.internal.ui.text.java.ContentAssistProcessor.collectProposals(ContentAssistProcessor.java:325)
+	at org.eclipse.jdt.internal.ui.text.java.ContentAssistProcessor.computeCompletionProposals(ContentAssistProcessor.java:282)
+	at org.eclipse.jface.text.contentassist.ContentAssistant.computeCompletionProposals(ContentAssistant.java:1861)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.computeProposals(CompletionProposalPopup.java:573)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$16(CompletionProposalPopup.java:570)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup$2.run(CompletionProposalPopup.java:505)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:499)
+	at org.eclipse.jface.text.contentassist.ContentAssistant$2.run(ContentAssistant.java:378)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:136)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4147)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3764)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 18:49:54.707
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 18:49:54.707
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 18:50:22.298
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 18:50:22.298
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 18:51:34.994
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-03 18:51:34.994
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 16:06:07.840
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 16:06:07.840
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.recommenders.calls.rcp 2 1 2015-02-04 16:33:23.707
+!MESSAGE Cannot obtain JDT’s lookup environment (debug only).
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:377)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:130)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:122)
+	at org.eclipse.recommenders.internal.calls.rcp.CallCompletionSessionProcessor.startSession(CallCompletionSessionProcessor.java:104)
+	at org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.fireStartSession(IntelligentCompletionProposalComputer.java:229)
+	at org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.computeCompletionProposals(IntelligentCompletionProposalComputer.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.CompletionProposalComputerDescriptor.computeCompletionProposals(CompletionProposalComputerDescriptor.java:333)
+	at org.eclipse.jdt.internal.ui.text.java.CompletionProposalCategory.computeCompletionProposals(CompletionProposalCategory.java:337)
+	at org.eclipse.jdt.internal.ui.text.java.ContentAssistProcessor.collectProposals(ContentAssistProcessor.java:325)
+	at org.eclipse.jdt.internal.ui.text.java.ContentAssistProcessor.computeCompletionProposals(ContentAssistProcessor.java:282)
+	at org.eclipse.jface.text.contentassist.ContentAssistant.computeCompletionProposals(ContentAssistant.java:1861)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.computeProposals(CompletionProposalPopup.java:573)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$16(CompletionProposalPopup.java:570)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup$2.run(CompletionProposalPopup.java:505)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:499)
+	at org.eclipse.jface.text.contentassist.ContentAssistant$2.run(ContentAssistant.java:378)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:136)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4147)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3764)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+
+!ENTRY org.eclipse.recommenders.calls.rcp 2 1 2015-02-04 16:39:44.553
+!MESSAGE Cannot obtain JDT’s lookup environment (debug only).
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:377)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:130)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:122)
+	at org.eclipse.recommenders.internal.calls.rcp.CallCompletionSessionProcessor.startSession(CallCompletionSessionProcessor.java:104)
+	at org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.fireStartSession(IntelligentCompletionProposalComputer.java:229)
+	at org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.computeCompletionProposals(IntelligentCompletionProposalComputer.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.CompletionProposalComputerDescriptor.computeCompletionProposals(CompletionProposalComputerDescriptor.java:333)
+	at org.eclipse.jdt.internal.ui.text.java.CompletionProposalCategory.computeCompletionProposals(CompletionProposalCategory.java:337)
+	at org.eclipse.jdt.internal.ui.text.java.ContentAssistProcessor.collectProposals(ContentAssistProcessor.java:325)
+	at org.eclipse.jdt.internal.ui.text.java.ContentAssistProcessor.computeCompletionProposals(ContentAssistProcessor.java:282)
+	at org.eclipse.jface.text.contentassist.ContentAssistant.computeCompletionProposals(ContentAssistant.java:1861)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.computeProposals(CompletionProposalPopup.java:573)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$16(CompletionProposalPopup.java:570)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup$2.run(CompletionProposalPopup.java:505)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:499)
+	at org.eclipse.jface.text.contentassist.ContentAssistant$2.run(ContentAssistant.java:378)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:136)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4147)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3764)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 16:51:51.532
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 16:51:51.532
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 16:52:16.132
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 16:52:16.132
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:01:18.815
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:01:18.816
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:12:12.507
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:12:12.508
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:14:10.454
+!MESSAGE Last deploy running
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:14:10.454
+!MESSAGE Waiting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:14:10.455
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:14:10.455
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:14:47.609
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:14:47.609
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:24:42.997
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:24:42.998
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:29:04.790
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:29:04.790
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:30:55.128
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:30:55.129
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:32:01.009
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:32:01.009
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:44:44.200
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:44:44.200
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:47:26.329
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:47:26.330
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:49:58.047
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:49:58.047
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:51:41.751
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:51:41.751
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:54:10.874
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:54:10.874
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:54:31.097
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:54:31.098
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:55:10.154
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 17:55:10.154
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:02:18.954
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:02:18.954
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.recommenders.calls.rcp 2 1 2015-02-04 18:04:57.603
+!MESSAGE Cannot obtain JDT’s lookup environment (debug only).
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:377)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:130)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:122)
+	at org.eclipse.recommenders.internal.calls.rcp.CallCompletionSessionProcessor.startSession(CallCompletionSessionProcessor.java:104)
+	at org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.fireStartSession(IntelligentCompletionProposalComputer.java:229)
+	at org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.computeCompletionProposals(IntelligentCompletionProposalComputer.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.CompletionProposalComputerDescriptor.computeCompletionProposals(CompletionProposalComputerDescriptor.java:333)
+	at org.eclipse.jdt.internal.ui.text.java.CompletionProposalCategory.computeCompletionProposals(CompletionProposalCategory.java:337)
+	at org.eclipse.jdt.internal.ui.text.java.ContentAssistProcessor.collectProposals(ContentAssistProcessor.java:325)
+	at org.eclipse.jdt.internal.ui.text.java.ContentAssistProcessor.computeCompletionProposals(ContentAssistProcessor.java:282)
+	at org.eclipse.jface.text.contentassist.ContentAssistant.computeCompletionProposals(ContentAssistant.java:1861)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.computeProposals(CompletionProposalPopup.java:573)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$16(CompletionProposalPopup.java:570)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup$2.run(CompletionProposalPopup.java:505)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:499)
+	at org.eclipse.jface.text.contentassist.ContentAssistant$2.run(ContentAssistant.java:378)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:136)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4147)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3764)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-04 18:07:43.447
+!MESSAGE [edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@13ac0fa, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@d1e6ef, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1e8c63e, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1fa1f69, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@463fbc, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1f75ac5, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@a3a233, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@11bf259, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@798759, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@15ddea1, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@c05c43, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1de038, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@c0e9ad]
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-04 18:07:43.447
+!MESSAGE [edu.wpi.first.wpilib.plugins.core.wizards.Tag@1d18182, edu.wpi.first.wpilib.plugins.core.wizards.Tag@189e6ff, edu.wpi.first.wpilib.plugins.core.wizards.Tag@56d4d6, edu.wpi.first.wpilib.plugins.core.wizards.Tag@16eceb0, edu.wpi.first.wpilib.plugins.core.wizards.Tag@34824e, edu.wpi.first.wpilib.plugins.core.wizards.Tag@b432a9, edu.wpi.first.wpilib.plugins.core.wizards.Tag@40b1cd, edu.wpi.first.wpilib.plugins.core.wizards.Tag@12af37b, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1283ea2, edu.wpi.first.wpilib.plugins.core.wizards.Tag@167894, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1677182, edu.wpi.first.wpilib.plugins.core.wizards.Tag@14ae23e, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1390bdb, edu.wpi.first.wpilib.plugins.core.wizards.Tag@a80e30, edu.wpi.first.wpilib.plugins.core.wizards.Tag@378306]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:13:53.214
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:13:53.214
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:16:09.266
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:16:09.267
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:18:03.953
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:18:03.953
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:18:46.688
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:18:46.688
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:20:38.035
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:20:38.035
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:22:06.381
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-04 18:22:06.382
+!MESSAGE Targets: deploy, Mode: run

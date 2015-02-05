@@ -1,10 +1,15 @@
+
 package org.usfirst.frc.team360.robot;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -23,6 +28,7 @@ import edu.wpi.first.wpilibj.Compressor;
 
 public class Robot extends IterativeRobot {
 	
+	OI controls = new OI(); 
 	RobotDrive myRobot;
 	
 	VictorSP liftMotor;
@@ -82,6 +88,10 @@ public class Robot extends IterativeRobot {
 	int setPoint;
 	int position;
 	
+	public static int aChannel = 0; // encoder a channel
+	public static int bChannel = 1; // encoder b channel
+	public static boolean encoderDirection = false; // true = reverse false = forward.
+	
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -89,9 +99,25 @@ public class Robot extends IterativeRobot {
 	
     public void robotInit() {
     	
-    	myRobot = new RobotDrive(0,1);
+    	Encoder encoder;
+     	encoder = new Encoder( 0, 1, true, EncodingType.k4X);
+     	encoder.setMaxPeriod(.1);
+      	encoder.setMinRate(10);
+    	encoder.setDistancePerPulse(5);
+      	encoder.setReverseDirection(true);
+      	encoder.setSamplesToAverage(7);
+      	//encoder.start();
+      	int count = encoder.get();
+       	//System.out.println(count);
+      	
+      	for(int i = 1; i < 10000; i++) {
+      		System.out.println(count);; // only available in the for loop.
+		}
+       	System.out.println(count);
     	
-    	myRobot.setExpiration(0.1);
+    	 myRobot = new RobotDrive(0,1);
+    	
+    	 myRobot.setExpiration(0.1);
     	
     	stickR = new Joystick(1); 
     	stickL = new Joystick(0);
@@ -107,15 +133,18 @@ public class Robot extends IterativeRobot {
    
     public void disabledInit() {
     	
-    	compressor.stop();//set percent to 0
+    	 compressor.stop();//set percent to 0
 
     }
     
     public void autonomousInit() {
     	
-    	compressor.start();
+    	 compressor.start();
     	
-    	autoLoopCounter = 0;
+         // encRight.start();
+         //encLift.start();
+    	 
+    	 autoLoopCounter = 0;
     	
     }
 
@@ -142,41 +171,43 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	
-    	valJoyR = stickR.getRawAxis(1);
-    	valJoyL = stickL.getRawAxis(1);
+    	 valJoyR =  stickR.getRawAxis(1);
+    	 valJoyL =  stickL.getRawAxis(1);
     	
-    	up = stickR.getRawButton(1);
-        down = stickL.getRawButton(1);
-        grab = gamePad.getRawButton(1);
-        release = gamePad.getRawButton(2);
+    	 up =  stickR.getRawButton(1);
+    	 down =  stickL.getRawButton(1);
+    	 grab =  gamePad.getRawButton(1);
+    	 release =  gamePad.getRawButton(2);
 
       	intakeControl();
       	
+     
+      	
       	Timer.delay(0.005); // wait for a motor update time
       	
-        if (valJoyR >= .15 || valJoyR <= -.15 || valJoyL >= .15 || valJoyL <= -.15){
+        if ( valJoyR >= .15 ||  valJoyR <= -.15 ||  valJoyL >= .15 ||  valJoyL <= -.15){
         	
         	//System.out.println("tank active");
         	
-        	if(up == true && down == false) {
+        	if( up == true &&  down == false) {
         		
-        		halfSpeed = true;
+        		 halfSpeed = true;
         		
         		//System.out.println("speed = high");
  
-        	} else if(down == true && up == false){
+        	} else if( down == true &&  up == false){
         	
-               halfSpeed = false;
+        		 halfSpeed = false;
                
                //System.out.println("speed = low");
                
         	}
         
-        	if (halfSpeed == false){
+        	if ( halfSpeed == false){
         	
         		fullSpeedDrive();
         	
-        	} else if (halfSpeed == true){
+        	} else if ( halfSpeed == true){
         	
         		halfSpeedDrive();
         	
@@ -187,18 +218,18 @@ public class Robot extends IterativeRobot {
     
     public void intakeControl() {
     	
-    		grab = gamePad.getRawButton(7);
-    		release = gamePad.getRawButton(8);   		       
+    	 grab =  gamePad.getRawButton(7);
+    	 release =  gamePad.getRawButton(8);   		       
     		
-    		if (grab==true && release == false){
+    		if ( grab==true &&  release == false){
     			
-                intakeSol.set(DoubleSolenoid.Value.kForward);//grab
+    			 intakeSol.set(DoubleSolenoid.Value.kForward);//grab
                 
                 System.out.println("solenoid = forward");
                 
-            } else if (release==true && grab == false) {
+            } else if ( release==true &&  grab == false) {
             	
-                intakeSol.set(DoubleSolenoid.Value.kReverse);//release
+            	 intakeSol.set(DoubleSolenoid.Value.kReverse);//release
                 
                 System.out.println("solenoid = reverse");
                 
@@ -206,15 +237,15 @@ public class Robot extends IterativeRobot {
    }
     public void fullSpeedDrive(){
     	
-    	double joyR = stickR.getRawAxis(1);
-        double joyL = stickL.getRawAxis(1);
+    	double joyR =  stickR.getRawAxis(1);
+        double joyL =  stickL.getRawAxis(1); 
         
     	Timer.delay(0.005);
     	
     	joyR *= .95;
     	joyL *= .95;
     	
-    	myRobot.tankDrive(joyR, -joyL);
+    	 myRobot.tankDrive(-joyR, -joyL);
     	
     	System.out.println("speed = high");
     	
@@ -222,15 +253,15 @@ public class Robot extends IterativeRobot {
     
     public void halfSpeedDrive(){
     	
-    	double joyR = stickR.getRawAxis(1);
-        double joyL = stickL.getRawAxis(1); 
+    	double joyR =  stickR.getRawAxis(1);
+        double joyL =  stickL.getRawAxis(1); 
         
     	Timer.delay(0.005);
     	
     	joyR *= .7;
     	joyL *= .7;
     	
-    	myRobot.tankDrive(joyR, -joyL);
+    	 myRobot.tankDrive(-joyR, -joyL);
     	
     	System.out.println("speed = low");
     	
@@ -243,12 +274,13 @@ public class Robot extends IterativeRobot {
     	//get encoder value
     	//hardcode the target for now for testing - always do Lift routine to same spot, eg. 1000
     	
-    	doPID(P, I, D, dt, position, setPoint);   //performs PID output. PID coefficients = 1, 0, 0.15 respectively; time to differentiate = 1 ms; reads position from potentiometer; target angle
+    	
+    	doPID( P,  I,  D,  dt,  position,  setPoint);   //performs PID output. PID coefficients = 1, 0, 0.15 respectively; time to differentiate = 1 ms; reads position from potentiometer; target angle
 	
-		output = output / 100;                                          //scales output back by 100 since the potentiometer says a few hundred counts equals less than 100 degrees in RL
+    	 output =  output / 100;                                          //scales output back by 100 since the potentiometer says a few hundred counts equals less than 100 degrees in RL
 		
-		if(output > 1){ output = 1;}                                    //these two lines set the output to max should it exceed the max
-		if(output < -1){ output = -1;}
+		if( output > 1){  output = 1;}                                    //these two lines set the output to max should it exceed the max
+		if(  output < -1){  output = -1;}
 		
 		//below is where set motor speed to output from PID
 		//use correct Java syntax for this
@@ -263,14 +295,14 @@ public class Robot extends IterativeRobot {
     	
        	//you need to translate this into Java syntax and declare your variables
 	    //I think the output is the speed
-    	
+    	/*
 	    Wait(dt);
 		error = position - setPoint;
 		integral = integral + (error * dt);
 		derivative = (error - prevError) / dt;
 		output = (P * error) + (I * integral) + (D * derivative);
 		prevError = error;
-		
+		*/
     	
 	}
     

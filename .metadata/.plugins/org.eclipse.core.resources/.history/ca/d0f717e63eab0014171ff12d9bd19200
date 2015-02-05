@@ -1,0 +1,161 @@
+package org.usfirst.frc.team360.robot;
+
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
+/**
+ * This class is the glue that binds the controls on the physical operator
+ * interface to the commands and command groups that allow control of the robot.
+ */
+public class OI {
+RobotDrive myRobot;
+	
+	VictorSP liftMotor;
+	VictorSP motorL;
+	VictorSP motorR;
+	
+	
+	Joystick stickR;
+	Joystick stickL;
+	Joystick gamePad; 
+	
+	DoubleSolenoid intakeSol = new DoubleSolenoid(0, 1);
+	
+	Compressor compressor = new Compressor(0);//init compressor and maps it
+	Encoder encoder = new Encoder(Const.aChannel, Const.bChannel, Const.encoderDirection, EncodingType.k1X/* EncodingType.?? */);
+	PIDController PID;
+	
+	int autoLoopCounter;
+	int totes; //num of totes carried
+    
+	double stickPos = 1;
+	double Dgain = 0.011;
+    double Pgain = 0.45;
+    double Igain = 0.024;//.012
+    float error;
+    double last_error = 0;
+    double Padjustment;
+    double Dadjustment;
+    double PID_adjust;
+    double valJoyR;
+    double valJoyL;
+    
+	boolean grab;
+	boolean release; 
+	boolean up;
+    boolean down;
+    boolean deployPrep;
+
+	public static boolean halfSpeed;
+    
+    // pid cotrol variables
+    
+	double output;
+	double integral;
+	double derivative;
+	
+	float prevError;
+	float Wait;
+	float armPosition;
+	float armTarget;
+	float arm;
+	float P;
+	float I;
+	float D;
+	float dt;
+	
+	int exp1;
+	int exp2;
+	int setPoint;
+	int position;
+	
+    // CREATING BUTTONS
+    // One type of button is a joystick button which is any button on a joystick.
+    // You create one by telling it which joystick it's on and which button
+    // number it is.
+	//public void Joysticks(){
+    // Global static Joystick stick = new Joystick(0);
+     //Joystick stick1 = new Joystick(1);
+     //Button button = new JoystickButton(stick, 1);
+    // Button button1 = new JoystickButton(stick1, 1);
+    
+	int myVar = 1;
+	
+	public void init(){
+		
+		myRobot = new RobotDrive(0,1);
+    	
+    	myRobot.setExpiration(0.1);
+    	
+    	stickR = new Joystick(1); 
+    	stickL = new Joystick(0);
+    	gamePad = new Joystick(2);
+    	
+    	liftMotor = new VictorSP(2);
+    	
+    	liftMotor.enableDeadbandElimination(true);
+    	
+    	halfSpeed = true; 
+    	/* initialize the PID controller 
+    	 * PID code is prototype
+    	 * */
+    	
+    	 encoder.setPIDSourceParameter(PIDSourceParameter.kRate);
+    	//PID = new PIDController(Const.KP, Const.KI, Const.KD, encoder, liftMotor, Const.PIDPeriod); 
+	}
+		
+	public void varsForTeleop() {
+		
+		RobotDrive myRobot;
+		
+		VictorSP liftMotor;
+		VictorSP motorL;
+		VictorSP motorR;
+		
+		
+		Joystick stickR;
+		Joystick stickL;
+		Joystick gamePad; 
+		
+		DoubleSolenoid intakeSol = new DoubleSolenoid(0, 1);
+		
+		Compressor compressor = new Compressor(0);//init compressor and maps it
+		
+		
+	}
+    
+    // There are a few additional built in buttons you can use. Additionally,
+    // by subclassing Button you can create custom triggers and bind those to
+    // commands the same as any other Button.
+    
+    //// TRIGGERING COMMANDS WITH BUTTONS
+    // Once you have a button, it's trivial to bind it to a button in one of
+    // three ways:
+    
+    // Start the command when the button is pressed and let it run the command
+    // until it is finished as determined by it's isFinished method.
+     //button.whenPressed(new Up(2));
+
+   
+    // Run the command while the button is being held down and interrupt it once
+    // the button is released.
+    //button1.whileHeld(new ExampleCommand());
+ 
+    // Start the command when the button is released  and let it run the command
+    // until it is finished as determined by it's isFinished method.
+    // button.whenReleased(new ExampleCommand());
+	}
+
+

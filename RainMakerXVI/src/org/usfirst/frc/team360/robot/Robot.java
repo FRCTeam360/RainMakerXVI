@@ -28,13 +28,20 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 //tank drive 2 Joysticks, left trigger engages down speed right trigger activates up speed
 
 public class Robot extends IterativeRobot {
-	public static float encVal;
+
 	OI controls = new OI(); 
-	VictorSP liftMotor = new VictorSP(3);
+
 	Encoder encoder = new Encoder( 0, 1, true, EncodingType.k1X);
 	double Enc=encoder.get();
-	PIDController PID = new PIDController(Const.KP, Const.KI, Const.KD, encoder, liftMotor, Const.PIDPeriod); 
-	
+	//PIDController PID = new PIDController(Const.KP, Const.KI, Const.KD, encoder, liftMotor, Const.PIDPeriod); 
+	public static double error;
+	public static double integral;
+	public static double derivative;
+	public static double output;
+	public static double prevError;
+	public static float encVal;
+	public static boolean liftTR;
+	public static boolean valThing;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -97,8 +104,8 @@ public class Robot extends IterativeRobot {
     	controls.down = controls.stickL.getRawButton(1);
     	controls.grab = controls.gamePad.getRawButton(1);
     	controls.release = controls.gamePad.getRawButton(2);
+    	
     
-    	float encVal = encoder.get();
     	
     	//System.out.println(encVal);
     	
@@ -108,18 +115,19 @@ public class Robot extends IterativeRobot {
       
       	SmartDashboard.putDouble( "Jo1 Axis 2", controls.stickR.getRawAxis(2));
 //      	PID.enable();
-      	if (controls.up == true){
+      	
+      	liftTR = true;
+      	Timer.delay(0.005); // wait for wa motor update time
+//      	PID.setSetpoint(100);
+//      	if(valThing = true) {
+//      	
+//          		liftTR = true;
+//         
+//      	}
+      	if(liftTR == true){
       		liftControl();
       	}
       	
-      	Timer.delay(0.005); // wait for wa motor update time
-//      	PID.setSetpoint(100);
-//      	if(controls.stickR.getRawButton(3)) {
-//      		PID.setSetpoint(100);
-//      	}
-      	//double PIDOUT = PID.get();
-    	
-    //	System.out.println(PIDOUT);
         if (controls.valJoyR >= .01 || controls.valJoyR <= -.01 || controls.valJoyL >= .01 || controls.valJoyL <= -.01){
         	
         	//System.out.println("tank active");
@@ -210,32 +218,41 @@ public class Robot extends IterativeRobot {
     	//hardcode the target for now for testing - always do Lift routine to same spot, eg. 1000
     	
     	//controls.dt = 0;
-    	float encVal = encoder.get();
-    	double p = 0.01; 
+    	encVal = encoder.get();
+    	double p = 0.001; 
     	double i = 0;
     	double d = 0.0015;
-    	double Dt = 0.01;
+    	double Dt = 0.01; 
 
-    	//doPID(controls.P, controls.I, controls.D, controls.dt, controls.position, controls.setPoint);   //performs PID output. PID coefficients = 1, 0, 0.15 respectively; time to differentiate = 1 ms; reads position from potentiometer; target angle
-    	//controls.output = doPID(p, i, d, Dt, encVal, 546);
-    	double PIDOUTPUT = doPID(p, i, d, Dt, encVal, 546);
-//    	controls.output = controls.output / 100;                                          //scales output back by 100 since the potentiometer says a few hundred counts equals less than 100 degrees in RL
-//		
-//		if(controls.output > 1){ controls.output = .7;}                                    //these two lines set the output to max should it exceed the max
-//		if(controls. output < -1){ controls.output = .7;}
-		System.out.println(PIDOUTPUT);
-		controls.motorL.set(.7);
-		controls.motorR.set(.7);
+ 
+    	double PIDOUTPUT = doPID(p, i, d, Dt, -encVal, 90);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
+    System.out.println(PIDOUTPUT + "output 0");
+//    	PIDOUTPUT = PIDOUTPUT / 10;   
+    	//scales output back by 100 since the potentiometer says a few hundred counts equals less than 100 degrees in RL
 
+    	if(PIDOUTPUT > 5){
+    		PIDOUTPUT = -.7; 
+    		controls.liftMotor.set(PIDOUTPUT);
+    		}                     
+    	if (PIDOUTPUT < -5){
+    		PIDOUTPUT = -.7;
+    		controls.liftMotor.set(PIDOUTPUT);
+    		}
+    	
+    	//controls.liftMotor.set(PIDOUTPUT);
+//    	controls.liftMotor.set(.7);
+
+		
+		
 		/*int stopAt = 500;
-		int current = 0;*/
+		int current = 0;
 		while(encVal < PIDOUTPUT){
 			encVal = encoder.get();
-			/*current ++;
-			if(current > stopAt) { break; }*/
-		}
-		controls.motorL.stopMotor();
-		controls.motorR.stopMotor();
+			current ++;
+			if(current > stopAt) { break; }
+		}*/
+//		controls.motorL.stopMotor();
+//		controls.motorR.stopMotor();
 		//below is where set motor speed to output from PID
 		//use correct Java syntax for this
 		//you will need to define the motor, too.
@@ -245,33 +262,28 @@ public class Robot extends IterativeRobot {
     	
     }
     
-    public double doPID(double P, double I, double D, double DT, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
+    public double doPID(double P, double I, double D, double dt, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
     	
        	//you need to translate this into Java syntax and declare your variables
 	    //I think the output is the speed
-    	float error;
-    	float integral = 0;
-    	float derivative;
-    	double output;
-    	float prevError = 0;
-    	float dt = 0;
+    	
 //    	float P;
 //    	float I;
 //    	float D;
-	    Wait(dt);
+    	Timer.delay(dt);
 		error = position - setPoint;
+		System.out.println(position + "position");
+		System.out.println(setPoint + "set point");
 		integral = integral + (error * dt);
 		derivative = (error - prevError) / dt;
 		output = (P * error) + (I * integral) + (D * derivative);
 		prevError = error;
-		return output;
+		System.out.println(error + "error");
+		
+		return -output;
     	
 	}
     
-    private void Wait(float dt2) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	/**
      * This function is called periodically during test mode

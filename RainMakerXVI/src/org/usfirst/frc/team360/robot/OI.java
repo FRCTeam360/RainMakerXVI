@@ -67,10 +67,12 @@ public class OI {
 	
 	float prevError;
 	float Wait;
-	float armPosition;
-	float armTarget;
-	float arm;
-
+	//float armPosition;
+	//float armTarget;
+	//float arm;
+	public float liftTarget;
+	
+	
 	
 	int exp1;
 	int exp2;
@@ -114,7 +116,7 @@ public class OI {
       	
       	 
     	
-    	//liftMotor.enableDeadbandElimination(true);
+    	//liftMotor.enableDFlieadbandElimination(true);
     	
     	halfSpeed = true; 
     	/* initialize the PID controller 

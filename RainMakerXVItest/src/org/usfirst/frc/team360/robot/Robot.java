@@ -1,20 +1,20 @@
-
 package org.usfirst.frc.team360.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Compressor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,71 +27,20 @@ import edu.wpi.first.wpilibj.Compressor;
 //tank drive 2 Joysticks, left trigger engages down speed right trigger activates up speed
 
 public class Robot extends IterativeRobot {
-	
-	OI controls = new OI(); 
-	RobotDrive myRobot;
-	
-	VictorSP liftMotor;
-	VictorSP motorL;
-	VictorSP motorR;
-	
-	
-	Joystick stickR;
-	Joystick stickL;
-	Joystick gamePad; 
-	
-	DoubleSolenoid intakeSol = new DoubleSolenoid(0, 1);
-	
-	Compressor compressor = new Compressor(0);//init compressor and maps it
-	
-	int autoLoopCounter;
-	int totes; //num of totes carried
-    
-	double stickPos = 1;
-	double Dgain = 0.011;
-    double Pgain = 0.45;
-    double Igain = 0.024;//.012
-    float error;
-    double last_error = 0;
-    double Padjustment;
-    double Dadjustment;
-    double PID_adjust;
-    double valJoyR;
-    double valJoyL;
-    
-	boolean grab;
-	boolean release; 
-	boolean up;
-    boolean down;
-    boolean deployPrep;
 
-	public static boolean halfSpeed;
-    
-    // pid cotrol variables
-    
-	double output;
-	double integral;
-	double derivative;
-	
-	float prevError;
-	float Wait;
-	float armPosition;
-	float armTarget;
-	float arm;
-	float P;
-	float I;
-	float D;
-	float dt;
-	
-	int exp1;
-	int exp2;
-	int setPoint;
-	int position;
-	
-	public static int aChannel = 0; // encoder a channel
-	public static int bChannel = 1; // encoder b channel
-	public static boolean encoderDirection = false; // true = reverse false = forward.
-	
+	OI controls = new OI(); 
+
+	Encoder encoder = new Encoder( 0, 1, true, EncodingType.k1X);
+	double Enc=encoder.get();
+	//PIDController PID = new PIDController(Const.KP, Const.KI, Const.KD, encoder, liftMotor, Const.PIDPeriod); 
+	public static double error;
+	public static double integral;
+	public static double derivative;
+	public static double output;
+	public static double prevError;
+	public static float encVal;
+	public static boolean liftTR;
+	public static boolean valThing;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -99,52 +48,26 @@ public class Robot extends IterativeRobot {
 	
     public void robotInit() {
     	
-    	Encoder encoder;
-     	encoder = new Encoder( 0, 1, true, EncodingType.k4X);
-     	encoder.setMaxPeriod(.1);
+    	controls.init();
+      	encoder.reset();
+    	encoder.setMaxPeriod(.1);
       	encoder.setMinRate(10);
     	encoder.setDistancePerPulse(5);
       	encoder.setReverseDirection(true);
       	encoder.setSamplesToAverage(7);
-      	//encoder.start();
-      	int count = encoder.get();
-       	//System.out.println(count);
-      	
-      	for(int i = 1; i < 10000; i++) {
-      		System.out.println(count);; // only available in the for loop.
-		}
-       	System.out.println(count);
-    	
-    	 myRobot = new RobotDrive(0,1);
-    	
-    	 myRobot.setExpiration(0.1);
-    	
-    	stickR = new Joystick(1); 
-    	stickL = new Joystick(0);
-    	gamePad = new Joystick(2);
-    	
-    	liftMotor = new VictorSP(2);
-    	
-    	liftMotor.enableDeadbandElimination(true);
-    	
-    	halfSpeed = true; 
-    	
     }
    
     public void disabledInit() {
     	
-    	 compressor.stop();//set percent to 0
+    	controls.compressor.stop();//set percent to 0
 
     }
     
     public void autonomousInit() {
     	
-    	 compressor.start();
+    	controls.compressor.start();
     	
-         // encRight.start();
-         //encLift.start();
-    	 
-    	 autoLoopCounter = 0;
+    	controls.autoLoopCounter = 0;
     	
     }
 
@@ -161,53 +84,70 @@ public class Robot extends IterativeRobot {
      */
     
 	public void teleopInit(){
+//		PID.
+//		PID.enable();
+		//controls.compressor.start();
 		
-		 compressor.start();
-		 
+		encoder.reset();// resets encoder
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    
+    	controls.valJoyR = controls.stickR.getRawAxis(1);
+    	controls.valJoyL = controls.stickL.getRawAxis(1);
     	
-    	 valJoyR =  stickR.getRawAxis(1);
-    	 valJoyL =  stickL.getRawAxis(1);
+    	controls.up = controls.stickR.getRawButton(1);
+    	controls.down = controls.stickL.getRawButton(1);
+    	controls.grab = controls.gamePad.getRawButton(1);
+    	controls.release = controls.gamePad.getRawButton(2);
     	
-    	 up =  stickR.getRawButton(1);
-    	 down =  stickL.getRawButton(1);
-    	 grab =  gamePad.getRawButton(1);
-    	 release =  gamePad.getRawButton(2);
-
+    
+    	
+    	//System.out.println(encVal);
+    	
+    	
+    	
       	intakeControl();
+      
+      	SmartDashboard.putDouble( "Jo1 Axis 2", controls.stickR.getRawAxis(2));
+//      	PID.enable();
+      	liftTR = true;
       	
-     
+      	Timer.delay(0.005); // wait for wa motor update time
+      	if (controls.stickR.getRawButton(3) == true){
+      		liftTR = true;
+      	}
+      	if (liftTR == true){
+      		liftControl();
+      
+      	}
       	
-      	Timer.delay(0.005); // wait for a motor update time
-      	
-        if ( valJoyR >= .15 ||  valJoyR <= -.15 ||  valJoyL >= .15 ||  valJoyL <= -.15){
+        if (controls.valJoyR >= .01 || controls.valJoyR <= -.01 || controls.valJoyL >= .01 || controls.valJoyL <= -.01){
         	
         	//System.out.println("tank active");
         	
-        	if( up == true &&  down == false) {
+        	if(controls.up == true && controls.down == false) {
         		
-        		 halfSpeed = true;
+        		controls.halfSpeed = true;
         		
         		//System.out.println("speed = high");
  
-        	} else if( down == true &&  up == false){
+        	} else if(controls.down == true && controls.up == false){
         	
-        		 halfSpeed = false;
+        		controls.halfSpeed = false;
                
                //System.out.println("speed = low");
                
         	}
         
-        	if ( halfSpeed == false){
+        	if (controls.halfSpeed == false){
         	
         		fullSpeedDrive();
         	
-        	} else if ( halfSpeed == true){
+        	} else if (controls.halfSpeed == true){
         	
         		halfSpeedDrive();
         	
@@ -218,34 +158,34 @@ public class Robot extends IterativeRobot {
     
     public void intakeControl() {
     	
-    	 grab =  gamePad.getRawButton(7);
-    	 release =  gamePad.getRawButton(8);   		       
+    	controls.grab = controls.gamePad.getRawButton(7);
+    	controls.release = controls.gamePad.getRawButton(8);   		       
     		
-    		if ( grab==true &&  release == false){
+    		if (controls.grab==true && controls.release == false){
     			
-    			 intakeSol.set(DoubleSolenoid.Value.kForward);//grab
+    			controls.intakeSol.set(DoubleSolenoid.Value.kForward);//grab
                 
                 System.out.println("solenoid = forward");
                 
-            } else if ( release==true &&  grab == false) {
+            } else if (controls.release==true && controls.grab == false) {
             	
-            	 intakeSol.set(DoubleSolenoid.Value.kReverse);//release
+            	controls.intakeSol.set(DoubleSolenoid.Value.kReverse);//release
                 
-                System.out.println("solenoid = reverse");
+               SmartDashboard.putData("solenoid = reverse", encoder);
                 
             }
    }
     public void fullSpeedDrive(){
     	
-    	double joyR =  stickR.getRawAxis(1);
-        double joyL =  stickL.getRawAxis(1); 
+    	double joyR = controls.stickR.getRawAxis(1);
+        double joyL = controls.stickL.getRawAxis(1); 
         
     	Timer.delay(0.005);
     	
     	joyR *= .95;
     	joyL *= .95;
     	
-    	 myRobot.tankDrive(-joyR, -joyL);
+    	controls.myRobot.tankDrive(-joyR, -joyL);
     	
     	System.out.println("speed = high");
     	
@@ -253,15 +193,15 @@ public class Robot extends IterativeRobot {
     
     public void halfSpeedDrive(){
     	
-    	double joyR =  stickR.getRawAxis(1);
-        double joyL =  stickL.getRawAxis(1); 
+    	double joyR = controls.stickR.getRawAxis(1);
+        double joyL = controls.stickL.getRawAxis(1); 
         
     	Timer.delay(0.005);
     	
     	joyR *= .7;
     	joyL *= .7;
     	
-    	 myRobot.tankDrive(-joyR, -joyL);
+    	controls.myRobot.tankDrive(-joyR, -joyL);
     	
     	System.out.println("speed = low");
     	
@@ -274,56 +214,57 @@ public class Robot extends IterativeRobot {
     	//get encoder value
     	//hardcode the target for now for testing - always do Lift routine to same spot, eg. 1000
     	
+    	//controls.dt = 0;
+    	encVal = encoder.get();
+    	double p = 0.001; 
+    	double i = 0;
+    	double d = 0.0015;
+    	double Dt = 0.01; 
+    	System.out.println(encVal + "encval 1");
     	
-    	doPID( P,  I,  D,  dt,  position,  setPoint);   //performs PID output. PID coefficients = 1, 0, 0.15 respectively; time to differentiate = 1 ms; reads position from potentiometer; target angle
-	
-    	 output =  output / 100;                                          //scales output back by 100 since the potentiometer says a few hundred counts equals less than 100 degrees in RL
-		
-		if( output > 1){  output = 1;}                                    //these two lines set the output to max should it exceed the max
-		if(  output < -1){  output = -1;}
-		
-		//below is where set motor speed to output from PID
-		//use correct Java syntax for this
-		//you will need to define the motor, too.
-		//just copy the driver motor definitions in the same sections that they are done
-		//you will also need to initialize the encoder counts to 0 somewhere, like in teleopInit
-		//arm.Set(output); 
-    	
+    	double PIDOUTPUT = doPID(p, i, d, Dt, -encVal, 2000);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
+    System.out.println(PIDOUTPUT + "output 1");
+     PIDOUTPUT /= 10;   
+    	//scales output back by 100 since the potentiometer says a few hundred counts equals less than 100 degrees in RL
+
+    	if(PIDOUTPUT > 1){
+    		System.out.println("#1");
+    		PIDOUTPUT = .7; 
+    		controls.liftMotor.set(PIDOUTPUT);
+     
+
+    		}                     
+    	if (PIDOUTPUT < -1){
+    		System.out.println("#2");
+    		PIDOUTPUT = .7;
+    		controls.liftMotor.set(PIDOUTPUT);
+       
+    		
+    		}
+    	              
+    	if (PIDOUTPUT > -1 || PIDOUTPUT < 1){
+    		System.out.println("#4");
+    
+    		controls.liftMotor.set(PIDOUTPUT);
+       
+    		
+    		}
+    	//System.out.println(encVal + "encval 2");
     }
     
-    public void doPID(float P, float I, float D, float dt, int position, int setPoint){ //arm to left is less than 470; to the right greater than 470
+    public double doPID(double P, double I, double D, double dt, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
     	
        	//you need to translate this into Java syntax and declare your variables
 	    //I think the output is the speed
-    	/*
-	    Wait(dt);
+    	
+//    	float P;
+//    	float I;
+//    	float D;
+    	Timer.delay(dt);
 		error = position - setPoint;
+		System.out.println(position + "position");
+		System.out.println(setPoint + "set point");
 		integral = integral + (error * dt);
 		derivative = (error - prevError) / dt;
 		output = (P * error) + (I * integral) + (D * derivative);
-		prevError = error;
-		*/
-    	
-	}
-    
-    private void Wait(float dt2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-     * This function is called periodically during test mode
-     */
-    
-    public void testPeriodic() {
-    	
-    	LiveWindow.run();
-    	
-    }
-    
-    public void deployStack(){
-    
-   
-    }
-    
 }

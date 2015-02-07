@@ -40,7 +40,9 @@ public class Robot extends IterativeRobot {
 	public static double output;
 	public static double prevError;
 	public static float encVal;
-	public static boolean liftTR;
+	public static boolean liftTR1;
+	public static boolean liftTR2;
+	public static boolean liftTR3;
 	public static boolean valThing;
     /**
      * This function is run when the robot is first started up and should be
@@ -88,7 +90,7 @@ public class Robot extends IterativeRobot {
 //		PID.
 //		PID.enable();
 		//controls.compressor.start();
-		
+		liftTR1 = false;  
 		encoder.reset();// resets encoder
     }
 
@@ -116,18 +118,32 @@ public class Robot extends IterativeRobot {
       	SmartDashboard.putDouble( "Jo1 Axis 2", controls.stickR.getRawAxis(2));
 //      	PID.enable();
       	
-      	liftTR = true;
+      	
       	Timer.delay(0.005); // wait for wa motor update time
-//      	PID.setSetpoint(100);
-//      	if(valThing = true) {
-//      	
-//          		liftTR = true;
-//         
-//      	}
-      	if(liftTR == true){
-      		liftControl();
+      	
+      	encVal = encoder.get();
+      	
+      	//if (controls.stickR.getRawButton(3) == true){
+      	//	liftTR1 = true;
+      //      	}
+      	setTarget();
+      	System.out.println(liftTR1 + "Lift Tr place");
+      	liftTR1 = true;
+      	if (liftTR1 == true){
+      		liftControl1();
       	}
       	
+      	else {
+      		controls.liftMotor.set(0);
+      		}
+      /*	if (controls.stickR.getRawButton(4) == true){
+      		liftTR2 = true;
+      	}
+      	if (liftTR2 == true){
+      		liftControl2();
+      
+      	}
+      */      	
         if (controls.valJoyR >= .01 || controls.valJoyR <= -.01 || controls.valJoyL >= .01 || controls.valJoyL <= -.01){
         	
         	//System.out.println("tank active");
@@ -210,7 +226,101 @@ public class Robot extends IterativeRobot {
     	
     }
     
-    public void liftControl() {
+    public void setTarget(){
+    	
+    	if (controls.gamePad.getRawButton(1) == true
+    	&&  controls.gamePad.getRawButton(2) == false
+    	&&  controls.gamePad.getRawButton(3) == false 
+    	&&  controls.gamePad.getRawButton(9) == false
+    	&&  controls.gamePad.getRawButton(10) == false){
+      		liftTR1 = true;
+      		controls.liftTarget = Const.liftLevel1;       
+      	}
+    	if (controls.gamePad.getRawButton(1) == false
+    	&&  controls.gamePad.getRawButton(2) == true
+    	&&  controls.gamePad.getRawButton(3) == false 
+    	&&  controls.gamePad.getRawButton(9) == false
+    	&&  controls.gamePad.getRawButton(10) == false){
+    	     liftTR1 = true;
+    	     controls.liftTarget = Const.liftLevel2;       
+    	      	}
+    	
+    	if (controls.gamePad.getRawButton(1) == false
+    	&&  controls.gamePad.getRawButton(2) == false
+    	&&  controls.gamePad.getRawButton(3) == true 
+    	&&  controls.gamePad.getRawButton(9) == false
+    	&&  controls.gamePad.getRawButton(10) == false){
+    	    liftTR1 = true;
+    	    controls.liftTarget = Const.liftLevel3;    
+    			} 
+    
+    	if (controls.gamePad.getRawButton(1) == false
+    	&&  controls.gamePad.getRawButton(2) == false
+        &&  controls.gamePad.getRawButton(3) == false 
+    	&&  controls.gamePad.getRawButton(9) == true
+    	&&  controls.gamePad.getRawButton(10) == false){
+    	     liftTR1 = true;
+    	     controls.liftTarget = Const.liftLeveldrive; 
+    	      	}
+    	
+    	if (controls.gamePad.getRawButton(1) == false
+    	&&  controls.gamePad.getRawButton(2) == false
+    	&&  controls.gamePad.getRawButton(3) == false 
+    	&&  controls.gamePad.getRawButton(9) == false
+    	&&  controls.gamePad.getRawButton(10) == true){
+    	    
+    		if (encVal > Const.liftLeveldrive + 10){
+    			SmartDashboard.putData("Too high to kill motor" , encoder);
+    		}
+    		else {liftTR1 = false;} 
+    	}
+    }
+    
+    public void liftControl1() {
+    	
+    	//set the pid vals to variable USE THESE IN DECLARATION
+    	// call liftControl from teleop periodic
+    	//get encoder value
+    	//hardcode the target for now for testing - always do Lift routine to same spot, eg. 1000
+    	
+    	//controls.dt = 0;
+    	
+    	double p = 0.001; 
+    	double i = 0;
+    	double d = 0.0015;
+    	double Dt = 0.01; 
+    	System.out.println(encVal + "encval 1.1");
+    	
+    	double PIDOUTPUT1 = doPID1(p, i, d, Dt, -encVal, controls.liftTarget);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
+    System.out.println(PIDOUTPUT1 + "output 1.11");
+     PIDOUTPUT1 /= 10;   
+    	//scales output back by 100 since the potentiometer says a few hundred counts equals less than 100 degrees in RL
+
+    	if(PIDOUTPUT1 > 1){
+    		System.out.println("#1.1");
+    		PIDOUTPUT1 = .7; 
+    		controls.liftMotor.set(PIDOUTPUT1);
+     
+
+    		}                     
+    	if (PIDOUTPUT1 < -1){
+    		System.out.println("#2.1");
+    		PIDOUTPUT1 = .7;
+    		controls.liftMotor.set(PIDOUTPUT1);
+       
+    		
+    		}
+    	              
+    	if (PIDOUTPUT1 > -1 || PIDOUTPUT1 < 1){
+    		System.out.println("#4.1");
+    
+    		controls.liftMotor.set(PIDOUTPUT1);
+       
+    		
+    		}
+    	//System.out.println(encVal + "encval 2");
+    }
+public void liftControl2() {
     	
     	//set the pid vals to variable USE THESE IN DECLARATION
     	// call liftControl from teleop periodic
@@ -223,46 +333,38 @@ public class Robot extends IterativeRobot {
     	double i = 0;
     	double d = 0.0015;
     	double Dt = 0.01; 
-
- 
-    	double PIDOUTPUT = doPID(p, i, d, Dt, -encVal, 90);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
-    System.out.println(PIDOUTPUT + "output 0");
-//    	PIDOUTPUT = PIDOUTPUT / 10;   
+    	System.out.println(encVal + "encval 1");
+    	
+    	double PIDOUTPUT2 = doPID2(p, i, d, Dt, -encVal, 4000);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
+    System.out.println(PIDOUTPUT2 + "output 1");
+     PIDOUTPUT2 /= 10;   
     	//scales output back by 100 since the potentiometer says a few hundred counts equals less than 100 degrees in RL
 
-    	if(PIDOUTPUT > 5){
-    		PIDOUTPUT = -.7; 
-    		controls.liftMotor.set(PIDOUTPUT);
-    		}                     
-    	if (PIDOUTPUT < -5){
-    		PIDOUTPUT = -.7;
-    		controls.liftMotor.set(PIDOUTPUT);
-    		}
-    	
-    	//controls.liftMotor.set(PIDOUTPUT);
-//    	controls.liftMotor.set(.7);
+    	if(PIDOUTPUT2 > 1){
+    		System.out.println("#1.2");
+    		PIDOUTPUT2 = .7; 
+    		controls.liftMotor.set(PIDOUTPUT2);
+     
 
-		
-		
-		/*int stopAt = 500;
-		int current = 0;
-		while(encVal < PIDOUTPUT){
-			encVal = encoder.get();
-			current ++;
-			if(current > stopAt) { break; }
-		}*/
-//		controls.motorL.stopMotor();
-//		controls.motorR.stopMotor();
-		//below is where set motor speed to output from PID
-		//use correct Java syntax for this
-		//you will need to define the motor, too.
-		//just copy the driver motor definitions in the same sections that they are done
-		//you will also need to initialize the encoder counts to 0 somewhere, like in teleopInit
-		//arm.Set(output); 
-    	
-    }
+    		}                     
+    	if (PIDOUTPUT2 < -1){
+    		System.out.println("#2.2");
+    		PIDOUTPUT2 = .7;
+    		controls.liftMotor.set(PIDOUTPUT2);
+       
+    		
+    		}
+    	              
+    	if (PIDOUTPUT2 > -1 || PIDOUTPUT2 < 1){
+    		System.out.println("#4.2");
     
-    public double doPID(double P, double I, double D, double dt, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
+    		controls.liftMotor.set(PIDOUTPUT2);
+       
+    		
+    		}
+    	//System.out.println(encVal + "encval 2");
+    }
+    public double doPID1(double P, double I, double D, double dt, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
     	
        	//you need to translate this into Java syntax and declare your variables
 	    //I think the output is the speed
@@ -272,18 +374,40 @@ public class Robot extends IterativeRobot {
 //    	float D;
     	Timer.delay(dt);
 		error = position - setPoint;
-		System.out.println(position + "position");
-		System.out.println(setPoint + "set point");
+		System.out.println(position + "position.1");
+		System.out.println(setPoint + "set point.1");
 		integral = integral + (error * dt);
 		derivative = (error - prevError) / dt;
 		output = (P * error) + (I * integral) + (D * derivative);
 		prevError = error;
-		System.out.println(error + "error");
-		
+		System.out.println(error + "error.1");
+		System.out.println(output + "output.1");
+
 		return -output;
     	
 	}
-    
+public double doPID2(double P, double I, double D, double dt, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
+    	
+       	//you need to translate this into Java syntax and declare your variables
+	    //I think the output is the speed
+    	
+//    	float P;
+//    	float I;
+//    	float D;
+    	Timer.delay(dt);
+		error = position - setPoint;
+		System.out.println(position + "position.2");
+		System.out.println(setPoint + "set point.2");
+		integral = integral + (error * dt);
+		derivative = (error - prevError) / dt;
+		output = (P * error) + (I * integral) + (D * derivative);
+		prevError = error;
+		System.out.println(error + "error.2");
+		System.out.println(output + "output.2");
+
+		return -output;
+    	
+	}
 
 	/**
      * This function is called periodically during test mode

@@ -7022,3 +7022,72 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY WPILib_Java_Robot_Development 1 0 2015-02-06 18:23:34.520
 !MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2015-02-07 12:56:29.814
+!MESSAGE Can't handle class org.eclipse.jdt.internal.compiler.ast.IfStatement as parent of completion location.
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:19:17.712
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:19:17.712
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:25:37.989
+!MESSAGE Last deploy running
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:25:37.989
+!MESSAGE Waiting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:25:37.990
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:25:37.990
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:26:59.259
+!MESSAGE Last deploy running
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:26:59.260
+!MESSAGE Waiting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:26:59.260
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:26:59.260
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:27:52.286
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:27:52.286
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:28:16.253
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:28:16.254
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:31:47.075
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:31:47.075
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:34:49.860
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:34:49.861
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:42:45.871
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:42:45.872
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:44:04.893
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-07 13:44:04.893
+!MESSAGE Targets: deploy, Mode: run

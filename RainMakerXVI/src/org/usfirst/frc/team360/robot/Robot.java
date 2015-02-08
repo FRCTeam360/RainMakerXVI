@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot {
 	OI controls = new OI(); 
 
 	Encoder encoder = new Encoder( 0, 1, true, EncodingType.k1X);
-	double Enc=encoder.get();
+	double Enc = encoder.get();
 	//PIDController PID = new PIDController(Const.KP, Const.KI, Const.KD, encoder, liftMotor, Const.PIDPeriod); 
 	public static double error;
 	public static double integral;
@@ -70,6 +70,8 @@ public class Robot extends IterativeRobot {
     	
     	controls.compressor.start();
     	
+    	encoder.reset();
+    	
     	controls.autoLoopCounter = 0;
     	
     }
@@ -87,8 +89,6 @@ public class Robot extends IterativeRobot {
      */
     
 	public void teleopInit(){
-//		PID.
-//		PID.enable();
 		//controls.compressor.start();
 		liftTR1 = false;  
 		encoder.reset();// resets encoder
@@ -107,43 +107,22 @@ public class Robot extends IterativeRobot {
     	controls.grab = controls.gamePad.getRawButton(1);
     	controls.release = controls.gamePad.getRawButton(2);
     	
-    
-    	
-    	//System.out.println(encVal);
-    	
-    	
-    	
-      	intakeControl();
+       	intakeControl();
       
-      	SmartDashboard.putDouble( "Jo1 Axis 2", controls.stickR.getRawAxis(2));
-//      	PID.enable();
-      	
+      	SmartDashboard.putDouble( "Jo1 Axis 2", 0.0);
       	
       	Timer.delay(0.005); // wait for wa motor update time
       	
       	encVal = encoder.get();
-      	
-      	//if (controls.stickR.getRawButton(3) == true){
-      	//	liftTR1 = true;
-      //      	}
+
       	setTarget();
       	System.out.println(liftTR1 + "Lift Tr place");
-      	liftTR1 = true;
       	if (liftTR1 == true){
       		liftControl1();
+      	} else {
+      		controls.liftMotor.stopMotor();
       	}
-      	
-      	else {
-      		controls.liftMotor.set(0);
-      		}
-      /*	if (controls.stickR.getRawButton(4) == true){
-      		liftTR2 = true;
-      	}
-      	if (liftTR2 == true){
-      		liftControl2();
       
-      	}
-      */      	
         if (controls.valJoyR >= .01 || controls.valJoyR <= -.01 || controls.valJoyL >= .01 || controls.valJoyL <= -.01){
         	
         	//System.out.println("tank active");
@@ -184,13 +163,13 @@ public class Robot extends IterativeRobot {
     			
     			controls.intakeSol.set(DoubleSolenoid.Value.kForward);//grab
                 
-                System.out.println("solenoid = forward");
+    			SmartDashboard.putData("solenoid = forward", encoder);
                 
             } else if (controls.release==true && controls.grab == false) {
             	
             	controls.intakeSol.set(DoubleSolenoid.Value.kReverse);//release
                 
-               SmartDashboard.putData("solenoid = reverse", encoder);
+              // SmartDashboard.putData("solenoid = reverse", 0);
                 
             }
    }
@@ -272,7 +251,9 @@ public class Robot extends IterativeRobot {
     		if (encVal > Const.liftLeveldrive + 10){
     			SmartDashboard.putData("Too high to kill motor" , encoder);
     		}
-    		else {liftTR1 = false;} 
+    		else {
+    			liftTR1 = false;
+    		} 
     	}
     }
     
@@ -282,9 +263,7 @@ public class Robot extends IterativeRobot {
     	// call liftControl from teleop periodic
     	//get encoder value
     	//hardcode the target for now for testing - always do Lift routine to same spot, eg. 1000
-    	
-    	//controls.dt = 0;
-    	
+
     	double p = 0.001; 
     	double i = 0;
     	double d = 0.0015;
@@ -326,8 +305,7 @@ public void liftControl2() {
     	// call liftControl from teleop periodic
     	//get encoder value
     	//hardcode the target for now for testing - always do Lift routine to same spot, eg. 1000
-    	
-    	//controls.dt = 0;
+
     	encVal = encoder.get();
     	double p = 0.001; 
     	double i = 0;
@@ -368,10 +346,7 @@ public void liftControl2() {
     	
        	//you need to translate this into Java syntax and declare your variables
 	    //I think the output is the speed
-    	
-//    	float P;
-//    	float I;
-//    	float D;
+
     	Timer.delay(dt);
 		error = position - setPoint;
 		System.out.println(position + "position.1");
@@ -390,10 +365,7 @@ public double doPID2(double P, double I, double D, double dt, float position, fl
     	
        	//you need to translate this into Java syntax and declare your variables
 	    //I think the output is the speed
-    	
-//    	float P;
-//    	float I;
-//    	float D;
+  
     	Timer.delay(dt);
 		error = position - setPoint;
 		System.out.println(position + "position.2");

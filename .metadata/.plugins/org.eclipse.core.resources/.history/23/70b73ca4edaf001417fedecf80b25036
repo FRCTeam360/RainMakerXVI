@@ -23,7 +23,6 @@ public class OI {
 
 
 	RobotDrive myRobot;
-
 	
 	Joystick stickR;
 	Joystick stickL;
@@ -89,7 +88,6 @@ public class OI {
 		
 		myRobot = new RobotDrive(motorL, motorR);
     	
-		
     	myRobot.setExpiration(0.1);
     	
     	stickR = new Joystick(1); 

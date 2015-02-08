@@ -58,17 +58,13 @@ public class Robot extends IterativeRobot {
     	encoder.setDistancePerPulse(5);
       	encoder.setReverseDirection(true);
       	encoder.setSamplesToAverage(7);
-    	LiveWindow.run();
     }
    
     public void disabledInit() {
     	
     	controls.compressor.stop();//set percent to 0
       	SmartDashboard.putString( "Robot Status: ", "Deactivated");
-     	SmartDashboard.putString( "Teleop Status: ", "");
-      	SmartDashboard.putString( "Autonomous Status: ", ""); 
-      	SmartDashboard.putString( "Test Status: ", ""); 
-     	
+
     }
     
     public void autonomousInit() {
@@ -359,14 +355,15 @@ public void liftControl2() {
 
     	Timer.delay(dt);
 		error = position - setPoint;
-		SmartDashboard.putDouble( "position: ", position); 
-      	SmartDashboard.putDouble( "setPoint: ", setPoint);
+		System.out.println(position + "position.1");
+		System.out.println(setPoint + "set point.1");
 		integral = integral + (error * dt);
 		derivative = (error - prevError) / dt;
 		output = (P * error) + (I * integral) + (D * derivative);
 		prevError = error;
-		SmartDashboard.putDouble( "error: ", error); 
-		SmartDashboard.putDouble( "output: ", output); 
+		System.out.println(error + "error.1");
+		System.out.println(output + "output.1");
+
 		return -output;
     	
 	}
@@ -377,14 +374,14 @@ public double doPID2(double P, double I, double D, double dt, float position, fl
   
     	Timer.delay(dt);
 		error = position - setPoint;
-      	SmartDashboard.putDouble( "position: ", position); 
-      	SmartDashboard.putDouble( "setPoint: ", setPoint);
+		System.out.println(position + "position.2");
+		System.out.println(setPoint + "set point.2");
 		integral = integral + (error * dt);
 		derivative = (error - prevError) / dt;
 		output = (P * error) + (I * integral) + (D * derivative);
 		prevError = error;
-		SmartDashboard.putDouble( "error: ", error); 
-		SmartDashboard.putDouble( "output: ", output); 
+		System.out.println(error + "error.2");
+		System.out.println(output + "output.2");
 
 		return -output;
     	
@@ -398,10 +395,11 @@ public double doPID2(double P, double I, double D, double dt, float position, fl
     	
     	LiveWindow.run();
     	
-      	SmartDashboard.putString( "Test Status: ", "Enabled"); 
-    	
     }
     
+    public void deployStack(){
     
+   
+    }
     
 }

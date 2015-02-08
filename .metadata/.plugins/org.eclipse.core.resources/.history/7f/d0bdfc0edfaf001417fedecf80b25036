@@ -1,4 +1,4 @@
-/*package org.usfirst.frc.team360.robot;
+package org.usfirst.frc.team360.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
@@ -16,13 +16,13 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-*//**
+/**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource
  * directory.
- *//*
+ */
 
 //tank drive 2 Joysticks, left trigger engages down speed right trigger activates up speed
 
@@ -41,10 +41,10 @@ public class Robot extends IterativeRobot {
 	public static float encVal;
 	public static boolean liftTR;
 	public static boolean valThing;
-    *//**
+    /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
-     *//*
+     */
 	
     public void robotInit() {
     	
@@ -71,17 +71,17 @@ public class Robot extends IterativeRobot {
     	
     }
 
-    *//**
+    /**
      * This function is called periodically during autonomous
-     *//*
+     */
    
 	public void autonomousPeriodic() {
     	
     }
     
-    *//**
+    /**
      * This function is called once each time the robot enters tele-operated mode
-     *//*
+     */
     
 	public void teleopInit(){
 //		PID.
@@ -91,9 +91,9 @@ public class Robot extends IterativeRobot {
 		encoder.reset();// resets encoder
     }
 
-    *//**
+    /**
      * This function is called periodically during operator control
-     *//*
+     */
     public void teleopPeriodic() {
     
     	controls.valJoyR = controls.stickR.getRawAxis(1);
@@ -267,4 +267,4 @@ public class Robot extends IterativeRobot {
 		integral = integral + (error * dt);
 		derivative = (error - prevError) / dt;
 		output = (P * error) + (I * integral) + (D * derivative);
-}*/
+}

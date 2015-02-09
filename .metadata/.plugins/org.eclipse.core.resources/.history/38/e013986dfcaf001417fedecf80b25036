@@ -205,22 +205,12 @@ public class Robot extends IterativeRobot {
 	      		controls.liftMotor.stopMotor();
 	      	}
       	}
-      	 
+      	
       	tankDrive();
       	
     }
     
     public void tankDrive(){ 
-    	
-    	controls.valJoyR = controls.stickR.getRawAxis(1);
-    	controls.valJoyL = controls.stickL.getRawAxis(1);
-    	controls.valGamePad = controls.gamePad.getRawAxis(1);
-    	
-    	controls.up = controls.stickR.getRawButton(1);
-    	controls.down = controls.stickL.getRawButton(1);
-    	controls.grab = controls.gamePad.getRawButton(1);
-    	controls.release = controls.gamePad.getRawButton(2);
-    	
     	 if (controls.valJoyR >= .01 || controls.valJoyR <= -.01 || controls.valJoyL >= .01 || controls.valJoyL <= -.01){
          	
          	//System.out.println("tank active");
@@ -248,7 +238,7 @@ public class Robot extends IterativeRobot {
                	SmartDashboard.putString("Drive Status: ", "Half");
          		
          	}
-        }  
+         }  
     }
     
     public void intakeControl() {

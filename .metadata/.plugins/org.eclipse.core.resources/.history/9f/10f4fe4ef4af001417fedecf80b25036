@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team360.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,7 +16,6 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,15 +31,11 @@ public class Robot extends IterativeRobot {
 
 	OI controls = new OI(); 
 
-	Encoder encoderLift;
-	Encoder encoderR;
-	Encoder encoderL;
+	Encoder encoder = new Encoder( 0, 1, true, EncodingType.k1X);
+	
+	double Enc = encoder.get();
 	
 	//PIDController PID = new PIDController(Const.KP, Const.KI, Const.KD, encoder, liftMotor, Const.PIDPeriod); 
-	
-	DigitalInput limit1;
-	DigitalInput limit2;
-	DigitalInput limit3;
 	
 	public static double error;
 	public static double integral;
@@ -47,17 +43,13 @@ public class Robot extends IterativeRobot {
 	public static double output;
 	public static double prevError;
 	
-	public static float encValLift;
-	public static float encValR;
-	public static float encValL;
+	public static float encVal;
 	
 	public static boolean liftTR1;
 	public static boolean liftTR2;
 	public static boolean liftTR3;
 	public static boolean valThing;
 	public static boolean manOverRide;
-	
-	//digitalInput
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -66,39 +58,19 @@ public class Robot extends IterativeRobot {
 	
     public void robotInit() {
     	
-    	encoderLift = new Encoder( 0, 1, true, EncodingType.k1X);
-    	encoderR = new Encoder( 2, 3, true, EncodingType.k1X);
-    	encoderL = new Encoder( 4, 5, true, EncodingType.k1X);
-    	
-    	limit1 = new DigitalInput(6);
-    	limit2 = new DigitalInput(7);
-    	limit3 = new DigitalInput(8);
-    	
     	controls.init();
     	
-      	encoderLift.reset();
-      	encoderR.reset();
-      	encoderL.reset();
+      	encoder.reset();
       	
-    	encoderLift.setMaxPeriod(.1);
-    	encoderR.setMaxPeriod(.1);
-    	encoderL.setMaxPeriod(.1);
+    	encoder.setMaxPeriod(.1);
     	
-      	encoderLift.setMinRate(10);
-      	encoderR.setMinRate(10);
-      	encoderL.setMinRate(10);
+      	encoder.setMinRate(10);
       	
-    	encoderLift.setDistancePerPulse(5);
-    	encoderR.setDistancePerPulse(5);
-    	encoderL.setDistancePerPulse(5);
+    	encoder.setDistancePerPulse(5);
     	
-      	encoderLift.setReverseDirection(true);
-      	encoderR.setReverseDirection(true);
-      	encoderL.setReverseDirection(true);
+      	encoder.setReverseDirection(true);
       	
-      	encoderLift.setSamplesToAverage(7);
-      	encoderR.setSamplesToAverage(7);
-      	encoderL.setSamplesToAverage(7);
+      	encoder.setSamplesToAverage(7);
       	
     	LiveWindow.run();
     	
@@ -121,9 +93,7 @@ public class Robot extends IterativeRobot {
     	
     	controls.compressor.start();
     	
-    	encoderLift.reset();
-    	encoderR.reset();
-    	encoderL.reset();
+    	encoder.reset();
     	
     	controls.autoLoopCounter = 0;
     	
@@ -149,9 +119,7 @@ public class Robot extends IterativeRobot {
 		
 		liftTR1 = false;  
 		
-		encoderLift.reset();// resets encoder
-		encoderR.reset();
-		encoderL.reset();
+		encoder.reset();// resets encoder
 		
      	SmartDashboard.putString( "Teleop Status: ", "Active");
      	
@@ -167,36 +135,37 @@ public class Robot extends IterativeRobot {
     
     	controls.valJoyR = controls.stickR.getRawAxis(1);
     	controls.valJoyL = controls.stickL.getRawAxis(1);
-    	controls.valGamePad = controls.gamePad.getRawAxis(1);
     	
     	controls.up = controls.stickR.getRawButton(1);
     	controls.down = controls.stickL.getRawButton(1);
     	controls.grab = controls.gamePad.getRawButton(1);
     	controls.release = controls.gamePad.getRawButton(2);
-
+    	
+    	controls.valGamePad = controls.gamePad.getRawAxis(1);
+    	
        	intakeControl();
     	
       	Timer.delay(0.005); // wait for motor update time
       	                           
-      	encValLift = encoderLift.get();
+      	encVal = encoder.get();
 
       	setTarget();
       	
       	System.out.println(liftTR1 + "Lift Tr place");
       	
-      	manOverRide = false;
+      	manOverRide = true;
       	
       	if (manOverRide == true){
       		
-      		controls.liftMotor.set(-controls.valGamePad);
+      		controls.liftMotor.set(.7);
       		
-      	} else if (manOverRide == false){
+      		System.out.println("hello");
       		
-      		if (liftTR1 == true){
+      	} else if (liftTR1 == true){
 	      		
 	      		liftControl1();
 	      		
-	      	} else if (encValLift > 10) {
+	      	} else if (encVal > 10) {
 	      		
 	      		controls.liftMotor.set(-.5);
 	      		
@@ -204,50 +173,35 @@ public class Robot extends IterativeRobot {
 	      		
 	      		controls.liftMotor.stopMotor();
 	      	}
-      	}
-      	 
-      	tankDrive();
       	
-    }
-    
-    public void tankDrive(){ 
-    	
-    	controls.valJoyR = controls.stickR.getRawAxis(1);
-    	controls.valJoyL = controls.stickL.getRawAxis(1);
-    	controls.valGamePad = controls.gamePad.getRawAxis(1);
-    	
-    	controls.up = controls.stickR.getRawButton(1);
-    	controls.down = controls.stickL.getRawButton(1);
-    	controls.grab = controls.gamePad.getRawButton(1);
-    	controls.release = controls.gamePad.getRawButton(2);
-    	
-    	 if (controls.valJoyR >= .01 || controls.valJoyR <= -.01 || controls.valJoyL >= .01 || controls.valJoyL <= -.01){
-         	
-         	//System.out.println("tank active");
-         	
-         	if(controls.up == true && controls.down == false) {
-         		
-         		controls.halfSpeed = true;
-  
-         	} else if(controls.down == true && controls.up == false){
-         	
-         		controls.halfSpeed = false;
+      	
+        if (controls.valJoyR >= .01 || controls.valJoyR <= -.01 || controls.valJoyL >= .01 || controls.valJoyL <= -.01){
+        	
+        	//System.out.println("tank active");
+        	
+        	if(controls.up == true && controls.down == false) {
+        		
+        		controls.halfSpeed = true;
+ 
+        	} else if(controls.down == true && controls.up == false){
+        	
+        		controls.halfSpeed = false;
 
-         	}
-         
-         	if (controls.halfSpeed == false){
-         	
-         		fullSpeedDrive();
-         		
-               	SmartDashboard.putString("Drive Status: ", "Full");
-         		
-         	} else if (controls.halfSpeed == true){
-         	
-         		halfSpeedDrive();
-         	
-               	SmartDashboard.putString("Drive Status: ", "Half");
-         		
-         	}
+        	}
+        
+        	if (controls.halfSpeed == false){
+        	
+        		fullSpeedDrive();
+        		
+              	SmartDashboard.putString("Drive Status: ", "Full");
+        		
+        	} else if (controls.halfSpeed == true){
+        	
+        		halfSpeedDrive();
+        	
+              	SmartDashboard.putString("Drive Status: ", "Half");
+        		
+        	}
         }  
     }
     
@@ -362,9 +316,9 @@ public class Robot extends IterativeRobot {
     	double d = 0.0015;
     	double Dt = 0.01; 
     	
-    	System.out.println(encValLift + "encval 1.1");
+    	System.out.println(encVal + "encval 1.1");
     	
-    	double PIDOUTPUT1 = doPID1(p, i, d, Dt, -encValLift, controls.liftTarget);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
+    	double PIDOUTPUT1 = doPID1(p, i, d, Dt, -encVal, controls.liftTarget);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
     	
 	    System.out.println(PIDOUTPUT1 + "output 1.11");
 	    
@@ -400,27 +354,27 @@ public class Robot extends IterativeRobot {
 
     		}
     	
-    	//System.out.println(encValLift + "encValLift 2");
+    	//System.out.println(encVal + "encval 2");
     	
     }
     
-    /*public void liftControl2() {
+    public void liftControl2() {
     	
     	//set the pid vals to variable USE THESE IN DECLARATION
     	// call liftControl from teleop periodic
     	//get encoder value
     	//hardcode the target for now for testing - always do Lift routine to same spot, eg. 1000
 
-    	encValLift = encoderLift.get();
+    	encVal = encoder.get();
     	
     	double p = 0.001; 
     	double i = 0;
     	double d = 0.0015;
     	double Dt = 0.01; 
     	
-    	System.out.println(encValLift + "encValLift 1");
+    	System.out.println(encVal + "encval 1");
     	
-    	double PIDOUTPUT2 = doPID2(p, i, d, Dt, -encValLift, 4000);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
+    	double PIDOUTPUT2 = doPID2(p, i, d, Dt, -encVal, 4000);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
     
     	System.out.println(PIDOUTPUT2 + "output 1");
     
@@ -452,9 +406,9 @@ public class Robot extends IterativeRobot {
 
     	}
     	
-    	//System.out.println(encValLift + "encValLift 2");
+    	//System.out.println(encVal + "encval 2");
     	
-    }*/
+    }
 
     public double doPID1(double P, double I, double D, double dt, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
     	
@@ -479,7 +433,7 @@ public class Robot extends IterativeRobot {
     	
 	}
     
-/*    public double doPID2(double P, double I, double D, double dt, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
+    public double doPID2(double P, double I, double D, double dt, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
     	
        	//you need to translate this into Java syntax and declare your variables
 	    //I think the output is the speed
@@ -500,7 +454,7 @@ public class Robot extends IterativeRobot {
 
 		return -output;
     	
-	}*/
+	}
 
 	/**
      * This function is called periodically during test mode

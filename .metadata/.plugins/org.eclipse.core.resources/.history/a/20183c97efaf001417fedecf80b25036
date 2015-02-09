@@ -145,20 +145,18 @@ public class Robot extends IterativeRobot {
        	intakeControl();
     	
       	Timer.delay(0.005); // wait for wa motor update time
-      	                           
+      	
       	encVal = encoder.get();
 
       	setTarget();
       	
       	System.out.println(liftTR1 + "Lift Tr place");
-      	controls.liftMotor.set(controls.valGamePad);
+
       	manOverRide = true;
       	
       	if (manOverRide == true){
       		
-      		controls.liftMotor.set(.8);
-      		
-      		System.out.println("ello");
+      		controls.liftMotor.set(controls.valGamePad);
       		
       	}
       	
@@ -170,8 +168,6 @@ public class Robot extends IterativeRobot {
       	} else if (encVal > 10) {
       		
       		controls.liftMotor.set(-.5);
-      		controls.motorL.set(-.5);
-      		controls.motorR.set(-.5);
       		
       	} else {
       		

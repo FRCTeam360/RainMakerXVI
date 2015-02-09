@@ -21,7 +21,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class OI {
 
+
 	RobotDrive myRobot;
+
 	
 	Joystick stickR;
 	Joystick stickL;
@@ -53,7 +55,6 @@ public class OI {
     double valJoyL;
 	double integral;
 	double derivative;
-	double valGamePad;
 
 	public static double output;
 	
@@ -88,6 +89,7 @@ public class OI {
 		
 		myRobot = new RobotDrive(motorL, motorR);
     	
+		
     	myRobot.setExpiration(0.1);
     	
     	stickR = new Joystick(1); 

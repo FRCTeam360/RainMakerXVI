@@ -138,8 +138,6 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 
     }
-    //limit1.get();
-    //limit2.get();
     
     /**
      * This function is called once each time the robot enters tele-operated mode
@@ -331,7 +329,7 @@ public class Robot extends IterativeRobot {
     	    
     	    controls.liftTarget = Const.liftLevel3;  
     	    
-    	    SmartDashboard.putString("Lift Status: ", "Level 3"); 
+    	    SmartDashboard.putString("Lift Status: ", "Level 3");
     	    
     	} else if (controls.gamePad.getRawButton(1) == false &&  controls.gamePad.getRawButton(2) == false
         &&  controls.gamePad.getRawButton(3) == false &&  controls.gamePad.getRawButton(9) == true

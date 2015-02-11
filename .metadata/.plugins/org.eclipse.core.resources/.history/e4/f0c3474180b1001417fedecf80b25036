@@ -57,9 +57,6 @@ public class Robot extends IterativeRobot {
 	public static boolean valThing;
 	public static boolean manOverRide;
 	
-	public static int autoStage;
-	
-	
 	//digitalInput
 	
     /**
@@ -95,8 +92,8 @@ public class Robot extends IterativeRobot {
     	encoderR.setDistancePerPulse(5);
     	encoderL.setDistancePerPulse(5);
     	
-      //	encoderLift.setReverseDirection(true);
-      //	encoderR.setReverseDirection(true);
+      	encoderLift.setReverseDirection(true);
+      	encoderR.setReverseDirection(true);
       	encoderL.setReverseDirection(true);
       	
       	encoderLift.setSamplesToAverage(7);
@@ -121,7 +118,7 @@ public class Robot extends IterativeRobot {
     }
     
     public void autonomousInit() {
-    	autoStage = 1;
+    	
     	controls.compressor.start();
     	
     	encoderLift.reset();
@@ -139,53 +136,15 @@ public class Robot extends IterativeRobot {
      */
    
 	public void autonomousPeriodic() {
-		 //limit1.get();
-	    //limit2.get();
-		double p = 0.001; 
-		double i = 0;
-		double d = 0.0015;
-		double Dt = 0.01;
-		//encValR = encoderR.get();
-		autoGrabturnLeft();
-	
+
     }
-	
-	public void autoGrabturnLeft(){
-		//limit1.get();
-	    //limit2.get();
-		double p = 0.001; 
-		double i = 0;
-		double d = 0.0015;
-		double Dt = 0.01;
-		//encValR = encoderR.get();
-		if (autoStage == 1){		// grab
-			controls.intakeSol.set(DoubleSolenoid.Value.kForward);
-			autoStage = 2;
-			}
-		else if	(autoStage == 2){	//lift to driving level
-			controls.liftTarget = Const.liftLevel2;  
-			liftControl1();
-				if (encValLift > Const.liftLevel2/ 2){
-					autoStage = 3;
-				}
-		    }
-		//left off fixing up code here
-			encoderR.reset();
-			encoderL.reset();
-			
-    	
-	    /**
-	     * This function is called once each time the robot enters tele-operated mode
-	     */
-	 	
-	 	//controls.motorR.set(PIDautoR);	
-	 	//controls.motorL.set(PIDautoL);
-		//encoderR.reset();
-		//encoderL.reset();
-	 	
-	 	
-    }
-	 
+    //limit1.get();
+    //limit2.get();
+    
+    /**
+     * This function is called once each time the robot enters tele-operated mode
+     */
+    
 	public void teleopInit(){
 		
 		//controls.compressor.start();
@@ -221,13 +180,13 @@ public class Robot extends IterativeRobot {
     	
       	Timer.delay(0.005); // wait for motor update time
       	                           
-      	
+      	encValLift = encoderLift.get();
 
       	setTarget();
       	
       	System.out.println(liftTR1 + "Lift Tr place");
       	
-      	manOverRide = true;
+      	manOverRide = false;
       	
       	if (manOverRide == true){
       		
@@ -392,8 +351,7 @@ public class Robot extends IterativeRobot {
     		
     	}
     }
-  
-   
+    
     public void liftControl1() {
     	
     	//set the pid vals to variable USE THESE IN DECLARATION
@@ -406,11 +364,9 @@ public class Robot extends IterativeRobot {
     	double d = 0.0015;
     	double Dt = 0.01; 
     	
-    	encValLift = encoderLift.get();
-    	
     	System.out.println(encValLift + "encval 1.1");
     	
-    	double PIDOUTPUT1 = doPID1(p, i, d, Dt, encValLift, controls.liftTarget);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
+    	double PIDOUTPUT1 = doPID1(p, i, d, Dt, -encValLift, controls.liftTarget);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
     	
 	    System.out.println(PIDOUTPUT1 + "output 1.11");
 	    
@@ -463,8 +419,6 @@ public class Robot extends IterativeRobot {
     	double i = 0;
     	double d = 0.0015;
     	double Dt = 0.01; 
-    	
-    	encValLift = encoderLift.get();
     	
     	System.out.println(encValLift + "encValLift 1");
     	

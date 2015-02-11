@@ -162,28 +162,27 @@ public class Robot extends IterativeRobot {
 			controls.intakeSol.set(DoubleSolenoid.Value.kForward);
 			autoStage = 2;
 			}
-		else if	(autoStage == 2){	//lift to driving level
-			controls.liftTarget = Const.liftLevel2;  
-			liftControl1();
-				if (encValLift > Const.liftLevel2/ 2){
-					autoStage = 3;
-				}
-		    }
-		//left off fixing up code here
+		else if	(autoStage = 2){	//lift to driving level
+			
+		}
 			encoderR.reset();
 			encoderL.reset();
 			
-    	
+    	double PIDautoR = doPID1(p,i,d, Dt, encValR, -500);
 	    /**
 	     * This function is called once each time the robot enters tele-operated mode
 	     */
+	 	double PIDautoL = doPID1(p,i,d, Dt, encValL, 500);
+	 	controls.motorR.set(PIDautoR);	
+	 	controls.motorL.set(PIDautoL);
+		encoderR.reset();
+		encoderL.reset();
 	 	
-	 	//controls.motorR.set(PIDautoR);	
-	 	//controls.motorL.set(PIDautoL);
-		//encoderR.reset();
-		//encoderL.reset();
+	 	double PIDautoL1 = doPID1(p,i,d, Dt, encValL, 3000);
 	 	
-	 	
+	 	double PIDautoR1 = doPID1(p,i,d, Dt, encValL, 3000);
+	 	controls.motorR.set(PIDautoR1);	
+	 	controls.motorL.set(PIDautoL1);
     }
 	 
 	public void teleopInit(){
@@ -221,7 +220,7 @@ public class Robot extends IterativeRobot {
     	
       	Timer.delay(0.005); // wait for motor update time
       	                           
-      	
+      	encValLift = encoderLift.get();
 
       	setTarget();
       	
@@ -406,8 +405,6 @@ public class Robot extends IterativeRobot {
     	double d = 0.0015;
     	double Dt = 0.01; 
     	
-    	encValLift = encoderLift.get();
-    	
     	System.out.println(encValLift + "encval 1.1");
     	
     	double PIDOUTPUT1 = doPID1(p, i, d, Dt, encValLift, controls.liftTarget);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
@@ -463,8 +460,6 @@ public class Robot extends IterativeRobot {
     	double i = 0;
     	double d = 0.0015;
     	double Dt = 0.01; 
-    	
-    	encValLift = encoderLift.get();
     	
     	System.out.println(encValLift + "encValLift 1");
     	

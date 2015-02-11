@@ -173,17 +173,21 @@ public class Robot extends IterativeRobot {
 			encoderR.reset();
 			encoderL.reset();
 			
-    	
+    	double PIDautoR = doPID1(p,i,d, Dt, encValR, -500);
 	    /**
 	     * This function is called once each time the robot enters tele-operated mode
 	     */
+	 	double PIDautoL = doPID1(p,i,d, Dt, encValL, 500);
+	 	controls.motorR.set(PIDautoR);	
+	 	controls.motorL.set(PIDautoL);
+		encoderR.reset();
+		encoderL.reset();
 	 	
-	 	//controls.motorR.set(PIDautoR);	
-	 	//controls.motorL.set(PIDautoL);
-		//encoderR.reset();
-		//encoderL.reset();
+	 	double PIDautoL1 = doPID1(p,i,d, Dt, encValL, 3000);
 	 	
-	 	
+	 	double PIDautoR1 = doPID1(p,i,d, Dt, encValL, 3000);
+	 	controls.motorR.set(PIDautoR1);	
+	 	controls.motorL.set(PIDautoL1);
     }
 	 
 	public void teleopInit(){

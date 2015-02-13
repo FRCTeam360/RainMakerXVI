@@ -1,0 +1,31 @@
+How to change IP settings (assuming Corner of Importance has not been tampered with):
+-------------------------------------------------------------------------------------
+	1. Double click the "Network Settings" shortcut in Corner of Imporance
+
+	2. Click "Change Adapater Settings" in the lefthand pane
+
+	3. Right click WiFi / Ethernet. Whichever you intend to adjust. Select "Properties"
+
+	4. Double click "Internet Protocol Version 4 (TCP/IPV 4)"
+
+	5. FOR DRIVING / COMPETITION: Ensure the "Use the following IP address" bug is ticked. Proceed to step 6
+	   FOR INTERNET ACCESS: Ensure the "Obtain an IP address automatically" bug is ticked. Proceed to step 7
+
+	6. Fill in the IP and subnets so they match those listed on the desktop
+	
+	7. Click "Okay" in all dialogue boxes that were opened to apply the settings. Simply exit the last one.
+
+	8. ???
+
+	9. Profit
+
+
+How to change IP settings (if Corner of Importance has been tampered with):
+---------------------------------------------------------------------------
+	1. Open the Start menu 
+	
+	2. Click "Control Panel"
+
+	3. Find "Network and Sharing Center"
+
+	4. Proceed with steps 2-9 in the first part of this instructional

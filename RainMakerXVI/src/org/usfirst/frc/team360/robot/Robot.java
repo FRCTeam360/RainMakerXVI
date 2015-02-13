@@ -41,23 +41,24 @@ public class Robot extends IterativeRobot {
 	DigitalInput limit2;
 	DigitalInput limit3;
 	
-	public static double error;
-	public static double integral;
-	public static double derivative;
-	public static double output;
-	public static double prevError;
 	
-	public static float encValLift;
-	public static float encValR;
-	public static float encValL;
+	private double error;
+	private double integral;
+	private double derivative;
+	private double output;
+	private double prevError;
 	
-	public static boolean liftTR1;
-	public static boolean liftTR2;
-	public static boolean liftTR3;
-	public static boolean valThing;
-	public static boolean manOverRide;
+	private float encValLift;
+	private float encValR;
+	private float encValL;
 	
-	public static int autoStage;
+	private boolean liftPID;
+	private boolean liftTR2;
+	private boolean liftTR3;
+	private boolean valThing;
+	private boolean manOverRide;
+	
+	private int autoStage;
 	
 	
 	//digitalInput
@@ -146,29 +147,46 @@ public class Robot extends IterativeRobot {
 		double d = 0.0015;
 		double Dt = 0.01;
 		//encValR = encoderR.get();
-		autoGrabturnLeft();
+		autoGrabturnRight();
 	
     }
 	
-	public void autoGrabturnLeft(){
+	public void autoGrabturnRight(){
 		//limit1.get();
 	    //limit2.get();
 		double p = 0.001; 
 		double i = 0;
 		double d = 0.0015;
 		double Dt = 0.01;
-		//encValR = encoderR.get();
-		if (autoStage == 1){		// grab
-			controls.intakeSol.set(DoubleSolenoid.Value.kForward);
-			autoStage = 2;
-			}
-		else if	(autoStage == 2){	//lift to driving level
-			controls.liftTarget = Const.liftLevel2;  
-			liftControl1();
+		//encValR = encoderR.get();                                                                                                                                        
+		
+	switch(autoStage){
+			
+			case 1: //grab
+				controls.intakeSol.set(DoubleSolenoid.Value.kForward);
+				autoStage = 2;
+				
+			case 2: // start lifting to driving level, switch to stage 3 if half way up
+				controls.liftTarget = Const.liftLevel2;  
+				liftControl1();
 				if (encValLift > Const.liftLevel2/ 2){
 					autoStage = 3;
+					encoderR.reset();
+					encoderL.reset();
 				}
-		    }
+			case 3:	//turn right while still maintaining lift
+				controls.liftTarget = Const.liftLevel2;  
+				liftControl1();
+				encValL = encoderL.get();
+				if (encValL < 720){ //!!!!!!!!!!!!!need to adjust value or run through distance calculator!!!!!!!!!!!!!!!!!!					
+					controls.myRobot.tankDrive(-0.3, 0.3);
+				}
+				else {
+					controls.myRobot.tankDrive(0, 0);
+					autoStage = 4;
+				}
+	}
+		
 		//left off fixing up code here
 			encoderR.reset();
 			encoderL.reset();
@@ -190,7 +208,7 @@ public class Robot extends IterativeRobot {
 		
 		//controls.compressor.start();
 		
-		liftTR1 = false;  
+		liftPID = false;  
 		
 		encoderLift.reset();// resets encoder
 		encoderR.reset();
@@ -210,32 +228,34 @@ public class Robot extends IterativeRobot {
     
     	controls.valJoyR = controls.stickR.getRawAxis(1);
     	controls.valJoyL = controls.stickL.getRawAxis(1);
-    	controls.valGamePad = controls.gamePad.getRawAxis(1);
+    	//controls.valGamePad = controls.gamePad.getRawAxis(1); don't need - we aren't using this any longer
     	
-    	controls.up = controls.stickR.getRawButton(1);
-    	controls.down = controls.stickL.getRawButton(1);
-    	controls.grab = controls.gamePad.getRawButton(1);
-    	controls.release = controls.gamePad.getRawButton(2);
+    	//controls.up = controls.stickR.getRawButton(1); DON'T NEED HERE - IS READ LATER IN TANK METHOD
+    	//controls.down = controls.stickL.getRawButton(1); DON'T NEED HERE - IS READ LATER IN TANK METHOD
+    	//controls.grab = controls.gamePad.getRawButton(1); DON'T NEED HERE - IS READ LATER IN INTAKECONTROL
+    	//controls.release = controls.gamePad.getRawButton(2); DON'T NEED HERE - IS READ LATER IN INTAKECONTROL
 
        	intakeControl();
     	
       	Timer.delay(0.005); // wait for motor update time
       	                           
-      	
+      	SmartDashboard.putDouble( "Joystick Left: ", controls.valJoyL); 
+      	SmartDashboard.putDouble( "Joystick Right: ", controls.valJoyR); 
 
       	setTarget();
       	
-      	System.out.println(liftTR1 + "Lift Tr place");
+      	System.out.println(liftPID + "Lift Tr place");
       	
       	manOverRide = true;
       	
       	if (manOverRide == true){
       		
-      		controls.liftMotor.set(-controls.valGamePad);
+      		manualLift();
+      	}
       		
-      	} else if (manOverRide == false){
+      	else if (manOverRide == false){
       		
-      		if (liftTR1 == true){
+      		if (liftPID == true){
 	      		
 	      		liftControl1();
 	      		
@@ -257,12 +277,12 @@ public class Robot extends IterativeRobot {
     	
     	controls.valJoyR = controls.stickR.getRawAxis(1);
     	controls.valJoyL = controls.stickL.getRawAxis(1);
-    	controls.valGamePad = controls.gamePad.getRawAxis(1);
+    	//controls.valGamePad = controls.gamePad.getRawAxis(1); no longer using this
     	
     	controls.up = controls.stickR.getRawButton(1);
     	controls.down = controls.stickL.getRawButton(1);
-    	controls.grab = controls.gamePad.getRawButton(1);
-    	controls.release = controls.gamePad.getRawButton(2);
+    	//controls.grab = controls.gamePad.getRawButton(1); don't want this here - it is read in intakeControl
+    	//controls.release = controls.gamePad.getRawButton(2); don't want this here - it is read in intakeControl
     	
     	 if (controls.valJoyR >= .01 || controls.valJoyR <= -.01 || controls.valJoyL >= .01 || controls.valJoyL <= -.01){
          	
@@ -296,22 +316,22 @@ public class Robot extends IterativeRobot {
     
     public void intakeControl() {
     	
-    	controls.grab = controls.gamePad.getRawButton(7);
-    	controls.release = controls.gamePad.getRawButton(8);   		       
+    	controls.grab = controls.gamePad.getRawButton(Const.inBtn);
+    	controls.release = controls.gamePad.getRawButton(Const.outBtn);   		       
     		
-    		if (controls.grab==true && controls.release == false){
-    			
-    			controls.intakeSol.set(DoubleSolenoid.Value.kForward);//grab
-                
-    			SmartDashboard.putString("Solenoid Status: ", "Forward");
-                
-            } else if (controls.release==true && controls.grab == false) {
-            	
-            	controls.intakeSol.set(DoubleSolenoid.Value.kReverse);//release
-                
-    			SmartDashboard.putString("Solenoid Status: ", "Reverse");
-                
-            }
+		if (controls.grab==true && controls.release == false){
+			
+			controls.intakeSol.set(DoubleSolenoid.Value.kForward);//grab
+            
+			SmartDashboard.putString("Solenoid Status: ", "Forward");
+            
+        } else if (controls.release==true && controls.grab == false) {
+        	
+        	controls.intakeSol.set(DoubleSolenoid.Value.kReverse);//release
+            
+			SmartDashboard.putString("Solenoid Status: ", "Reverse");
+            
+        }
    }
     
     public void fullSpeedDrive(){
@@ -344,56 +364,76 @@ public class Robot extends IterativeRobot {
     
     public void setTarget(){
     	
-    	if (controls.gamePad.getRawButton(1) == true && controls.gamePad.getRawButton(2) == false
-    	&& controls.gamePad.getRawButton(3) == false &&  controls.gamePad.getRawButton(9) == false
-    	&& controls.gamePad.getRawButton(10) == false){
+    	if (controls.gamePad.getRawButton(Const.level1Btn) == true && controls.gamePad.getRawButton(Const.level2Btn) == false
+    	&& controls.gamePad.getRawButton(Const.level3Btn) == false &&  controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
+    	&& controls.gamePad.getRawButton(Const.groundBtn) == false){
     		
-      		liftTR1 = true;
+      		liftPID = true;
       		
       		controls.liftTarget = Const.liftLevel1;  
       		
       		SmartDashboard.putString("Lift Status: ", "Level 1");
       		
-    	} else if (controls.gamePad.getRawButton(1) == false &&  controls.gamePad.getRawButton(2) == true
-    	&&  controls.gamePad.getRawButton(3) == false &&  controls.gamePad.getRawButton(9) == false
-    	&&  controls.gamePad.getRawButton(10) == false){
+    	} else if (controls.gamePad.getRawButton(Const.level1Btn) == false &&  controls.gamePad.getRawButton(Const.level2Btn) == true
+    	&&  controls.gamePad.getRawButton(Const.level3Btn) == false &&  controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
+    	&&  controls.gamePad.getRawButton(Const.groundBtn) == false){
     		
-    	     liftTR1 = true;
+    	     liftPID = true;
     	     
     	     controls.liftTarget = Const.liftLevel2;  
     	     
     	     SmartDashboard.putString("Lift Status: ", "Level 2");
     	     
-    	} else if (controls.gamePad.getRawButton(1) == false &&  controls.gamePad.getRawButton(2) == false
-    	&&  controls.gamePad.getRawButton(3) == true &&  controls.gamePad.getRawButton(9) == false
-    	&&  controls.gamePad.getRawButton(10) == false){
+    	} else if (controls.gamePad.getRawButton(Const.level1Btn) == false &&  controls.gamePad.getRawButton(Const.level2Btn) == false
+    	&&  controls.gamePad.getRawButton(Const.level3Btn) == true &&  controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
+    	&&  controls.gamePad.getRawButton(Const.groundBtn) == false){
     		
-    	    liftTR1 = true;
+    	    liftPID = true;
     	    
     	    controls.liftTarget = Const.liftLevel3;  
     	    
     	    SmartDashboard.putString("Lift Status: ", "Level 3"); 
     	    
-    	} else if (controls.gamePad.getRawButton(1) == false &&  controls.gamePad.getRawButton(2) == false
-        &&  controls.gamePad.getRawButton(3) == false &&  controls.gamePad.getRawButton(9) == true
-    	&&  controls.gamePad.getRawButton(10) == false){
+    	} else if (controls.gamePad.getRawButton(Const.level1Btn) == false &&  controls.gamePad.getRawButton(Const.level2Btn) == false
+        &&  controls.gamePad.getRawButton(Const.level3Btn) == false &&  controls.gamePad.getRawButton(Const.drivingLevelBtn) == true
+    	&&  controls.gamePad.getRawButton(Const.groundBtn) == false){
     		
-    	     liftTR1 = true;
+    	     liftPID = true;
     	     
     	     controls.liftTarget = Const.liftLeveldrive; 
     	     
     	     SmartDashboard.putString("Lift Status: ", "Level Drive");
     	     
-    	} else if (controls.gamePad.getRawButton(1) == false &&  controls.gamePad.getRawButton(2) == false
-    	&&  controls.gamePad.getRawButton(3) == false &&  controls.gamePad.getRawButton(9) == false
-    	&&  controls.gamePad.getRawButton(10) == true){
+    	} else if (controls.gamePad.getRawButton(Const.level1Btn) == false &&  controls.gamePad.getRawButton(Const.level2Btn) == false
+    	&&  controls.gamePad.getRawButton(Const.level3Btn) == false &&  controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
+    	&&  controls.gamePad.getRawButton(Const.groundBtn) == true){
     	    
-    			liftTR1 = false;
+    			liftPID = false;
     		
     	}
     }
   
    
+    public void manualLift() {
+   		
+    	
+    	
+    	if (controls.gamePad.getRawButton(Const.upBtn) == true) {
+  		
+   				controls.liftMotor.set(.5);
+   				System.out.println( "hi");
+   		}
+  	    else if (controls.gamePad.getRawButton(Const.downBtn) == true) {
+  		  
+  	    		controls.liftMotor.set(-.5);
+  	    		System.out.println( "hi");
+  		}
+  	    else {
+  	    	
+  	    		controls.liftMotor.set(0);
+  	    }
+    }
+    
     public void liftControl1() {
     	
     	//set the pid vals to variable USE THESE IN DECLARATION

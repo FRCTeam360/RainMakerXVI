@@ -53,9 +53,9 @@ public class OI {
     double valJoyL;
 	double integral;
 	double derivative;
-	double valGamePad;
+	//double valGamePad;
 
-	public static double output;
+	public double output;
 	
 	boolean grab;
 	boolean release; 
@@ -63,7 +63,7 @@ public class OI {
     boolean down;
     boolean deployPrep;
 
-	public static boolean halfSpeed;
+	public boolean halfSpeed;
 
 	float prevError;
 	float Wait;
@@ -72,7 +72,7 @@ public class OI {
 
 	VictorSP motorL = new VictorSP(0);
 	VictorSP motorR = new VictorSP(1);
-	VictorSP liftMotor = new VictorSP(2);
+	VictorSP liftMotor = new VictorSP(9);
 	
     // CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.

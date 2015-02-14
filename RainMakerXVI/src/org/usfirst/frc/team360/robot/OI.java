@@ -89,9 +89,9 @@ public class OI {
 		myRobot = new RobotDrive(motorL, motorR);
     	
     	myRobot.setExpiration(0.1);
-    	
-    	stickR = new Joystick(1); 
+
     	stickL = new Joystick(0);
+    	stickR = new Joystick(1); 
     	gamePad = new Joystick(2);
     
     	halfSpeed = true; 

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team360.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
@@ -14,6 +15,8 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.DigitalInput;
 
@@ -29,18 +32,17 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Robot extends IterativeRobot {
 
+	Command autonomousCommand;
+	
+	SendableChooser autoChooser;
+	
 	OI controls = new OI(); 
 
 	Encoder encoderLift;
 	Encoder encoderR;
 	Encoder encoderL;
 	
-	//PIDController PID = new PIDController(Const.KP, Const.KI, Const.KD, encoder, liftMotor, Const.PIDPeriod); 
-	
-	DigitalInput limit1;
-	DigitalInput limit2;
-	DigitalInput limit3;
-	
+	private int autoStage;
 	
 	private double error;
 	private double integral;
@@ -53,15 +55,10 @@ public class Robot extends IterativeRobot {
 	private float encValL;
 	
 	private boolean liftPID;
-	private boolean liftTR2;
-	private boolean liftTR3;
-	private boolean valThing;
+	private boolean liftPIDLVL1;
+	private boolean liftPIDLVL2;
+	private boolean liftPIDLVL3;
 	private boolean manOverRide;
-	
-	private int autoStage;
-	
-	
-	//digitalInput
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -74,9 +71,13 @@ public class Robot extends IterativeRobot {
     	encoderR = new Encoder( 2, 3, true, EncodingType.k1X);
     	encoderL = new Encoder( 4, 5, true, EncodingType.k1X);
     	
-    	limit1 = new DigitalInput(6);
-    	limit2 = new DigitalInput(7);
-    	limit3 = new DigitalInput(8);
+    	autoChooser = new SendableChooser();
+    	
+    	autoChooser.addDefault("default program", new autoGrabturnRight());
+    	
+    	autoChooser.addObject("exper", new forwardGrabNBack());
+    	
+    	SmartDashboard.putData("Auto mode chooser", autoChooser);
     	
     	controls.init();
     	
@@ -122,7 +123,13 @@ public class Robot extends IterativeRobot {
     }
     
     public void autonomousInit() {
+    	
+    	autonomousCommand = (Command) autoChooser.getSelected();
+    	
+    	autonomousCommand.start();
+    	
     	autoStage = 1;
+    	
     	controls.compressor.start();
     	
     	encoderLift.reset();
@@ -140,67 +147,94 @@ public class Robot extends IterativeRobot {
      */
    
 	public void autonomousPeriodic() {
-		 //limit1.get();
+		
+		Scheduler.getInstance().run();
+		
+		//limit1.get();
 	    //limit2.get();
+		
 		double p = 0.001; 
 		double i = 0;
 		double d = 0.0015;
 		double Dt = 0.01;
+		
 		//encValR = encoderR.get();
+		
 		autoGrabturnRight();
 	
     }
 	
 	public void autoGrabturnRight(){
+		
 		//limit1.get();
 	    //limit2.get();
+		
 		double p = 0.001; 
 		double i = 0;
 		double d = 0.0015;
 		double Dt = 0.01;
+		
 		//encValR = encoderR.get();                                                                                                                                        
 		
 	switch(autoStage){
 			
 			case 1: //grab
+				
 				controls.intakeSol.set(DoubleSolenoid.Value.kForward);
+				
 				autoStage = 2;
 				
 			case 2: // start lifting to driving level, switch to stage 3 if half way up
+				
 				controls.liftTarget = Const.liftLevel2;  
+				
 				liftControl1();
+				
 				if (encValLift > Const.liftLevel2/ 2){
+					
 					autoStage = 3;
+					
 					encoderR.reset();
 					encoderL.reset();
+					
 				}
 			case 3:	//turn right while still maintaining lift
+				
 				controls.liftTarget = Const.liftLevel2;  
+				
 				liftControl1();
+				
 				encValL = encoderL.get();
-				if (encValL < 720){ //!!!!!!!!!!!!!need to adjust value or run through distance calculator!!!!!!!!!!!!!!!!!!					
+				
+				if (encValL < 720){ //!!!!!!!!!!!!!need to adjust value or run through distance calculator!!!!!!!!!!!!!!!!!!
+					
 					controls.myRobot.tankDrive(-0.3, 0.3);
+					
 				}
+				
 				else {
+					
 					controls.myRobot.tankDrive(0, 0);
+					
 					autoStage = 4;
-				}
-	}
+					
+				}	
+		}
 		
 		//left off fixing up code here
+	
 			encoderR.reset();
 			encoderL.reset();
 			
-    	
 	    /**
 	     * This function is called once each time the robot enters tele-operated mode
 	     */
 	 	
 	 	//controls.motorR.set(PIDautoR);	
 	 	//controls.motorL.set(PIDautoL);
+			
 		//encoderR.reset();
 		//encoderL.reset();
-	 	
 	 	
     }
 	 
@@ -228,6 +262,7 @@ public class Robot extends IterativeRobot {
     
     	controls.valJoyR = controls.stickR.getRawAxis(1);
     	controls.valJoyL = controls.stickL.getRawAxis(1);
+    	
     	//controls.valGamePad = controls.gamePad.getRawAxis(1); don't need - we aren't using this any longer
     	
     	//controls.up = controls.stickR.getRawButton(1); DON'T NEED HERE - IS READ LATER IN TANK METHOD
@@ -277,13 +312,10 @@ public class Robot extends IterativeRobot {
     	
     	controls.valJoyR = controls.stickR.getRawAxis(1);
     	controls.valJoyL = controls.stickL.getRawAxis(1);
-    	//controls.valGamePad = controls.gamePad.getRawAxis(1); no longer using this
     	
     	controls.up = controls.stickR.getRawButton(1);
     	controls.down = controls.stickL.getRawButton(1);
-    	//controls.grab = controls.gamePad.getRawButton(1); don't want this here - it is read in intakeControl
-    	//controls.release = controls.gamePad.getRawButton(2); don't want this here - it is read in intakeControl
-    	
+ 
     	 if (controls.valJoyR >= .01 || controls.valJoyR <= -.01 || controls.valJoyL >= .01 || controls.valJoyL <= -.01){
          	
          	//System.out.println("tank active");
@@ -413,22 +445,22 @@ public class Robot extends IterativeRobot {
     	}
     }
   
-   
     public void manualLift() {
-   		
-    	
     	
     	if (controls.gamePad.getRawButton(Const.upBtn) == true) {
   		
    				controls.liftMotor.set(.5);
-   				System.out.println( "hi");
+   				
+   				System.out.println( "Manuel override up");
+   				
    		}
   	    else if (controls.gamePad.getRawButton(Const.downBtn) == true) {
   		  
   	    		controls.liftMotor.set(-.5);
-  	    		System.out.println( "hi");
-  		}
-  	    else {
+  	    		
+  	    		System.out.println( "Manuel override down");
+  	    		
+  		} else {
   	    	
   	    		controls.liftMotor.set(0);
   	    }
@@ -466,9 +498,7 @@ public class Robot extends IterativeRobot {
     		
     		controls.liftMotor.set(PIDOUTPUT1);
  
-    		}
-    	
-    	if (PIDOUTPUT1 < -1){
+    		} else if (PIDOUTPUT1 < -1){
     		
     		System.out.println("#2.1");
     		
@@ -489,61 +519,6 @@ public class Robot extends IterativeRobot {
     	//System.out.println(encValLift + "encValLift 2");
     	
     }
-    
-    /*public void liftControl2() {
-    	
-    	//set the pid vals to variable USE THESE IN DECLARATION
-    	// call liftControl from teleop periodic
-    	//get encoder value
-    	//hardcode the target for now for testing - always do Lift routine to same spot, eg. 1000
-
-    	encValLift = encoderLift.get();
-    	
-    	double p = 0.001; 
-    	double i = 0;
-    	double d = 0.0015;
-    	double Dt = 0.01; 
-    	
-    	encValLift = encoderLift.get();
-    	
-    	System.out.println(encValLift + "encValLift 1");
-    	
-    	double PIDOUTPUT2 = doPID2(p, i, d, Dt, -encValLift, 4000);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
-    
-    	System.out.println(PIDOUTPUT2 + "output 1");
-    
-    	PIDOUTPUT2 /= 10;   
-    	
-    	//scales output back by 100 since the potentiometer says a few hundred counts equals less than 100 degrees in RL
-    
-    	if (PIDOUTPUT2 > -1 || PIDOUTPUT2 < 1){
- 		
-    		System.out.println("#4.2");
- 
-    		controls.liftMotor.set(PIDOUTPUT2);
-
- 		} else if(PIDOUTPUT2 > 1){
-    		
-    		System.out.println("#1.2");
-    		
-    		PIDOUTPUT2 = .7; 
-    		
-    		controls.liftMotor.set(PIDOUTPUT2);
-
-    	} else if (PIDOUTPUT2 < -1){
-    		
-    		System.out.println("#2.2");
-    		
-    		PIDOUTPUT2 = .7;
-    		
-    		controls.liftMotor.set(PIDOUTPUT2);
-
-    	}
-    	
-    	//System.out.println(encValLift + "encValLift 2");
-    	
-    }*/
-
     public double doPID1(double P, double I, double D, double dt, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
     	
        	//you need to translate this into Java syntax and declare your variables
@@ -555,9 +530,13 @@ public class Robot extends IterativeRobot {
       	SmartDashboard.putDouble( "setPoint: ", setPoint);
       	
 		error = position - setPoint;
+		
 		integral = integral + (error * dt);
+		
 		derivative = (error - prevError) / dt;
+		
 		output = (P * error) + (I * integral) + (D * derivative);
+		
 		prevError = error;
 		
 		SmartDashboard.putDouble( "error: ", error); 
@@ -566,29 +545,6 @@ public class Robot extends IterativeRobot {
 		return -output;
     	
 	}
-    
-/*    public double doPID2(double P, double I, double D, double dt, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
-    	
-       	//you need to translate this into Java syntax and declare your variables
-	    //I think the output is the speed
-  
-    	Timer.delay(dt);
-
-      	SmartDashboard.putDouble( "position: ", position); 
-      	SmartDashboard.putDouble( "setPoint: ", setPoint);
-    	
-		error = position - setPoint;
-		integral = integral + (error * dt);
-		derivative = (error - prevError) / dt;
-		output = (P * error) + (I * integral) + (D * derivative);
-		prevError = error;
-		
-		SmartDashboard.putDouble( "error: ", error); 
-		SmartDashboard.putDouble( "output: ", output); 
-
-		return -output;
-    	
-	}*/
 
 	/**
      * This function is called periodically during test mode

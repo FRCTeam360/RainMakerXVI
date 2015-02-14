@@ -335,7 +335,7 @@ public void autoForwardgrabBack(){
 				
 				if (encValLift > Const.liftLeveldrive - 30){
 					
-					autoStage = 4;
+					autoStage = 5;
 					
 					encoderR.reset();
 					encoderL.reset();
@@ -345,7 +345,7 @@ public void autoForwardgrabBack(){
 
 					
 	
-			case 4: //go backwards about nine feet to auto zone while still maintaining lift
+			case 5: //go forward about nine feet to auto zone while still maintaining lift
 				    //wheels are 4" in diameter, so 1 rotation is 12.56 inches, approx 1 foot
 				    //so need to go about 8 rotations.
 				    //there are x encoder ticks per wheel rotation, based on the gearing and 360 ticks per encoder rotation.
@@ -358,9 +358,9 @@ public void autoForwardgrabBack(){
 				
 				encValL = encoderL.get();
 				
-				if (encValL > -4320){ 
+				if (encValL < 4320){ 
 					
-					controls.myRobot.tankDrive(-0.3, -0.3);
+					controls.myRobot.tankDrive(0.3, 0.3);
 					
 				}
 				
@@ -369,25 +369,25 @@ public void autoForwardgrabBack(){
 					controls.motorL.stopMotor();
 					controls.motorR.stopMotor();
 					
-					autoStage = 5;
+					autoStage = 6;
 					
 					encoderR.reset();
 					encoderL.reset();
 					
 				}	
-			case 5:	//motors off, lift off, D-D-D-D-DROP THE BASS!
+			case 6:	//motors off, lift off, D-D-D-D-DROP THE BASS!
 				
 				controls.liftMotor.stopMotor();
 				
 				controls.intakeSol.set(DoubleSolenoid.Value.kReverse);
 				
-				autoStage = 6;
+				autoStage = 7;
 				
-			case 6: // back up tew foots
+			case 7: // back up one foot
 				
 				encValL = encoderL.get();
 				
-				if (encValL > -960){ 
+				if (encValL > -480){ 
 					
 					controls.myRobot.tankDrive(-0.3, -0.3);
 					

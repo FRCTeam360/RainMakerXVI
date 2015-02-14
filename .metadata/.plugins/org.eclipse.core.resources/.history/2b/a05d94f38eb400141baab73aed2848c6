@@ -264,11 +264,11 @@ public class Robot extends IterativeRobot {
 				
 				autoStage = 6;
 				
-			case 6: // back up tew foots
+			case 6: // back up one foot
 				
 				encValL = encoderL.get();
 				
-				if (encValL > -960){ 
+				if (encValL > -480){ 
 					
 					controls.myRobot.tankDrive(-0.3, -0.3);
 					
@@ -302,10 +302,37 @@ public void autoForwardgrabBack(){
 		
 	switch(autoStage){
 			
-			case 1: // go forward 2 feet
-				if (encValL < 960){ 
-		
-					controls.myRobot.tankDrive(0.3, 0.3);
+			case 1: //grab
+				
+				controls.intakeSol.set(DoubleSolenoid.Value.kForward);
+				
+				autoStage = 2;
+				
+			case 2: // start lifting to driving level, switch to stage 3 if half way up
+				
+				controls.liftTarget = Const.liftLeveldrive;  
+				
+				liftControl1();
+				
+				if (encValLift > Const.liftLeveldrive - 30){
+					
+					autoStage = 3;
+					
+					encoderR.reset();
+					encoderL.reset();
+					
+				}
+			case 3:	//turn right while still maintaining lift
+				
+				controls.liftTarget = Const.liftLeveldrive;  
+				
+				liftControl1();
+				
+				encValL = encoderL.get();
+				
+				if (encValL < 720){ //!!!!!!!!!!!!!need to adjust value or run through distance calculator!!!!!!!!!!!!!!!!!!
+					
+					controls.myRobot.tankDrive(-0.3, 0.3);
 					
 				}
 				
@@ -314,38 +341,12 @@ public void autoForwardgrabBack(){
 					controls.motorL.stopMotor();
 					controls.motorR.stopMotor();
 					
-					autoStage = 2;
-					
-					encoderR.reset();
-					encoderL.reset();
-					
-				}	
-				
-			case 2: //grab
-				
-				controls.intakeSol.set(DoubleSolenoid.Value.kForward);
-				
-				autoStage = 3;
-				
-			case 3: // start lifting to driving level, switch to stage 4 if half way up
-				
-				controls.liftTarget = Const.liftLeveldrive;  
-				
-				liftControl1();
-				
-				if (encValLift > Const.liftLeveldrive - 30){
-					
 					autoStage = 4;
 					
 					encoderR.reset();
 					encoderL.reset();
-					
-				}
-
-
-					
-	
-			case 4: //go backwards about nine feet to auto zone while still maintaining lift
+				}	
+			case 4: //go forward about nine feet to auto zone while still maintaining lift
 				    //wheels are 4" in diameter, so 1 rotation is 12.56 inches, approx 1 foot
 				    //so need to go about 8 rotations.
 				    //there are x encoder ticks per wheel rotation, based on the gearing and 360 ticks per encoder rotation.
@@ -358,9 +359,9 @@ public void autoForwardgrabBack(){
 				
 				encValL = encoderL.get();
 				
-				if (encValL > -4320){ 
+				if (encValL < 4320){ 
 					
-					controls.myRobot.tankDrive(-0.3, -0.3);
+					controls.myRobot.tankDrive(0.3, 0.3);
 					
 				}
 				
@@ -383,11 +384,11 @@ public void autoForwardgrabBack(){
 				
 				autoStage = 6;
 				
-			case 6: // back up tew foots
+			case 6: // back up one foot
 				
 				encValL = encoderL.get();
 				
-				if (encValL > -960){ 
+				if (encValL > -480){ 
 					
 					controls.myRobot.tankDrive(-0.3, -0.3);
 					

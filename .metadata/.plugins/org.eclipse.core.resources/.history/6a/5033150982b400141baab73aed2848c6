@@ -114,10 +114,6 @@ public class Robot extends IterativeRobot {
     public void disabledInit() {
     	
     	controls.compressor.stop();//set percent to 0
-		
-		controls.motorL.stopMotor();
-		controls.motorR.stopMotor();
-		controls.liftMotor.stopMotor();
     	
       	SmartDashboard.putString( "Robot Status: ", "Deactivated");
      	SmartDashboard.putString( "Teleop Status: ", "");
@@ -190,11 +186,11 @@ public class Robot extends IterativeRobot {
 				
 			case 2: // start lifting to driving level, switch to stage 3 if half way up
 				
-				controls.liftTarget = Const.liftLeveldrive;  
+				controls.liftTarget = Const.liftLevel1;  
 				
 				liftControl1();
 				
-				if (encValLift > Const.liftLeveldrive - 30){
+				if (encValLift > Const.liftLevel1/ 2){
 					
 					autoStage = 3;
 					
@@ -204,7 +200,7 @@ public class Robot extends IterativeRobot {
 				}
 			case 3:	//turn right while still maintaining lift
 				
-				controls.liftTarget = Const.liftLeveldrive;  
+				controls.liftTarget = Const.liftLevel1;  
 				
 				liftControl1();
 				
@@ -218,194 +214,57 @@ public class Robot extends IterativeRobot {
 				
 				else {
 					
-					controls.motorL.stopMotor();
-					controls.motorR.stopMotor();
+					controls.myRobot.tankDrive(0, 0);
 					
 					autoStage = 4;
 					
 					encoderR.reset();
 					encoderL.reset();
 				}	
-			case 4: //go forward about nine feet to auto zone while still maintaining lift
+			case 4: //go forward about eight feet to auto zone while still maintaining lift
 				    //wheels are 4" in diameter, so 1 rotation is 12.56 inches, approx 1 foot
 				    //so need to go about 8 rotations.
 				    //there are x encoder ticks per wheel rotation, based on the gearing and 360 ticks per encoder rotation.
-				    //think 480 ticks per wheel rotation.
-				    //big gear has 80 teeth, little gear has 60 teeth
+				    //!!right now estimating 400 ticks per wheel rotation.!!!!
 
-				controls.liftTarget = Const.liftLeveldrive;  
+				controls.liftTarget = Const.liftLevel1;  
 				
 				liftControl1();
 				
 				encValL = encoderL.get();
 				
-				if (encValL < 4320){ 
+				if (encValL < 720){ //!!!!!!!!!!!!!need to adjust value or run through distance calculator!!!!!!!!!!!!!!!!!!
 					
-					controls.myRobot.tankDrive(0.7, 0.7);
-					
-				}
-				
-				else {
-					
-					controls.motorL.stopMotor();
-					controls.motorR.stopMotor();
-					
-					autoStage = 5;
-					
-					encoderR.reset();
-					encoderL.reset();
-					
-				}	
-			case 5:	//motors off, lift off, D-D-D-D-DROP THE BASS!
-				
-				controls.liftMotor.stopMotor();
-				
-				controls.intakeSol.set(DoubleSolenoid.Value.kReverse);
-				
-				autoStage = 6;
-				
-			case 6: // back up tew foots
-				
-				encValL = encoderL.get();
-				
-				if (encValL > -960){ 
-					
-					controls.myRobot.tankDrive(-0.3, -0.3);
-					
-				}
-				
-				else {
-					
-					controls.motorL.stopMotor();
-					controls.motorR.stopMotor();
-					
-					autoStage = 99; //no code for a case 99 so it will trap itself in the loop
-					
-					encoderR.reset();
-					encoderL.reset();
-					}
-			}
-	 	
-    }
-	 
-public void autoForwardgrabBack(){
-		
-		//limit1.get();
-	    //limit2.get();
-		
-		double p = 0.001; 
-		double i = 0;
-		double d = 0.0015;
-		double Dt = 0.01;
-		
-		//encValR = encoderR.get();                                                                                                                                        
-		
-	switch(autoStage){
-			
-			case 1: // go forward 2 feet
-				if (encValL < 960){ 
-		
 					controls.myRobot.tankDrive(0.3, 0.3);
 					
 				}
 				
 				else {
 					
-					controls.motorL.stopMotor();
-					controls.motorR.stopMotor();
-					
-					autoStage = 2;
-					
-					encoderR.reset();
-					encoderL.reset();
-					
-				}	
-				
-			case 2: //grab
-				
-				controls.intakeSol.set(DoubleSolenoid.Value.kForward);
-				
-				autoStage = 3;
-				
-			case 3: // start lifting to driving level, switch to stage 4 if half way up
-				
-				controls.liftTarget = Const.liftLeveldrive;  
-				
-				liftControl1();
-				
-				if (encValLift > Const.liftLeveldrive - 30){
+					controls.myRobot.tankDrive(0, 0);
 					
 					autoStage = 4;
 					
-					encoderR.reset();
-					encoderL.reset();
-					
-				}
-
-
-					
-	
-			case 4: //go backwards about nine feet to auto zone while still maintaining lift
-				    //wheels are 4" in diameter, so 1 rotation is 12.56 inches, approx 1 foot
-				    //so need to go about 8 rotations.
-				    //there are x encoder ticks per wheel rotation, based on the gearing and 360 ticks per encoder rotation.
-				    //think 480 ticks per wheel rotation.
-				    //big gear has 80 teeth, little gear has 60 teeth
-
-				controls.liftTarget = Const.liftLeveldrive;  
-				
-				liftControl1();
-				
-				encValL = encoderL.get();
-				
-				if (encValL > -4320){ 
-					
-					controls.myRobot.tankDrive(-0.3, -0.3);
-					
-				}
-				
-				else {
-					
-					controls.motorL.stopMotor();
-					controls.motorR.stopMotor();
-					
-					autoStage = 5;
-					
-					encoderR.reset();
-					encoderL.reset();
-					
 				}	
-			case 5:	//motors off, lift off, D-D-D-D-DROP THE BASS!
-				
-				controls.liftMotor.stopMotor();
-				
-				controls.intakeSol.set(DoubleSolenoid.Value.kReverse);
-				
-				autoStage = 6;
-				
-			case 6: // back up tew foots
-				
-				encValL = encoderL.get();
-				
-				if (encValL > -960){ 
-					
-					controls.myRobot.tankDrive(-0.3, -0.3);
-					
-				}
-				
-				else {
-					
-					controls.motorL.stopMotor();
-					controls.motorR.stopMotor();
-					
-					autoStage = 99; //no code for a case 99 so it will trap itself in the loop
-					
-					encoderR.reset();
-					encoderL.reset();
-					}
-			}
+		}
+		
+		//left off fixing up code here
+	
+			encoderR.reset();
+			encoderL.reset();
+			
+	    /**
+	     * This function is called once each time the robot enters tele-operated mode
+	     */
+	 	
+	 	//controls.motorR.set(PIDautoR);	
+	 	//controls.motorL.set(PIDautoL);
+			
+		//encoderR.reset();
+		//encoderL.reset();
 	 	
     }
+	 
 	public void teleopInit(){
 		
 		//controls.compressor.start();

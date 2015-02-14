@@ -14136,3 +14136,27 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-13 18:14:56.779
 !MESSAGE Installedjava
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-14 13:58:13.297
+!MESSAGE [edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@17d4abe, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1146583, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1724ada, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@6996f9, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@13c05f0, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1104ea9, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@f9fccb, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@6369f3, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1e5e28a, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@638e99, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@11f263a, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@c0e49b, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@63a67b]
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-14 13:58:13.297
+!MESSAGE [edu.wpi.first.wpilib.plugins.core.wizards.Tag@f6fc28, edu.wpi.first.wpilib.plugins.core.wizards.Tag@dc3f3a, edu.wpi.first.wpilib.plugins.core.wizards.Tag@131fcc6, edu.wpi.first.wpilib.plugins.core.wizards.Tag@20c8a5, edu.wpi.first.wpilib.plugins.core.wizards.Tag@15e7175, edu.wpi.first.wpilib.plugins.core.wizards.Tag@40a4cb, edu.wpi.first.wpilib.plugins.core.wizards.Tag@cba7c9, edu.wpi.first.wpilib.plugins.core.wizards.Tag@3a3115, edu.wpi.first.wpilib.plugins.core.wizards.Tag@e73cbe, edu.wpi.first.wpilib.plugins.core.wizards.Tag@144a695, edu.wpi.first.wpilib.plugins.core.wizards.Tag@70a41b, edu.wpi.first.wpilib.plugins.core.wizards.Tag@11b8f19, edu.wpi.first.wpilib.plugins.core.wizards.Tag@205ac8, edu.wpi.first.wpilib.plugins.core.wizards.Tag@b038d7, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1611426]
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-14 13:59:27.215
+!MESSAGE [edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1da992f, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@3d5c50, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@7df0da, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@3d011b, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@161e152, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1daf9b2, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@6635b3, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@2fc67d, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@90ccdb, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@efb812, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1edd911, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@10bf57f, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@12b16d1]
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-14 13:59:27.219
+!MESSAGE [edu.wpi.first.wpilib.plugins.core.wizards.Tag@410a4e, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1fb6d06, edu.wpi.first.wpilib.plugins.core.wizards.Tag@10fc08b, edu.wpi.first.wpilib.plugins.core.wizards.Tag@17c9a5, edu.wpi.first.wpilib.plugins.core.wizards.Tag@94ba53, edu.wpi.first.wpilib.plugins.core.wizards.Tag@db7cda, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1fdfc92, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1cf5129, edu.wpi.first.wpilib.plugins.core.wizards.Tag@6a2ea1, edu.wpi.first.wpilib.plugins.core.wizards.Tag@116b85a, edu.wpi.first.wpilib.plugins.core.wizards.Tag@157c206, edu.wpi.first.wpilib.plugins.core.wizards.Tag@b4999c, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1c6b00d, edu.wpi.first.wpilib.plugins.core.wizards.Tag@1da1187, edu.wpi.first.wpilib.plugins.core.wizards.Tag@6a0c8]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-14 14:11:09.861
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-14 14:11:09.862
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-14 14:11:25.514
+!MESSAGE Running ant file: C:\Users\user\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-14 14:11:25.514
+!MESSAGE Targets: deploy, Mode: run

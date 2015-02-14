@@ -283,26 +283,7 @@ public class Robot extends IterativeRobot {
       	
       	manOverRide = true;
       	
-      	if (manOverRide == true){
-      		
-      		manualLift();
-      	}
-      		
-      	else if (manOverRide == false){
-      		
-      		if (liftPID == true){
-	      		
-	      		liftControl1();
-	      		
-	      	} else if (encValLift > 10) {
-	      		
-	      		controls.liftMotor.set(-.5);
-	      		
-	      	} else {
-	      		
-	      		controls.liftMotor.stopMotor();
-	      	}
-      	}
+      	
       	 
       	tankDrive();
       	
@@ -365,6 +346,39 @@ public class Robot extends IterativeRobot {
             
         }
    }
+    
+    public void liftTF(){
+if(controls.gamePad.getRawButton(Const.overideBtn) && manOverRide == false){
+      		
+      		manOverRide = true;
+      		
+      	} else if(controls.gamePad.getRawButton(Const.overideBtn) && manOverRide == true){
+      		
+      		manOverRide = false;
+      		
+      	}
+      	
+      	if (manOverRide == true){
+      		
+      		manualLift();
+      	}
+      		
+      	else if (manOverRide == false){
+      		
+      		if (liftPID == true){
+	      		
+	      		liftControl1();
+	      		
+	      	} else if (encValLift > 10) {
+	      		
+	      		controls.liftMotor.set(-.5);
+	      		
+	      	} else {
+	      		
+	      		controls.liftMotor.stopMotor();
+	      	}
+      	}
+    }
     
     public void fullSpeedDrive(){
     	

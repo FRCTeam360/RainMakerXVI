@@ -55,11 +55,11 @@ public class Robot extends IterativeRobot {
 	private float encValL;
 	
 	private boolean liftPID;
-	private boolean liftPIDLVL1;
-	private boolean liftPIDLVL2;
-	private boolean liftPIDLVL3;
+	//private boolean liftPIDLVL1;  not needed
+	//private boolean liftPIDLVL2;  not needed
+	//private boolean liftPIDLVL3;  not needed
 	private boolean manOverRide;
-	
+	private boolean gotogroundMode; 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -243,6 +243,8 @@ public class Robot extends IterativeRobot {
 		//controls.compressor.start();
 		
 		liftPID = false;  
+		manOverRide = false;
+		gotogroundMode = false;
 		
 		encoderLift.reset();// resets encoder
 		encoderR.reset();
@@ -294,11 +296,10 @@ public class Robot extends IterativeRobot {
 	      		
 	      		liftControl1();
 	      		
-	      	} else if (encValLift > 10) {
-	      		
-	      		controls.liftMotor.set(-.5);
-	      		
-	      	} else {
+	      //currently not setting liftPID to false until we add stop button logic. if we do, code  below MUST change		
+	      	      		
+	      	} 
+      		else {
 	      		
 	      		controls.liftMotor.stopMotor();
 	      	}
@@ -401,6 +402,7 @@ public class Robot extends IterativeRobot {
     	&& controls.gamePad.getRawButton(Const.groundBtn) == false){
     		
       		liftPID = true;
+      		//gotogroundMode = false;
       		
       		controls.liftTarget = Const.liftLevel1;  
       		
@@ -411,6 +413,7 @@ public class Robot extends IterativeRobot {
     	&&  controls.gamePad.getRawButton(Const.groundBtn) == false){
     		
     	     liftPID = true;
+    	    // gotogroundMode = false;
     	     
     	     controls.liftTarget = Const.liftLevel2;  
     	     
@@ -421,6 +424,7 @@ public class Robot extends IterativeRobot {
     	&&  controls.gamePad.getRawButton(Const.groundBtn) == false){
     		
     	    liftPID = true;
+    	    //gotogroundMode = false;
     	    
     	    controls.liftTarget = Const.liftLevel3;  
     	    
@@ -431,6 +435,7 @@ public class Robot extends IterativeRobot {
     	&&  controls.gamePad.getRawButton(Const.groundBtn) == false){
     		
     	     liftPID = true;
+    	     //gotogroundMode = false;
     	     
     	     controls.liftTarget = Const.liftLeveldrive; 
     	     
@@ -439,9 +444,13 @@ public class Robot extends IterativeRobot {
     	} else if (controls.gamePad.getRawButton(Const.level1Btn) == false &&  controls.gamePad.getRawButton(Const.level2Btn) == false
     	&&  controls.gamePad.getRawButton(Const.level3Btn) == false &&  controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
     	&&  controls.gamePad.getRawButton(Const.groundBtn) == true){
-    	    
+    	    if (encValLift > Const.liftLeveldrive + 30){
+    	    	SmartDashboard.putString("Too High ", "encValLift");
+    	    }
+    	    else{
     			liftPID = false;
-    		
+    			//gotogroundMode = true
+    	    }
     	}
     }
   

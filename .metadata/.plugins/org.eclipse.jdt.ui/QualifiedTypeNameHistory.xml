@@ -9,4 +9,6 @@
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.OI"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.smartdashboard.SmartDashboard"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.smartdashboard.SendableChooser"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.command.Scheduler"/>
 </qualifiedTypeNameHistroy>

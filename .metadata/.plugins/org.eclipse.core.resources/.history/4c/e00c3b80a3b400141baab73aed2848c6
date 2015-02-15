@@ -1,0 +1,18 @@
+package org.usfirst.frc.team360.robot;
+
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+
+/**
+ *
+ */
+public class autoGrabTurnLeft extends CommandGroup {
+
+    public void AutonomousCommand(){
+    	
+    	addSequential(new activeSol());
+    	addSequential(new enablePID1());
+    	addSequential(new driveForward());
+    	
+    }
+}

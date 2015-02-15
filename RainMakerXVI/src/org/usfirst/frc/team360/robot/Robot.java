@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
 	
 	SendableChooser autoChooser;
 	
-	OI controls = new OI(); 
+	OI controls = OI.GetInstance(); //new OI(); 
 
 	Encoder encoderLift;
 	Encoder encoderR;
@@ -69,17 +69,19 @@ public class Robot extends IterativeRobot {
     	
     	encoderLift = new Encoder( 0, 1, true, EncodingType.k1X);
     	encoderR = new Encoder( 2, 3, true, EncodingType.k1X);
-    	encoderL = new Encoder( 4, 5, true, EncodingType.k1X);
+    	encoderL = new Encoder( 4, 5, true, EncodingType.k1X); 
     	
     	autoChooser = new SendableChooser();
     	
-    	autoChooser.addDefault("default program", new autoGrabturnRight());
     	
-    	autoChooser.addObject("exper", new forwardGrabNBack());
+    	autoChooser.addDefault("default program", new testComAuto());
+    	
+    	autoChooser.addObject("exper", new autoGrabTurnLeft());
+    	autoChooser.addObject("forward", new driveForward());
     	
     	SmartDashboard.putData("Auto mode chooser", autoChooser);
     	
-    	controls.init();
+    	// controls.init();
     	
       	encoderLift.reset();
       	encoderR.reset();
@@ -162,9 +164,11 @@ public class Robot extends IterativeRobot {
 		double d = 0.0015;
 		double Dt = 0.01;
 		
-		//encValR = encoderR.get();
+		controls.EnvGlbValR = encoderR.get();
+		controls.EnvGlbValL = encoderL.get();
+		controls.EnvGlbValLift = encoderLift.get();
 		
-		autoGrabturnRight();
+		//autoGrabturnRight();
 	
     }
 	
@@ -288,7 +292,7 @@ public class Robot extends IterativeRobot {
 	 	
     }
 	 
-public void autoForwardgrabBack(){
+	public void autoForwardgrabBack(){
 		
 		//limit1.get();
 	    //limit2.get();
@@ -406,6 +410,7 @@ public void autoForwardgrabBack(){
 			}
 	 	
     }
+	
 	public void teleopInit(){
 		
 		//controls.compressor.start();

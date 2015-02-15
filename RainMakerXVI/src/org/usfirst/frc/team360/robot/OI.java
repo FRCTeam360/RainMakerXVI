@@ -33,6 +33,10 @@ public class OI {
 	
 	PIDController PID;
 	
+	public float EnvGlbValR;
+	public float EnvGlbValL;
+	public float EnvGlbValLift;
+	
 	int autoLoopCounter;
 	int totes; //num of totes carried
 	int exp1;
@@ -72,7 +76,22 @@ public class OI {
 
 	VictorSP motorL = new VictorSP(0);
 	VictorSP motorR = new VictorSP(1);
-	VictorSP liftMotor = new VictorSP(9);
+	VictorSP liftMotor = new VictorSP(2);
+	
+	private static OI instance;
+	
+	public static OI GetInstance() {
+		if(instance == null) {
+			instance = new OI();
+			instance.init();
+		}
+		return instance;
+	}
+	
+	/* make the default constructor private so it can't be called directly */
+	private void OI() {
+		
+	}
 	
     // CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.

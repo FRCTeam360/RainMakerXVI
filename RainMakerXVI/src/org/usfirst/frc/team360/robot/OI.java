@@ -27,7 +27,8 @@ public class OI {
 	Joystick stickL;
 	Joystick gamePad; 
 	
-	DoubleSolenoid intakeSol = new DoubleSolenoid(0, 1);
+	DoubleSolenoid intakeSol1 = new DoubleSolenoid(0, 7);
+	DoubleSolenoid intakeSol2 = new DoubleSolenoid(1, 6);
 	
 	Compressor compressor = new Compressor(0);//init compressor and maps it
 	

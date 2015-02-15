@@ -182,13 +182,16 @@ public class Robot extends IterativeRobot {
 		double d = 0.0015;
 		double Dt = 0.01;
 		
-		//encValR = encoderR.get();                                                                                                                                        
+		encValR = encoderR.get();    
+		encValL = encoderL.get();
+		encValLift = encoderLift.get();
 		
 	switch(autoStage){
 			
 			case 1: //grab
 				
-				controls.intakeSol.set(DoubleSolenoid.Value.kForward);
+				controls.intakeSol1.set(DoubleSolenoid.Value.kForward);
+				controls.intakeSol2.set(DoubleSolenoid.Value.kForward);
 				
 				autoStage = 2;
 				
@@ -264,8 +267,8 @@ public class Robot extends IterativeRobot {
 				
 				controls.liftMotor.stopMotor();
 				
-				controls.intakeSol.set(DoubleSolenoid.Value.kReverse);
-				
+				controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);
+				controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);
 				autoStage = 6;
 				
 			case 6: // back up tew foots
@@ -300,9 +303,11 @@ public class Robot extends IterativeRobot {
 		double p = 0.001; 
 		double i = 0;
 		double d = 0.0015;
-		double Dt = 0.01;
+		double Dt = 0.01;                                                                                                                                      
 		
-		//encValR = encoderR.get();                                                                                                                                        
+		encValR = encoderR.get();    
+		encValL = encoderL.get();
+		encValLift = encoderLift.get();
 		
 	switch(autoStage){
 			
@@ -327,7 +332,8 @@ public class Robot extends IterativeRobot {
 				
 			case 2: //grab
 				
-				controls.intakeSol.set(DoubleSolenoid.Value.kForward);
+				controls.intakeSol1.set(DoubleSolenoid.Value.kForward);
+				controls.intakeSol2.set(DoubleSolenoid.Value.kForward);
 				
 				autoStage = 3;
 				
@@ -383,7 +389,8 @@ public class Robot extends IterativeRobot {
 				
 				controls.liftMotor.stopMotor();
 				
-				controls.intakeSol.set(DoubleSolenoid.Value.kReverse);
+				controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);
+				controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);
 				
 				autoStage = 6;
 				
@@ -413,9 +420,12 @@ public class Robot extends IterativeRobot {
 	
 	public void teleopInit(){
 		
-		//controls.compressor.start();
+		
+		
+		controls.compressor.start();
 		
 		liftPID = false;  
+		manOverRide = false;
 		
 		encoderLift.reset();// resets encoder
 		encoderR.reset();
@@ -453,8 +463,6 @@ public class Robot extends IterativeRobot {
       	setTarget();
       	
       	System.out.println(liftPID + "Lift Tr place");
-      	
-      	manOverRide = true;
       	
       	liftTF();
       	 
@@ -507,15 +515,18 @@ public class Robot extends IterativeRobot {
     		
 		if (controls.grab==true && controls.release == false){
 			
-			controls.intakeSol.set(DoubleSolenoid.Value.kForward);//grab
+			controls.intakeSol1.set(DoubleSolenoid.Value.kForward);//grab
+			controls.intakeSol2.set(DoubleSolenoid.Value.kForward);//grab
             
 			SmartDashboard.putString("Solenoid Status: ", "Forward");
             
         } else if (controls.release==true && controls.grab == false) {
         	
-        	controls.intakeSol.set(DoubleSolenoid.Value.kReverse);//release
-            
+        	controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);//release
+        	controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);//release
+        	
 			SmartDashboard.putString("Solenoid Status: ", "Reverse");
+			
             
         }
    }

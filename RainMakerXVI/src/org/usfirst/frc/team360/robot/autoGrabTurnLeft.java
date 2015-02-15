@@ -9,9 +9,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class autoGrabTurnLeft extends CommandGroup {
 
 	public autoGrabTurnLeft()	{	
+		
     	addSequential(new activeSol());
-    	addParallel(new enablePID1());
-    	addSequential(new driveForward());
+    	addParallel(new enablePIDLift());//pid level 1 for auto
+    	addSequential(new enablePIDTurn());
+    	addParallel(new enablePIDLift());
+    	addSequential(new enablePIDDrive());
     	
     	
     }

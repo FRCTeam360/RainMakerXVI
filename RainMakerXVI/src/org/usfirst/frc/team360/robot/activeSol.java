@@ -18,7 +18,8 @@ public class activeSol extends Command {
 	protected void execute() {
 		// TODO Auto-generated method stub
 		SmartDashboard.putString("Solenoid Status: ", "Forward");
-		controls.intakeSol.set(DoubleSolenoid.Value.kForward);//grab
+		controls.intakeSol1.set(DoubleSolenoid.Value.kForward);//grab
+		controls.intakeSol2.set(DoubleSolenoid.Value.kForward);//grab
 		done = true;
 	}
 

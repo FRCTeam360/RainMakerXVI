@@ -17,6 +17,7 @@ public class enablePIDLift extends Command {
 	private double derivative;
 	private double output;
 	private double prevError;
+	private double output1;
 	
     public enablePIDLift() {
         // Use requires() here to declare subsystem dependencies
@@ -30,6 +31,7 @@ public class enablePIDLift extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	controls.liftMotor.set(output);
+    	 liftControl1();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -44,6 +46,7 @@ public class enablePIDLift extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 
     public void liftControl1() {
@@ -58,11 +61,7 @@ public class enablePIDLift extends Command {
     	double d = 0.0015;
     	double Dt = 0.01; 
     	
-    	
-    	
-    	
-    	
-    	double PIDOUTPUT1 = doPID1(p, i, d, Dt, controls.EnvGlbValR, 50);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
+    	double PIDOUTPUT1 = doPID1(p, i, d, Dt, controls.EnvGlbValR, Const.liftLevel1);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
     	
 	    System.out.println(PIDOUTPUT1 + "output 1.11");
 	    

@@ -12,8 +12,7 @@ public class autoGrabTurnLeft extends CommandGroup {
 		
     	addSequential(new activeSol());
     	addParallel(new enablePIDLift());//pid level 1 for auto
-    	addSequential(new enablePIDTurn());
-    	addParallel(new enablePIDLift());
+    	addSequential(new enablePIDTurnRight());
     	addSequential(new enablePIDDrive());
     	
     	

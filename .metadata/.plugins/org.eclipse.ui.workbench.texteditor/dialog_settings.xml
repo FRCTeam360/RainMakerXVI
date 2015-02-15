@@ -6,20 +6,20 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="motorR" key="selection"/>
+		<item value="manOver" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="manOver"/>
+			<item value="manuallift"/>
+			<item value="manover"/>
+			<item value="intake"/>
+			<item value="intakeSol1"/>
+			<item value="controls.init"/>
+			<item value="liftmotor"/>
 			<item value="doPID(p, i, d, Dt, encVal, 546)"/>
-			<item value="motorR"/>
-			<item value="output"/>
-			<item value="enc"/>
-			<item value="reset"/>
-			<item value="valJoy"/>
-			<item value="stickL"/>
-			<item value="control"/>
 		</list>
 		<list key="replacehistory">
 			<item value=" "/>
@@ -31,7 +31,7 @@
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="363" key="DIALOG_HEIGHT"/>
-		<item value="859" key="DIALOG_X_ORIGIN"/>
-		<item value="264" key="DIALOG_Y_ORIGIN"/>
+		<item value="984" key="DIALOG_X_ORIGIN"/>
+		<item value="212" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

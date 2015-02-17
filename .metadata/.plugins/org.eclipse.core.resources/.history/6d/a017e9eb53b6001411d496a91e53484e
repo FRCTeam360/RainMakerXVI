@@ -714,7 +714,7 @@ public class Robot extends IterativeRobot {
     		startPos = encValLift;
 
     	    
-    	    controls.liftTarget = Const.liftLevelground;  
+    	    controls.liftTarget = Const.liftLeveldrive;  
     	    targetDistance =  controls.liftTarget - startPos;
     	    SmartDashboard.putString("Lift Status: ", "Lift Level Drive"); 
     	    

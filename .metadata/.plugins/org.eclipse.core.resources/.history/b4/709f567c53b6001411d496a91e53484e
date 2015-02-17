@@ -32,13 +32,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Robot extends IterativeRobot {
 
-	float quaterDist;
-	float threeQuarterDist;
-	float startPos;
-	float targetDistance;
-	float trueQuaterDist;
-	float trueThreeQuarterDist;
-	
 	Command autonomousCommand;
 	
 	SendableChooser autoChooser;
@@ -50,7 +43,6 @@ public class Robot extends IterativeRobot {
 	Encoder encoderL;
 	
 	private int autoStage;
-	private int iautochoose; 
 	
 	private double error;
 	private double integral;
@@ -67,14 +59,13 @@ public class Robot extends IterativeRobot {
 	private boolean liftPIDLVL2;
 	private boolean liftPIDLVL3;
 	private boolean manOverRide;
-	private boolean rWeThereYet;
+	int iautochoose; 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
 	
     public void robotInit() {
-    	rWeThereYet = false;
     	
     	encoderLift = new Encoder( 4, 5, true, EncodingType.k1X);
     	encoderR = new Encoder( 2, 3, true, EncodingType.k1X);
@@ -236,7 +227,7 @@ public class Robot extends IterativeRobot {
 				
 				controls.liftTarget = Const.liftLeveldrive;  
 				
-				nonPIDLift();
+				liftControl1();
 				
 				if (encValLift > Const.liftLeveldrive - 30){
 					
@@ -250,11 +241,11 @@ public class Robot extends IterativeRobot {
 				
 				controls.liftTarget = Const.liftLeveldrive;  
 				
-				nonPIDLift();
+				liftControl1();
 				
 				encValL = encoderL.get();
 				
-				if (encValL < 720){ //!!!!!!!!!!!!!need to adjust value or run through targetDistance calculator!!!!!!!!!!!!!!!!!!
+				if (encValL < 720){ //!!!!!!!!!!!!!need to adjust value or run through distance calculator!!!!!!!!!!!!!!!!!!
 					
 					controls.myRobot.tankDrive(-0.3, 0.3);
 					
@@ -279,7 +270,7 @@ public class Robot extends IterativeRobot {
 
 				controls.liftTarget = Const.liftLeveldrive;  
 				
-				nonPIDLift();
+				liftControl1();
 				
 				encValL = encoderL.get();
 				
@@ -378,7 +369,7 @@ public class Robot extends IterativeRobot {
 				
 				controls.liftTarget = Const.liftLeveldrive;  
 				
-				nonPIDLift();
+				liftControl1();
 				
 				if (encValLift > Const.liftLeveldrive - 30){
 					
@@ -401,7 +392,7 @@ public class Robot extends IterativeRobot {
 
 				controls.liftTarget = Const.liftLeveldrive;  
 				
-				nonPIDLift();
+				liftControl1();
 				
 				encValL = encoderL.get();
 				
@@ -529,35 +520,7 @@ public class Robot extends IterativeRobot {
     	controls.up = controls.stickR.getRawButton(1);
     	controls.down = controls.stickL.getRawButton(1);
  
-    	 if (controls.valJoyR >= .001 || controls.valJoyR <= -.001){
-         	
-         	//System.out.println("tank active");
-         	
-         	if(controls.up == true && controls.down == false) {
-         		
-         		controls.halfSpeed = true;
-  
-         	} else if(controls.down == true && controls.up == false){
-         	
-         		controls.halfSpeed = false;
-
-         	}
-         
-         	if (controls.halfSpeed == false){
-         	
-         		fullSpeedDrive();
-         		
-               	SmartDashboard.putString("Drive Status: ", "Full");
-         		
-         	} else if (controls.halfSpeed == true){
-         	
-         		halfSpeedDrive();
-         	
-               	SmartDashboard.putString("Drive Status: ", "Half");
-         		
-         	}
-         	
-        }  if (controls.valJoyL >= .001 || controls.valJoyL <= -.001 ){
+    	 if (controls.valJoyR >= .00 || controls.valJoyR >= -.00 || controls.valJoyL <= .00 || controls.valJoyL <= -.00){
          	
          	//System.out.println("tank active");
          	
@@ -676,93 +639,57 @@ public class Robot extends IterativeRobot {
     	if (controls.gamePad.getRawButton(Const.level1Btn) == true && controls.gamePad.getRawButton(Const.level2Btn) == false
     	&& controls.gamePad.getRawButton(Const.level3Btn) == false &&  controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
     	&& controls.gamePad.getRawButton(Const.groundBtn) == false && controls.gamePad.getRawButton(Const.level4Btn) == false){
-    		rWeThereYet = false;
+    		
       		liftPID = true;
       		
-      		encValLift = encoderLift.get();
-        	
-    		startPos = encValLift;
-
-      		
       		controls.liftTarget = Const.liftLevel1;  
-      		targetDistance =  controls.liftTarget - startPos;
+      		
       		SmartDashboard.putString("Lift Status: ", "Level 1");
       		
     	} else if (controls.gamePad.getRawButton(Const.level1Btn) == false &&  controls.gamePad.getRawButton(Const.level2Btn) == true
     	&&  controls.gamePad.getRawButton(Const.level3Btn) == false &&  controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
     	&&  controls.gamePad.getRawButton(Const.groundBtn) == false && controls.gamePad.getRawButton(Const.level4Btn) == false){
-    		rWeThereYet = false;
+    		
     	     liftPID = true;
     	     
-    	     encValLift = encoderLift.get();
-         	
-     		startPos = encValLift;
-
-    	     
     	     controls.liftTarget = Const.liftLevel2;  
-    	     targetDistance =  controls.liftTarget - startPos;
+    	     
     	     SmartDashboard.putString("Lift Status: ", "Level 2");
     	     
     	} else if (controls.gamePad.getRawButton(Const.level1Btn) == false &&  controls.gamePad.getRawButton(Const.level2Btn) == false
     	&&  controls.gamePad.getRawButton(Const.level3Btn) == true &&  controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
     	&&  controls.gamePad.getRawButton(Const.groundBtn) == false && controls.gamePad.getRawButton(Const.level4Btn) == false){
-    		rWeThereYet = false;
+    		
     	    liftPID = true;
     	    
-    	    encValLift = encoderLift.get();
-        	
-    		startPos = encValLift;
-
+    	    controls.liftTarget = Const.liftLevel3;  
     	    
-    	    controls.liftTarget = Const.liftLevelground;  
-    	    targetDistance =  controls.liftTarget - startPos;
-    	    SmartDashboard.putString("Lift Status: ", "Lift Level Drive"); 
+    	    SmartDashboard.putString("Lift Status: ", "Level 3"); 
     	    
     	} else if (controls.gamePad.getRawButton(Const.level1Btn) == false &&  controls.gamePad.getRawButton(Const.level2Btn) == false
         &&  controls.gamePad.getRawButton(Const.level3Btn) == false &&  controls.gamePad.getRawButton(Const.drivingLevelBtn) == true
     	&&  controls.gamePad.getRawButton(Const.groundBtn) == false && controls.gamePad.getRawButton(Const.level4Btn) == false){
-    		rWeThereYet = false;
+    		
     	     liftPID = true;
-    	     encValLift = encoderLift.get();
-         	
-     		startPos = encValLift;
-
+    	     
     	     controls.liftTarget = Const.liftLeveldrive; 
-    	     targetDistance =  controls.liftTarget - startPos;
+    	     
     	     SmartDashboard.putString("Lift Status: ", "Level Drive");
     	}else if (controls.gamePad.getRawButton(Const.level1Btn) == false &&  controls.gamePad.getRawButton(Const.level2Btn) == false
     	&&  controls.gamePad.getRawButton(Const.level3Btn) == false &&  controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
     	&&  controls.gamePad.getRawButton(Const.groundBtn) == false && controls.gamePad.getRawButton(Const.level4Btn) == true){
-    		rWeThereYet = false;    	    
+    	    	    	    
     		liftPID = true;
-    	    	    
-    		
-        	
-    		encValLift = encoderLift.get();
-        	
-    		startPos = encValLift;
-
-    		
+    	    	    			
     	    controls.liftTarget = Const.liftLevel4;  
-    	    targetDistance =  controls.liftTarget - startPos;      	    
+    	    	        	    
     	    SmartDashboard.putString("Lift Status: ", "Level 4"); 
     	    	     
     	} else if (controls.gamePad.getRawButton(Const.level1Btn) == false &&  controls.gamePad.getRawButton(Const.level2Btn) == false
     	&&  controls.gamePad.getRawButton(Const.level3Btn) == false &&  controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
     	&&  controls.gamePad.getRawButton(Const.groundBtn) == true && controls.gamePad.getRawButton(Const.level4Btn) == false){
     	    
-    		rWeThereYet = false;
-	    	    
-    		liftPID = true;
-    	    	    
-    		encValLift = encoderLift.get();
-        	
-    		startPos = encValLift;
-
-    		
-    	    controls.liftTarget = Const.liftLevel4;  
-    	    targetDistance =  controls.liftTarget - startPos;  
-    			
+    			liftPID = false;
     		
     	}
     }
@@ -787,7 +714,88 @@ public class Robot extends IterativeRobot {
   	    		controls.liftMotor.set(0);
   	    }
     }
-   
+    
+    public void liftControl1() {
+    	
+    	//set the pid vals to variable USE THESE IN DECLARATION
+    	// call liftControl from teleop periodic
+    	//get encoder value
+    	//hardcode the target for now for testing - always do Lift routine to same spot, eg. 1000
+
+    	double p = 0.001; 
+    	double i = 0;
+    	double d = 0.0015;
+    	double Dt = 0.01; 
+    	
+    	encValLift = encoderLift.get();
+    	
+    	System.out.println(encValLift + "encval 1.1");
+    	
+    	double PIDOUTPUT1 = doPID1(p, i, d, Dt, encValLift, controls.liftTarget);// ONLY CHANGE THE LAST NUMBER DO NOT TOUCH ANYTHING ELSE HERE
+    	
+	    System.out.println(PIDOUTPUT1 + "output 1.11");
+	    
+	    PIDOUTPUT1 /= 10;   
+     
+    	//scales output back by 100 since the potentiometer says a few hundred counts equals less than 100 degrees in RL
+
+    	if(PIDOUTPUT1 > 1){
+    		
+    		System.out.println("#1.1");
+    		
+    		PIDOUTPUT1 = .7; 
+    		
+    		controls.liftMotor.set(PIDOUTPUT1);
+ 
+    		} else if (PIDOUTPUT1 < -1){
+    		
+    		System.out.println("#2.1");
+    		
+    		PIDOUTPUT1 = .7;
+    		
+    		controls.liftMotor.set(PIDOUTPUT1);
+       
+    		}
+    	              
+    	if (PIDOUTPUT1 > -1 || PIDOUTPUT1 < 1){
+    		
+    		System.out.println("#4.1");
+    
+    		controls.liftMotor.set(PIDOUTPUT1);
+
+    		}
+    	
+    	//System.out.println(encValLift + "encValLift 2");
+    	
+    }
+
+    public double doPID1(double P, double I, double D, double dt, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
+    	
+       	//you need to translate this into Java syntax and declare your variables
+	    //I think the output is the speed
+
+    	Timer.delay(dt);
+
+		SmartDashboard.putDouble( "position: ", position); 
+      	SmartDashboard.putDouble( "setPoint: ", setPoint);
+      	
+		error = position - setPoint;
+		
+		integral = integral + (error * dt);
+		
+		derivative = (error - prevError) / dt;
+		
+		output = (P * error) + (I * integral) + (D * derivative);
+		
+		prevError = error;
+		
+		SmartDashboard.putDouble( "error: ", error); 
+		SmartDashboard.putDouble( "output: ", output); 
+		
+		return -output;
+    	
+	}
+
 	/**
      * This function is called periodically during test mode
      */
@@ -799,78 +807,12 @@ public class Robot extends IterativeRobot {
       	SmartDashboard.putString( "Test Status: ", "Enabled"); 
     	
     }  
-  
-    public void nonPIDLift(){
-    	
-    	encValLift = encoderLift.get();
-    
-    	
-    	if (rWeThereYet == false){
-    		if (targetDistance > 0){//if target pos means we go up
-    		   
-    			if (encValLift >= controls.liftTarget){
-    				controls.liftMotor.stopMotor();
-    				rWeThereYet = true;
-    			} else {
-    				setSpeedUp();
-    			}
-    		} else if (targetDistance < 0) { //if target negative go down
-    			
-    			if(encValLift <= controls.liftTarget){
-    				controls.liftMotor.stopMotor();
-    				rWeThereYet = true;
-    			}else{
-    				setSpeedDown();
-    			}
-    		} else if (targetDistance == 0){
-    			controls.liftMotor.set(0);
-    			rWeThereYet = true;   		
-    		}
-    	} 
-    }
-    public void setSpeedUp(){
-    	
-    	trueQuaterDist = controls.liftTarget / 4;
-    	trueThreeQuarterDist = quaterDist *3;
-    	threeQuarterDist = trueThreeQuarterDist + startPos;
-    	quaterDist = trueQuaterDist + startPos;
-    		if (quaterDist > encValLift){//if 0-25%
-			
-    		controls.liftMotor.set(.3);
-    		
-    		} else if (threeQuarterDist > encValLift && quaterDist <= encValLift){//if 25-75%
-    		
-    		controls.liftMotor.set(.7);
-    	
-    		} else if (threeQuarterDist <= encValLift && controls.liftTarget >= encValLift){//if 75-100%
-    	
-    			controls.liftMotor.set(.2);
-    	
-    		} else {
-    			
-    			controls.liftMotor.stopMotor();
-    		}
-    }
-    public void setSpeedDown(){
-    	
-    	trueQuaterDist = targetDistance / 4;
-    	trueThreeQuarterDist = quaterDist *3;
-    	threeQuarterDist = trueThreeQuarterDist + startPos;
-    	quaterDist = trueQuaterDist + startPos;
-    	if (quaterDist < encValLift){
-			
-    		controls.liftMotor.set(-.3);
-    		
-    		} else if (threeQuarterDist < encValLift && quaterDist >= encValLift){
-    		
-    		controls.liftMotor.set(-.7);
-    	
-    		} else if (threeQuarterDist >= encValLift && controls.liftTarget <= encValLift){
-    	
-    			controls.liftMotor.set(-.2);
-    	
-    		} else {
-    			controls.liftMotor.stopMotor();
-    		}
-    }
+public void nonPIDLift(){
+	encValLift = encoderLift.get();
+	if (/*encValLift  <= 100 ||*/ encValLift  >= -controls.liftTarget){
+		controls.liftMotor.set(.5);
+	}else {
+	controls.liftMotor.stopMotor();
+	}
+}
 }

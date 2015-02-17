@@ -18,16 +18,17 @@ public class Const {
 	public static int level1Btn = 2;
 	public static int level2Btn = 3;
 	public static int level3Btn = 4;
-	public static int level4Btn = 8;
+	public static int level4Btn = 8; 
 	public static int drivingLevelBtn = 5;
 	public static int stopMotorBtn = 6;
 	public static int outBtn = 7;     //grabber out
 	public static int inBtn = 9;      //grabber in
 	public static int groundBtn = 10;
-	public static int offBtn = 12;    //brake off
+	public static int offBtn = 12; //brake off
 	public static int onBtn = 14;     //brake on
 	public static int overideBtn = 15;
 	public static int upBtn = 17;     //mapped from dpad north on gamepad
 	public static int downBtn = 18;   //mapped from dpad south on gamepad
-	
+	public static int iautograbturnright = 2;
+	public static int iautoforwardgrabback = 3;
 }

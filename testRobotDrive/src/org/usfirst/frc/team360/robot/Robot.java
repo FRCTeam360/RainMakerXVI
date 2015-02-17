@@ -1,9 +1,11 @@
 package org.usfirst.frc.team360.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -16,6 +18,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Robot extends IterativeRobot {
 	RobotDrive myRobot;
+	Encoder encoder;
 	Joystick stickR;
 	Joystick stickL;
 	int autoLoopCounter;
@@ -34,6 +37,19 @@ public class Robot extends IterativeRobot {
     	myRobot.setExpiration(0.1);
     	stickR = new Joystick(0); 
     	stickL = new Joystick(1);
+    	encoder = new Encoder(0, 1, true, EncodingType.k1X);
+    	
+    	
+      	encoder.reset();
+    	
+    	encoder.setMaxPeriod(.1);
+ 
+      	encoder.setMinRate(10);
+      	
+      	
+    	encoder.setDistancePerPulse(5);
+    	
+      	encoder.setSamplesToAverage(7);
     }
     
     /**
@@ -66,14 +82,16 @@ public class Robot extends IterativeRobot {
      */
     
 	public void teleopInit(){
+		encoder.reset();
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-  
+  float enc = encoder.get();
       	myRobot.tankDrive(stickR, stickL);
+      	System.out.println(enc);
            Timer.delay(0.005);		// wait for a motor update time
           
    }

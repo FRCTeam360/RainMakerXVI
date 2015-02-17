@@ -59,7 +59,7 @@ public class Robot extends IterativeRobot {
 	private boolean liftPIDLVL2;
 	private boolean liftPIDLVL3;
 	private boolean manOverRide;
-	
+	int iautochoose; 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -67,9 +67,9 @@ public class Robot extends IterativeRobot {
 	
     public void robotInit() {
     	
-    	encoderLift = new Encoder( 0, 1, true, EncodingType.k1X);
+    	encoderLift = new Encoder( 4, 5, true, EncodingType.k1X);
     	encoderR = new Encoder( 2, 3, true, EncodingType.k1X);
-    	encoderL = new Encoder( 4, 5, true, EncodingType.k1X); 
+    	encoderL = new Encoder( 0, 1, true, EncodingType.k1X); 
     	
     	autoChooser = new SendableChooser();
     	
@@ -102,6 +102,8 @@ public class Robot extends IterativeRobot {
       //	encoderLift.setReverseDirection(true);
       //	encoderR.setReverseDirection(true);
       	encoderL.setReverseDirection(true);
+    	encoderLift.setReverseDirection(true);
+      	
       	
       	encoderLift.setSamplesToAverage(7);
       	encoderR.setSamplesToAverage(7);
@@ -111,6 +113,7 @@ public class Robot extends IterativeRobot {
     	
     	controls.liftMotor.enableDeadbandElimination(true);
     	
+    	iautochoose = 999; 
     }
    
     public void disabledInit() {
@@ -126,6 +129,25 @@ public class Robot extends IterativeRobot {
       	SmartDashboard.putString( "Autonomous Status: ", ""); 
       	SmartDashboard.putString( "Test Status: ", ""); 
      	
+    }
+
+    public void disabledPeriodic() {
+    	if (controls.gamePad.getRawButton(Const.iautograbturnright) == true) {
+    		iautochoose = Const.iautograbturnright;    		
+    	}
+    	
+    	if (controls.gamePad.getRawButton(Const.iautoforwardgrabback) == true) {
+    		iautochoose = Const.iautoforwardgrabback; 
+    	}
+    	
+    	switch(iautochoose){
+    	
+    	case 2: SmartDashboard.putString( "iautograbturnright", "Active");
+    	
+    	case 3: SmartDashboard.putString( "iautoforwardgrabback", "Active");
+    		
+    	}
+    		
     }
     
     public void autonomousInit() {
@@ -168,8 +190,14 @@ public class Robot extends IterativeRobot {
 		controls.EnvGlbValL = encoderL.get();
 		controls.EnvGlbValLift = encoderLift.get();
 		
-		//autoGrabturnRight();
-	
+		
+		/*switch(iautochoose){
+    	
+    	case Const.iautograbturnright: iautoGrabturnRight();
+    	
+    	case Const.iautoforwardgrabback: iautoForwardgrabBack();
+    		
+    	}*/
     }
 	
 	public void autoGrabturnRight(){
@@ -424,6 +452,7 @@ public class Robot extends IterativeRobot {
 		
 		controls.compressor.start();
 		
+		
 		liftPID = false;  
 		manOverRide = false;
 		
@@ -443,6 +472,9 @@ public class Robot extends IterativeRobot {
 	
     public void teleopPeriodic() {
     
+    	
+    	
+    	
     	controls.valJoyR = controls.stickR.getRawAxis(1);
     	controls.valJoyL = controls.stickL.getRawAxis(1);
     	
@@ -455,6 +487,14 @@ public class Robot extends IterativeRobot {
 
        	intakeControl();
     	
+       	encValLift = encoderLift.get();
+       	encValL = encoderL.get();
+       	encValR = encoderR.get();
+       	
+       	System.out.println(encValLift + "lift");
+       	System.out.println(encValL + "L");
+       	System.out.println(encValR + "R");
+       	
       	Timer.delay(0.005); // wait for motor update time
       	                           
       	SmartDashboard.putDouble( "Joystick Left: ", controls.valJoyL); 
@@ -466,6 +506,8 @@ public class Robot extends IterativeRobot {
       	
       	liftTF();
       	 
+      	//nonPIDLift();
+      	
       	tankDrive();
       	
     }
@@ -478,7 +520,7 @@ public class Robot extends IterativeRobot {
     	controls.up = controls.stickR.getRawButton(1);
     	controls.down = controls.stickL.getRawButton(1);
  
-    	 if (controls.valJoyR >= .01 || controls.valJoyR <= -.01 || controls.valJoyL >= .01 || controls.valJoyL <= -.01){
+    	 if (controls.valJoyR >= .00 || controls.valJoyR >= -.00 || controls.valJoyL <= .00 || controls.valJoyL <= -.00){
          	
          	//System.out.println("tank active");
          	
@@ -551,7 +593,7 @@ public class Robot extends IterativeRobot {
       		
       		if (liftPID == true){
 	      		
-	      		liftControl1();
+      			nonPIDLift();
 	      		
 	      	} else if (encValLift > 10) {
 	      		
@@ -656,14 +698,14 @@ public class Robot extends IterativeRobot {
     	
     	if (controls.gamePad.getRawButton(Const.upBtn) == true) {
   		
-   				controls.liftMotor.set(.5);
+   				controls.liftMotor.set(.6);
    				
    				System.out.println( "Manuel override up");
    				
    		}
   	    else if (controls.gamePad.getRawButton(Const.downBtn) == true) {
   		  
-  	    		controls.liftMotor.set(-.5);
+  	    		controls.liftMotor.set(-.2);
   	    		
   	    		System.out.println( "Manuel override down");
   	    		
@@ -765,4 +807,12 @@ public class Robot extends IterativeRobot {
       	SmartDashboard.putString( "Test Status: ", "Enabled"); 
     	
     }  
+public void nonPIDLift(){
+	encValLift = encoderLift.get();
+	if (/*encValLift  <= 100 ||*/ encValLift  >= -controls.liftTarget){
+		controls.liftMotor.set(.5);
+	}else {
+	controls.liftMotor.stopMotor();
+	}
+}
 }

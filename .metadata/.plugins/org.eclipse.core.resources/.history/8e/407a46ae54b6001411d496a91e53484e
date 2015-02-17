@@ -628,9 +628,18 @@ public class Robot extends IterativeRobot {
       		
       	else if (manOverRide == false){
       		
+      		if (liftPID == true){
 	      		
       			nonPIDLift();
-	     
+	      		
+	      	} else if (encValLift > 10) {
+	      		
+	      		controls.liftMotor.set(-.5);
+	      		
+	      	} else {
+	      		
+	      		controls.liftMotor.stopMotor();
+	      	}
       	}
     }
     

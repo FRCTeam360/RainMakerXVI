@@ -10,12 +10,12 @@ public class Const {
 	 //2.375 * pi = 7.461 per rotation. If we want to go 12.5" - how many rotations - 1.477 rotations; 1.477 * 360 = 532
 	// numbers are approximate as there will be adjustment based on how the rope wraps
 	
-	public static float liftLevel1 = 592; 
+	public static float liftLevel1 = 532; 
 	public static float liftLevel2 = 1064;  
 	public static float liftLevel3 = 1596;
 	public static float liftLevel4 = 2128;
 	public static float liftLeveldrive = 120; 
-	public static float liftLevelground = -10; 
+	public static float liftLevelground = 1; 
 	public static int level1Btn = 2;
 	public static int level2Btn = 3;
 	public static int level3Btn = 4;

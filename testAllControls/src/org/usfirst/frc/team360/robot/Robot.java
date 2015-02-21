@@ -81,7 +81,7 @@ public class Robot extends IterativeRobot {
     	if(autoLoopCounter < 200) //Check if we've completed 50 loops (approximately 1 seconds)
 		{
     		System.out.println("hele");
-			myRobot.drive(0.8, 0.8); 	// drive forwards half speed
+			myRobot.drive(0.5, 0.5); 	// drive forwards half speed
 			autoLoopCounter++;
 			} else {
 			myRobot.drive(0.0, 0.0);
@@ -105,15 +105,16 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during operator control
      */
-    public void teleopPeriodic() {
+    
+	public void teleopPeriodic() {
     	// test solenoid
 		float enc = encoder.get();
 		boolean up = stickR.getRawButton(1);
 		boolean down = stickL.getRawButton(1);
       	myRobot.tankDrive(stickR, stickL);
-      	//System.out.println(enc); // test encoder
+      	System.out.println(enc); // test encoder
       	double valStickL = stickL.getRawAxis(1);
-      	lift.set(valStickL);
+      //	lift.set(valStickL);
         
       	if(down == true && up == false){
       		intakeSol1.set(DoubleSolenoid.Value. kReverse);

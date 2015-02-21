@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -71,9 +72,13 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
   
+    	double valJoyR = stickR.getRawAxis(1);
+    	double valJoyL = stickL.getRawAxis(1);
+    	
       	myRobot.tankDrive(stickR, stickL);
            Timer.delay(0.005);		// wait for a motor update time
-          
+       	SmartDashboard.putDouble("Right: ", valJoyR);
+    	SmartDashboard.putDouble("Left: ", valJoyL);
    }
     //public void operatorControl() {
        // myRobot.setSafetyEnabled(true);

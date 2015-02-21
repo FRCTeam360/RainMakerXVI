@@ -9,13 +9,14 @@ public class Const {
 	 //recalculate - each level is up 12.5 inches from previous, and 1 rotation of drum = 360 tick. diameter is 2 3/8"
 	 //2.375 * pi = 7.461 per rotation. If we want to go 12.5" - how many rotations - 1.477 rotations; 1.477 * 360 = 532
 	// numbers are approximate as there will be adjustment based on how the rope wraps
-	
-	public static float liftLevel1 = 592; 
-	public static float liftLevel2 = 1064;  
-	public static float liftLevel3 = 1596;
-	public static float liftLevel4 = 2128;
-	public static float liftLeveldrive = 120; 
-	public static float liftLevelground = -10; 
+	// default is 590 at lvl 1 + 110 for clearance
+	//488
+	public static float liftLevel1 = -710; 
+	public static float liftLevel2 = -1310;  
+	public static float liftLevel3 = -1596;
+	public static float liftLevel4 = -2100;
+	public static float liftLeveldrive = -120; 
+	public static float liftLevelground = -25; 
 	public static int level1Btn = 2;
 	public static int level2Btn = 3;
 	public static int level3Btn = 4;

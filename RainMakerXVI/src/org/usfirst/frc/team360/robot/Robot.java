@@ -68,6 +68,11 @@ public class Robot extends IterativeRobot {
 	private boolean liftPIDLVL3;
 	private boolean manOverRide;
 	private boolean rWeThereYet;
+	private boolean solFire; 
+	private boolean canSolFire1;
+	private boolean canSolFire2;
+	
+	
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -108,10 +113,10 @@ public class Robot extends IterativeRobot {
     	encoderR.setDistancePerPulse(5);
     	encoderL.setDistancePerPulse(5);
     	
-      //	encoderLift.setReverseDirection(true);
+    //  	encoderLift.setReverseDirection(true);
       //	encoderR.setReverseDirection(true);
       	encoderL.setReverseDirection(true);
-    	encoderLift.setReverseDirection(true);
+   // 	encoderLift.setReverseDirection(true);
       	
       	
       	encoderLift.setSamplesToAverage(7);
@@ -457,10 +462,7 @@ public class Robot extends IterativeRobot {
 	
 	public void teleopInit(){
 		
-		
-		
 		controls.compressor.start();
-		
 		
 		liftPID = false;  
 		manOverRide = false;
@@ -515,9 +517,10 @@ public class Robot extends IterativeRobot {
       	
       	liftTF();
       	 
-      	//nonPIDLift();
+     
       	
-      	tankDrive();
+      	//tankDrive();// drive shifter stuff
+      	
       	
     }
     
@@ -594,15 +597,17 @@ public class Robot extends IterativeRobot {
     		
 		if (controls.grab==true && controls.release == false){
 			
-			controls.intakeSol1.set(DoubleSolenoid.Value.kForward);//grab
-			controls.intakeSol2.set(DoubleSolenoid.Value.kForward);//grab
+			controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);//release
+        	controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);//release
             
 			SmartDashboard.putString("Solenoid Status: ", "Forward");
             
         } else if (controls.release==true && controls.grab == false) {
         	
-        	controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);//release
-        	controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);//release
+        	
+        	
+        	controls.intakeSol1.set(DoubleSolenoid.Value.kForward);//grab
+			controls.intakeSol2.set(DoubleSolenoid.Value.kForward);//grab
         	
 			SmartDashboard.putString("Solenoid Status: ", "Reverse");
 			
@@ -705,7 +710,7 @@ public class Robot extends IterativeRobot {
     		startPos = encValLift;
 
     	    
-    	    controls.liftTarget = Const.liftLevelground;  
+    	    controls.liftTarget = Const.liftLevel3;  
     	    targetDistance =  controls.liftTarget - startPos;
     	    SmartDashboard.putString("Lift Status: ", "Lift Level Drive"); 
     	    
@@ -750,8 +755,22 @@ public class Robot extends IterativeRobot {
         	
     		startPos = encValLift;
 
+    		canSolFire1 = setSpeedDown();
+    		canSolFire2 = setSpeedUp();
     		
-    	    controls.liftTarget = Const.liftLevel4;  
+    		/*if (canSolFire1 = true){
+    			
+    			controls.intakeSol1.set(DoubleSolenoid.Value.kForward);//release
+            	controls.intakeSol2.set(DoubleSolenoid.Value.kForward);//release
+            	
+    		} else if (canSolFire2 = true){
+    			
+    			controls.intakeSol1.set(DoubleSolenoid.Value.kForward);//release
+            	controls.intakeSol2.set(DoubleSolenoid.Value.kForward);//release
+            	
+    		}
+*/    		
+    	    controls.liftTarget = Const.liftLevelground;  
     	    targetDistance =  controls.liftTarget - startPos;  
     			
     		
@@ -819,30 +838,33 @@ public class Robot extends IterativeRobot {
     		}
     	} 
     }
-    public void setSpeedUp(){
+  
+    public boolean setSpeedUp(){
     	
     	trueQuaterDist = controls.liftTarget / 4;
-    	trueThreeQuarterDist = quaterDist *3;
+    	trueThreeQuarterDist = quaterDist * 3;
     	threeQuarterDist = trueThreeQuarterDist + startPos;
     	quaterDist = trueQuaterDist + startPos;
     		if (quaterDist > encValLift){//if 0-25%
 			
-    		controls.liftMotor.set(.3);
+    		controls.liftMotor.set(-.3);
     		
     		} else if (threeQuarterDist > encValLift && quaterDist <= encValLift){//if 25-75%
     		
-    		controls.liftMotor.set(.7);
+    		controls.liftMotor.set(-.7);
     	
     		} else if (threeQuarterDist <= encValLift && controls.liftTarget >= encValLift){//if 75-100%
     	
-    			controls.liftMotor.set(.2);
+    			controls.liftMotor.set(-.2);
     	
     		} else {
-    			
     			controls.liftMotor.stopMotor();
+    			solFire = true;
     		}
+    	return solFire;
     }
-    public void setSpeedDown(){
+
+    public boolean setSpeedDown(){
     	
     	trueQuaterDist = targetDistance / 4;
     	trueThreeQuarterDist = quaterDist *3;
@@ -850,18 +872,21 @@ public class Robot extends IterativeRobot {
     	quaterDist = trueQuaterDist + startPos;
     	if (quaterDist < encValLift){
 			
-    		controls.liftMotor.set(-.3);
+    		controls.liftMotor.set(.3);
     		
     		} else if (threeQuarterDist < encValLift && quaterDist >= encValLift){
     		
-    		controls.liftMotor.set(-.7);
+    		controls.liftMotor.set(.7);
     	
     		} else if (threeQuarterDist >= encValLift && controls.liftTarget <= encValLift){
     	
-    			controls.liftMotor.set(-.2);
+    			controls.liftMotor.set(.2);
     	
     		} else {
     			controls.liftMotor.stopMotor();
+    			solFire = true;
     		}
+    	return solFire;
+		
     }
 }

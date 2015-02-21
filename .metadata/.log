@@ -8789,3 +8789,224 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 
 !ENTRY WPILib_Java_Robot_Development 1 0 2015-02-17 19:53:17.633
 !MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:37:51.720
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:37:51.721
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:39:56.843
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:39:56.844
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:41:17.929
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:41:17.929
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:51:32.729
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:51:32.729
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:52:41.510
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:52:41.511
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:55:09.665
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:55:09.665
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:56:52.229
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:56:52.229
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:58:24.407
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 15:58:24.407
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 16:02:36.523
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 16:02:36.523
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 16:08:27.284
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 16:08:27.284
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 19:07:06.125
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 19:07:06.125
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 19:08:09.356
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 19:08:09.356
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-18 19:22:37.663
+!MESSAGE [edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@7f012216, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@4e92df46, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@1caea233, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@45060191, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@33619ab5, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@6bd10b70, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@2078303, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@77f8005b, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@48f39823, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@2b9a90c6, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@15bb012d, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@22763119, edu.wpi.first.wpilib.plugins.java.wizards.examples.ExampleJavaProject@769097f4]
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2015-02-18 19:22:37.663
+!MESSAGE [edu.wpi.first.wpilib.plugins.core.wizards.Tag@9f32540, edu.wpi.first.wpilib.plugins.core.wizards.Tag@440cff3a, edu.wpi.first.wpilib.plugins.core.wizards.Tag@57e1f05b, edu.wpi.first.wpilib.plugins.core.wizards.Tag@253ce264, edu.wpi.first.wpilib.plugins.core.wizards.Tag@35750aa6, edu.wpi.first.wpilib.plugins.core.wizards.Tag@16a3d61d, edu.wpi.first.wpilib.plugins.core.wizards.Tag@4e989fba, edu.wpi.first.wpilib.plugins.core.wizards.Tag@cf57bcf, edu.wpi.first.wpilib.plugins.core.wizards.Tag@114860cd, edu.wpi.first.wpilib.plugins.core.wizards.Tag@19535fc7, edu.wpi.first.wpilib.plugins.core.wizards.Tag@13bc6618, edu.wpi.first.wpilib.plugins.core.wizards.Tag@34304ca3, edu.wpi.first.wpilib.plugins.core.wizards.Tag@66ac1ce0, edu.wpi.first.wpilib.plugins.core.wizards.Tag@6502da95, edu.wpi.first.wpilib.plugins.core.wizards.Tag@157efc8b]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 19:25:50.525
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 19:25:50.525
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 19:41:36.320
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 19:41:36.320
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 19:42:20.096
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-18 19:42:20.096
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-19 17:01:42.916
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\Getting Started\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-19 17:01:42.916
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-19 17:05:31.051
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\Getting Started\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-19 17:05:31.051
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.jdt.core 4 0 2015-02-19 17:05:32.284
+!MESSAGE Invalid ZIP archive: /Getting Started/build/jars/WPILib.jar [in RainMakerXVI]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-19 17:06:28.280
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-19 17:06:28.280
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.jdt.core 4 0 2015-02-19 17:06:29.330
+!MESSAGE Invalid ZIP archive: /Getting Started/build/jars/WPILib.jar [in RainMakerXVI]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-19 18:06:04.166
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-19 18:06:04.166
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.jdt.core 4 0 2015-02-19 18:06:05.122
+!MESSAGE Invalid ZIP archive: /Getting Started/build/jars/WPILib.jar [in RainMakerXVI]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-19 18:31:54.681
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-19 18:31:54.681
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.jdt.core 4 0 2015-02-19 18:31:56.904
+!MESSAGE Invalid ZIP archive: /Getting Started/build/jars/WPILib.jar [in RainMakerXVI]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 17:49:30.743
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 17:49:30.744
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.jdt.core 4 0 2015-02-20 17:49:31.788
+!MESSAGE Invalid ZIP archive: /Getting Started/build/jars/WPILib.jar [in RainMakerXVI]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 17:51:34.082
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 17:51:34.082
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.jdt.core 4 0 2015-02-20 17:51:35.099
+!MESSAGE Invalid ZIP archive: /Getting Started/build/jars/WPILib.jar [in RainMakerXVI]
+
+!ENTRY org.eclipse.jdt.core 4 0 2015-02-20 18:01:27.561
+!MESSAGE Invalid ZIP archive: /Getting Started/build/jars/WPILib.jar [in RainMakerXVI]
+
+!ENTRY org.eclipse.jdt.core 4 0 2015-02-20 18:01:27.562
+!MESSAGE Invalid ZIP archive: /Getting Started/build/jars/WPILib.jar [in RainMakerXVI]
+
+!ENTRY org.eclipse.jdt.core 4 0 2015-02-20 18:01:28.890
+!MESSAGE Invalid ZIP archive: /Getting Started/build/jars/NetworkTables.jar [in RainMakerXVI]
+
+!ENTRY org.eclipse.jdt.core 4 0 2015-02-20 18:01:28.890
+!MESSAGE Invalid ZIP archive: /Getting Started/build/jars/WPILib.jar [in RainMakerXVI]
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 18:01:45.983
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 18:01:45.984
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 18:23:45.383
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 18:23:45.383
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 18:32:44.981
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 18:32:44.982
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 18:40:22.192
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 18:40:22.192
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 18:41:35.212
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-20 18:41:35.212
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2015-02-21 12:20:35.410
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [edu.wpi.first.wpilibj [in /Getting Started/build/jars/NetworkTables.jar [in RainMakerXVI]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(JavaElement.java:534)
+	at org.eclipse.jdt.internal.core.JarPackageFragment.buildStructure(JarPackageFragment.java:51)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:259)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:557)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:294)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:280)
+	at org.eclipse.jdt.internal.core.JarPackageFragment.storedNonJavaResources(JarPackageFragment.java:210)
+	at org.eclipse.jdt.internal.core.JarPackageFragment.getNonJavaResources(JarPackageFragment.java:197)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:1770)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:690)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:607)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:599)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:129)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:85)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2015-02-21 12:20:35.410
+!MESSAGE edu.wpi.first.wpilibj [in /Getting Started/build/jars/NetworkTables.jar [in RainMakerXVI]] does not exist

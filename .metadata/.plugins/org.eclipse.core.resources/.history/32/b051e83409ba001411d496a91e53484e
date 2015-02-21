@@ -146,8 +146,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void disabledPeriodic() {
-    	
-    	
     	if (controls.gamePad.getRawButton(Const.iautograbturnright) == true) {
     		iautochoose = Const.iautograbturnright; 
     		System.out.println("hellp");

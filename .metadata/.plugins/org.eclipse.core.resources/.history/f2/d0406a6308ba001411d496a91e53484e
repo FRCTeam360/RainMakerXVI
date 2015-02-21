@@ -1,14 +1,12 @@
 package org.usfirst.frc.team360.robot;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
 public class testComAuto extends Command {
-	OI controls = OI.GetInstance();
-	private boolean done = false;
+
     public testComAuto() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -20,10 +18,6 @@ public class testComAuto extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	controls.intakeSol1.set(DoubleSolenoid.Value.kForward);//grab
-		controls.intakeSol2.set(DoubleSolenoid.Value.kForward);//grab
-		controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);//grab
-		controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);//grab
     }
 
     // Make this return true when this Command no longer needs to run execute()

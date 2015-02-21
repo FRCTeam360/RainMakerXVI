@@ -9010,3 +9010,33 @@ Java Model Exception: Java Model Status [edu.wpi.first.wpilibj [in /Getting Star
 	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
 !SUBENTRY 1 org.eclipse.jdt.core 4 969 2015-02-21 12:20:35.410
 !MESSAGE edu.wpi.first.wpilibj [in /Getting Started/build/jars/NetworkTables.jar [in RainMakerXVI]] does not exist
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-21 12:29:51.240
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-21 12:29:51.240
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-21 12:32:44.002
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-21 12:32:44.003
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-21 12:33:47.604
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-21 12:33:47.605
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-21 12:35:42.885
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-21 12:35:42.885
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-21 12:41:56.188
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-02-21 12:41:56.188
+!MESSAGE Targets: deploy, Mode: run

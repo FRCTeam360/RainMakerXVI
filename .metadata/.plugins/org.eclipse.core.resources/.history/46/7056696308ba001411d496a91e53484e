@@ -146,25 +146,17 @@ public class Robot extends IterativeRobot {
     }
 
     public void disabledPeriodic() {
-    	
-    	
     	if (controls.gamePad.getRawButton(Const.iautograbturnright) == true) {
-    		iautochoose = Const.iautograbturnright; 
-    		System.out.println("hellp");
+    		iautochoose = Const.iautograbturnright;    		
     	}
     	
     	if (controls.gamePad.getRawButton(Const.iautoforwardgrabback) == true) {
-    		iautochoose = Const.iautoforwardgrabback;
-    		System.out.println("hello");
+    		iautochoose = Const.iautoforwardgrabback; 
     	}
-    	
-    	SmartDashboard.putString( "iautoforwardgrabback", "");
-     SmartDashboard.putString( "iautograbturnright", "");
     	
     	switch(iautochoose){
     	
     	case 2: SmartDashboard.putString( "iautograbturnright", "Active");
-    	 
     	
     	case 3: SmartDashboard.putString( "iautoforwardgrabback", "Active");
     		
@@ -527,7 +519,7 @@ public class Robot extends IterativeRobot {
       	 
      
       	
-      	tankDrive();// drive shifter stuff
+      	//tankDrive();// drive shifter stuff
       	
       	
     }

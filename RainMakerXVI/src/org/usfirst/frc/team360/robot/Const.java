@@ -13,8 +13,8 @@ public class Const {
 	//488
 	public static float liftLevel1 = -710; 
 	public static float liftLevel2 = -1310;  
-	public static float liftLevel3 = -1596;
-	public static float liftLevel4 = -2100;
+	public static float liftLevel3 = -1910;
+	public static float liftLevel4 = -2200;
 	public static float liftLeveldrive = -120; 
 	public static float liftLevelground = -25; 
 	public static int level1Btn = 2;
@@ -31,6 +31,7 @@ public class Const {
 	public static int overideBtn = 15;
 	public static int upBtn = 17;     //mapped from dpad north on gamepad
 	public static int downBtn = 18;   //mapped from dpad south on gamepad
-	public static int iautograbturnright = 2;
-	public static int iautoforwardgrabback = 3;
+	public static final int iautograbturnright = 2;
+	public static final int iautoforwardliftback = 3;
+	public static final int iautoforward = 10;
 }

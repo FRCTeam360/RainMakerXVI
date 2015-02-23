@@ -26,6 +26,7 @@ public class OI {
 	Joystick stickR;
 	Joystick stickL;
 	Joystick gamePad; 
+	Joystick joystickManLift;
 	
 	DoubleSolenoid intakeSol1 = new DoubleSolenoid(0, 7);
 	DoubleSolenoid intakeSol2 = new DoubleSolenoid(3, 4);
@@ -112,6 +113,7 @@ public class OI {
     	stickL = new Joystick(0);
     	stickR = new Joystick(1); 
     	gamePad = new Joystick(2);
+    	joystickManLift = new Joystick(3);
     
     	halfSpeed = true; 
     	

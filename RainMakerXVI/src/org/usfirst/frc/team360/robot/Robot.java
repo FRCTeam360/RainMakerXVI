@@ -162,19 +162,19 @@ public class Robot extends IterativeRobot {
 
 		case Const.iautograbturnright:
 			
-			SmartDashboard.putString("iterativeautonomous", "auto1ToteRight");
+			SmartDashboard.putString("iterativeautonomous", "N/A");
 			
 			break;
 
 		case Const.iautoforwardliftback:
 			
-			SmartDashboard.putString("iterativeautonomous", "iautoforwardliftback");
+			SmartDashboard.putString("iterativeautonomous", "container BACK");
 			
 			break;
 			
 		case Const.iautoforward:
 			
-			SmartDashboard.putString("iterativeautonomous", "iautoforward");
+			SmartDashboard.putString("iterativeautonomous", "FORWARD");
 			
 			break;
 
@@ -221,11 +221,11 @@ public class Robot extends IterativeRobot {
 
 		switch (iautochoose) {			
 		
-		case Const.iautograbturnright:
+		/*case Const.iautograbturnright:
 			
 			auto1ToteRight();
 			
-			break;
+			break;*/
 			
 		case Const.iautoforwardliftback:
 			
@@ -766,7 +766,7 @@ public class Robot extends IterativeRobot {
 
 		controls.up = controls.stickR.getRawButton(1);
 		controls.down = controls.stickL.getRawButton(1);
-
+/*
 		if (controls.valJoyR >= .001 || controls.valJoyR <= -.001) {
 
 			// System.out.println("tank active");
@@ -795,7 +795,7 @@ public class Robot extends IterativeRobot {
 
 			}
 
-		}
+		}*/
 		if (controls.valJoyL >= .001 || controls.valJoyL <= -.001) {
 
 			// System.out.println("tank active");
@@ -883,8 +883,11 @@ public class Robot extends IterativeRobot {
 
 		joyR *= .95;
 		joyL *= .95;
+		
+		//controls.myRobot.tankDrive(-joyR, -joyL);
 
-		controls.myRobot.tankDrive(-joyR, -joyL);
+		controls.motorR.set(joyL);
+		controls.motorL.set(-joyR);
 
 	}
 
@@ -898,8 +901,10 @@ public class Robot extends IterativeRobot {
 		joyR *= .7;
 		joyL *= .7;
 
-		controls.myRobot.tankDrive(-joyR, -joyL);
+//		controls.myRobot.tankDrive(-joyR, -joyL);
 
+		controls.motorR.set(joyL);
+		controls.motorL.set(-joyR);
 	}
 
 	public void setTarget() {

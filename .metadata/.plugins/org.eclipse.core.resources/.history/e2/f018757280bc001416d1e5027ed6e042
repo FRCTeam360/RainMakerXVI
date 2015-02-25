@@ -1,0 +1,51 @@
+package org.usfirst.frc.team360.robot;
+
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+/**
+ *
+ */
+public class goForward extends Command {
+
+	OI controls = OI.GetInstance();
+	private static float threshold = 30;
+	private float distance;
+
+	public goForward(float count) {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+		distance = count;
+	}
+
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		controls.motorL.set(-.5);
+		controls.motorR.set(.5);
+	}
+
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+
+	}
+
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return Robot.GetInstance().getLeftEncoder().get() >= distance - threshold
+				&& Robot.GetInstance().getLeftEncoder().get() <= distance + threshold;
+	}
+
+	// Called once after isFinished returns true
+	protected void end() {
+		controls.motorL.set(0);
+		controls.motorR.set(0);
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+		end();
+	}
+
+}

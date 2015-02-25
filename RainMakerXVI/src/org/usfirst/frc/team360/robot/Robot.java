@@ -162,7 +162,7 @@ public class Robot extends IterativeRobot {
 
 		case Const.iautograbturnright:
 			
-			SmartDashboard.putString("iterativeautonomous", "iautograbturnright");
+			SmartDashboard.putString("iterativeautonomous", "auto1ToteRight");
 			
 			break;
 
@@ -223,7 +223,7 @@ public class Robot extends IterativeRobot {
 		
 		case Const.iautograbturnright:
 			
-			autoGrabturnRight();
+			auto1ToteRight();
 			
 			break;
 			
@@ -563,11 +563,17 @@ public class Robot extends IterativeRobot {
 		switch (autoStage) { 
 		
 		
+		
 		case 1: // start lifting to driving level, switch to stage 3 if half way
 			// up
 			//targetDistance = controls.liftTarget - startPos;
 			//controls.liftTarget = Const.liftLevel2;
 
+			System.out.println("he;;p");
+			
+			controls.intakeSol1.set(DoubleSolenoid.Value.kForward);
+			controls.intakeSol2.set(DoubleSolenoid.Value.kForward);
+			
 			nonPIDLift();
 
 			if (rWeThereYet == true) {

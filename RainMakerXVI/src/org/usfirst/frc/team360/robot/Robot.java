@@ -19,9 +19,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 
-// tank drive 2 Joysticks, left trigger engages down speed right trigger
-// activates up speed
-
+/*tank drive 2 Joysticks, left trigger engages down speed right trigger
+ activates up speed
+*/
 public class Robot extends IterativeRobot {
 
 /*	Command autonomousCommand;
@@ -37,7 +37,8 @@ public class Robot extends IterativeRobot {
 
 	private int autoStage;
 	private int iautochoose;
-
+	int x;
+	
 	private double error;
 	private double integral;
 	private double derivative;
@@ -85,10 +86,10 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("left", new autoGrabTurnLeft());
 		autoChooser.addObject("forward", new goForward(360));
 
-		SmartDashboard.putData("Auto mode chooser", autoChooser);*/
+		SmartDashboard.putData("Auto mode chooser", autoChooser);
 
-		// controls.init();
-
+		 controls.init();
+*/
 		encoderLift.reset();
 		encoderR.reset();
 		encoderL.reset();
@@ -105,9 +106,9 @@ public class Robot extends IterativeRobot {
 		encoderR.setDistancePerPulse(5);
 		encoderL.setDistancePerPulse(5);
 
-		// encoderLift.setReverseDirection(true);
-		// encoderR.setReverseDirection(true);
-		encoderL.setReverseDirection(true);
+		/* encoderLift.setReverseDirection(true);
+		encoderR.setReverseDirection(true);
+*/		encoderL.setReverseDirection(true);
 
 		encoderLift.setSamplesToAverage(7);
 		encoderR.setSamplesToAverage(7);
@@ -137,6 +138,14 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void disabledPeriodic() {
+
+if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawButton(5) == true && controls.joystickManLift.getRawButton(10) == true){
+			
+			encoderLift.reset();
+			encoderL.reset();
+			encoderR.reset();
+			
+		}
 
 		if (controls.gamePad.getRawButton(Const.iautograbturnright) == true) {
 			
@@ -185,13 +194,12 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 
 		/*autonomousCommand = (Command) autoChooser.getSelected();
-		autonomousCommand.start();*/
-
+		autonomousCommand.start();
+*/
 		autoStage = 1;
 
 		controls.compressor.start();
 
-		encoderLift.reset();
 		encoderR.reset();
 		encoderL.reset();
 
@@ -199,33 +207,47 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putString("Autonomous Status: ", "Active");
 
+		/*controls.myRobot.drive(.5, -.5);
+		
+		Timer.delay(1.5);
+	
+		controls.myRobot.drive(0, 0);*/
 	}
-
+	
 	/**
 	 * This function is called periodically during autonomous
 	 */
 
 	public void autonomousPeriodic() {
+	
+			
+if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawButton(5) == true && controls.joystickManLift.getRawButton(10) == true){
+			
+			encoderLift.reset();
+			encoderL.reset();
+			encoderR.reset();
+			
+		}
 		
-		//960 is apparrently a perfect right angle turn
-		//Scheduler.getInstance().run();
-		// limit1.get();
-		// limit2.get();
-		/*double p = 0.001;
+		/*960 is apparrently a perfect right angle turn
+		Scheduler.getInstance().run();
+		 limit1.get();
+		 limit2.get();
+*/		double p = 0.001;
 		double i = 0;
 		double d = 0.0015;
 		double Dt = 0.01;
 		controls.EnvGlbValR = encoderR.get();
 		controls.EnvGlbValL = encoderL.get();
-		controls.EnvGlbValLift = encoderLift.get();*/
+		controls.EnvGlbValLift = encoderLift.get();
 
 		switch (iautochoose) {			
 		
-		/*case Const.iautograbturnright:
+		case Const.iautograbturnright:
 			
 			auto1ToteRight();
 			
-			break;*/
+			break;
 			
 		case Const.iautoforwardliftback:
 			
@@ -240,139 +262,18 @@ public class Robot extends IterativeRobot {
 			break;
 			
 		}
-	}
+		
+		/*Tote2Bin1();
 
-	public void autoGrabturnRight() {
-
-		// limit1.get();
-		// limit2.get();
-
-		double p = 0.001;
-		double i = 0;
-		double d = 0.0015;
-		double Dt = 0.01;
-
-		encValR = encoderR.get();
-		encValL = encoderL.get();
-		encValLift = encoderLift.get();
-
-		switch (autoStage) {
-
-		case 1: // grab
-
-			controls.intakeSol1.set(DoubleSolenoid.Value.kForward);
-			controls.intakeSol2.set(DoubleSolenoid.Value.kForward);
-
-			autoStage = 2;
-
-		break;
-		case 2: // start lifting to driving level, switch to stage 3 if half way
-				// up
-
-			controls.liftTarget = Const.liftLeveldrive;
-
-			nonPIDLift();
-
-			if (encValLift > Const.liftLeveldrive - 30) {
-
-				autoStage = 3;
-
-				encoderR.reset();
-				encoderL.reset();
-
-			}
-			
-		break;
-		case 3: // turn right while still maintaining lift
-
-			controls.liftTarget = Const.liftLeveldrive;
-
-			nonPIDLift();
-
-			encValL = encoderL.get();
-
-			if (encValL < 720) { // !!!!!!!!!!!!!need to adjust value or run
-									// through targetDistance
-									// calculator!!!!!!!!!!!!!!!!!!
-
-				controls.myRobot.tankDrive(-0.3, 0.3);
-
-			} else {
-
-				controls.motorL.stopMotor();
-				controls.motorR.stopMotor();
-
-				autoStage = 4;
-
-				encoderR.reset();
-				encoderL.reset();
-			}
-			
-		break;
-		case 4: // go forward about nine feet to auto zone while still
-				// maintaining lift
-				// wheels are 4" in diameter, so 1 rotation is 12.56 inches,
-				// approx 1 foot
-				// so need to go about 8 rotations.
-				// there are x encoder ticks per wheel rotation, based on the
-				// gearing and 360 ticks per encoder rotation.
-				// think 480 ticks per wheel rotation.
-				// big gear has 80 teeth, little gear has 60 teeth
-
-			controls.liftTarget = Const.liftLeveldrive;
-
-			nonPIDLift();
-
-			encValL = encoderL.get();
-
-			if (encValL < 4320) {
-
-				controls.myRobot.tankDrive(0.7, 0.7);
-
-			} else {
-
-				controls.motorL.stopMotor();
-				controls.motorR.stopMotor();
-
-				autoStage = 5;
-
-				encoderR.reset();
-				encoderL.reset();
-
-			}
-			
-		break;
-		case 5: // motors off, lift off, D-D-D-D-DROP THE BASS!
-
-			controls.liftMotor.stopMotor();
-
-			controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);
-			controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);
-			autoStage = 6;
-
-		break;
-		case 6: // back up tew foots
-
-			encValL = encoderL.get();
-
-			if (encValL > -960) {
-
-				controls.myRobot.tankDrive(-0.3, -0.3);
-
-			} else {
-
-				controls.motorL.stopMotor();
-				controls.motorR.stopMotor();
-
-				autoStage = 99; // no code for a case 99 so it will trap itself
-								// in the loop
-
-				encoderR.reset();
-				encoderL.reset();
-				
-			}
+		controls.myRobot.Drive.SetSaftleyEnabled(true);
+		
+		controls.myRobot.drive(.5, -.5);
+		
+		Timer.delay(1.5);
+	
+		controls.myRobot.drive(0, 0);
+		*/
 		}
-	}
 
 	public void autoForwardliftBack() {
 
@@ -384,25 +285,19 @@ public class Robot extends IterativeRobot {
 
 		case 1: // go forward 2 feet
 			
-			if (encValL > -600) {
+			if (encValL > -300) {
 
-				controls.motorL.set(-.7);
-				
-				if (encValR > -600) {
+				controls.motorL.set(.7);
+				controls.motorR.set(-.7);
+	
 
-					controls.motorR.set(.7);
-					
-				}
-
-			} else if (encValR > -600) { 
-
-				controls.motorR.set(.7);
-				
 			} else {
 
 				controls.motorL.set(-1);
-				controls.motorR.set(-1);
+				controls.motorR.set(1);
 
+				//Timer.delay(.05);
+				
 				autoStage = 2;
 				rWeThereYet = false;
 
@@ -422,11 +317,11 @@ public class Robot extends IterativeRobot {
 			
 		break;
 		
-		case 2: // start lifting to driving level, switch to stage 3 if half way
-			// up
-			//targetDistance = controls.liftTarget - startPos;
-			//controls.liftTarget = Const.liftLevel2;
-
+		case 2: /* start lifting to driving level, switch to stage 3 if half way
+			 up
+			targetDistance = controls.liftTarget - startPos;
+			controls.liftTarget = Const.liftLevel2;
+*/
 			nonPIDLift();
 
 			if (rWeThereYet == true) {
@@ -440,24 +335,24 @@ public class Robot extends IterativeRobot {
 			
 		break;
 
-		case 3: // go backwards about nine feet to auto zone while still
-			// maintaining lift
-			// wheels are 4" in diameter, so 1 rotation is 12.56 inches,
-			// approx 1 foot
-			// so need to go about 8 rotations.
-			// there are x encoder ticks per wheel rotation, based on the
-			// gearing and 360 ticks per encoder rotation.
-			// think 480 ticks per wheel rotation.		
-			// big gear has 80 teeth, little gear has 60 teeth
+		case 3: /* go backwards about nine feet to auto zone while still
+			 maintaining lift
+			 wheels are 4" in diameter, so 1 rotation is 12.56 inches,
+			 approx 1 foot
+			 so need to go about 8 rotations.
+			 there are x encoder ticks per wheel rotation, based on the
+			 gearing and 360 ticks per encoder rotation.
+			 think 480 ticks per wheel rotation.		
+			 big gear has 80 teeth, little gear has 60 teeth
 
 		
 			System.out.println(encValL);
 			System.out.println(encValR);
-	
+	*/
 			controls.motorL.set(-.4);
 			controls.motorR.set(.4);
 				
-			if (encValL > 3100) {
+			if (encValL > 4100) {
 
 				controls.motorL.set(1);
 				controls.motorR.set(-1);
@@ -507,7 +402,7 @@ public class Robot extends IterativeRobot {
 				controls.motorL.set(-.4);
 				controls.motorR.set(.4);
 			
-				if (encValL > 600) {
+				if (encValL > 400) {
 
 					controls.motorL.set(.7);
 					controls.motorR.set(-.7);
@@ -529,8 +424,8 @@ public class Robot extends IterativeRobot {
 		encValL = encoderL.get();
 		encValLift = encoderLift.get();
 
-		
-		System.out.println(encValL);
+	/*	
+		System.out.println(encValL);*/
 		
 		switch (autoStage) {
 
@@ -560,25 +455,47 @@ public class Robot extends IterativeRobot {
 		encValL = encoderL.get();
 		encValLift = encoderLift.get();
 
-		switch (autoStage) { 
+		switch (autoStage) { 	
 		
-		
-		
-		case 1: // start lifting to driving level, switch to stage 3 if half way
-			// up
-			//targetDistance = controls.liftTarget - startPos;
-			//controls.liftTarget = Const.liftLevel2;
-
-			System.out.println("he;;p");
+		case 1:
 			
-			controls.intakeSol1.set(DoubleSolenoid.Value.kForward);
-			controls.intakeSol2.set(DoubleSolenoid.Value.kForward);
+			controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);
+			controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);
+			
+			autoStage = 2;
+			
+			rWeThereYet = false;
+
+			startPos = encValLift;
+			
+			controls.motorL.stopMotor();
+			controls.motorR.stopMotor();
+			
+			encoderR.reset();
+			encoderL.reset();
+			
+			controls.liftTarget = Const.liftLeveldrive;
+			
+			targetDistance = controls.liftTarget - startPos;
+			autoStage = 2;
+			
+			
+		break;
+		
+		case 2: /*start lifting to driving level, switch to stage 3 if half way
+			 up
+			targetDistance = controls.liftTarget - startPos;
+			controls.liftTarget = Const.liftLevel2;
+*/
+		
+			
+			
 			
 			nonPIDLift();
 
 			if (rWeThereYet == true) {
 
-				autoStage = 2;
+				autoStage = 3;
 		
 				encoderR.reset();
 				encoderL.reset();
@@ -586,19 +503,19 @@ public class Robot extends IterativeRobot {
 			}
 	
 		break;
-		case 2: // go forward 2 feet
+		case 3: // go forward 2 feet
 			
-			if (encValL > -960) {
+			if (encValL > -910) {
 
 				controls.motorL.set(.7);
 				
-				if (encValR > -960) {
+				if (encValR > -910) {
 
 					controls.motorR.set(.7);
 					
 				}
 
-			} else if (encValR > -960) { 
+			} else if (encValR > -910) { 
 
 				controls.motorR.set(.7);
 				
@@ -607,7 +524,7 @@ public class Robot extends IterativeRobot {
 				controls.motorL.set(-1);
 				controls.motorR.set(-1);
 
-				autoStage = 3;
+				autoStage = 4;
 				rWeThereYet = false;
 
 				startPos = encValLift;
@@ -625,31 +542,31 @@ public class Robot extends IterativeRobot {
 			}
 			
 		break;
-		case 3: // go backwards about nine feet to auto zone while still
-			// maintaining lift
-			// wheels are 4" in diameter, so 1 rotation is 12.56 inches,
-			// approx 1 foot
-			// so need to go about 8 rotations.
-			// there are x encoder ticks per wheel rotation, based on the
-			// gearing and 360 ticks per encoder rotation.
-			// think 480 ticks per wheel rotation.		
-			// big gear has 80 teeth, little gear has 60 teeth
+		case 4:/* go backwards about nine feet to auto zone while still
+			 maintaining lift
+			 wheels are 4" in diameter, so 1 rotation is 12.56 inches,
+			 approx 1 foot
+			 so need to go about 8 rotations.
+			 there are x encoder ticks per wheel rotation, based on the
+			 gearing and 360 ticks per encoder rotation.
+			 think 480 ticks per wheel rotation.		
+			 big gear has 80 teeth, little gear has 60 teeth
 		
 			System.out.println(encValL);
-			System.out.println(encValR);
+			System.out.println(encValR);*/
 	
-			controls.motorL.set(-.4);
-			controls.motorR.set(.4);
+			controls.motorL.set(.4);
+			controls.motorR.set(-.4);
 				
-			if (encValL > 3100) {
+			if (encValL < -4500) {
 
-				controls.motorL.set(1);
-				controls.motorR.set(-1);
+				controls.motorL.set(-1);
+				controls.motorR.set(1);
 			
 				/*controls.motorL.stopMotor();
 				controls.motorR.stopMotor();*/
 
-				autoStage = 4;
+				autoStage = 5;
 				
 				controls.motorL.stopMotor();
 				controls.motorR.stopMotor();
@@ -671,13 +588,14 @@ public class Robot extends IterativeRobot {
 			}
 				
 			break;	
-			case 4:// lower container
+		
+			case 5:// lower container
 			
 				nonPIDLift();
 
 				if (rWeThereYet == true) {
 
-					autoStage = 5;
+					autoStage = 6;
 
 					encoderR.reset();
 					encoderL.reset();
@@ -685,12 +603,24 @@ public class Robot extends IterativeRobot {
 				}
 				
 			break;
-			case 5: // back up tew foots
-				
-				controls.motorL.set(-.4);
-				controls.motorR.set(.4);
 			
-				if (encValL > 600) {
+			case 6:
+				controls.intakeSol1.set(DoubleSolenoid.Value.kForward);
+				controls.intakeSol2.set(DoubleSolenoid.Value.kForward);
+
+				autoStage = 7;
+
+				encoderR.reset();
+				encoderL.reset();
+				
+				break;
+			
+			case 7: // back up tew foots
+				
+				controls.motorL.set(-.3);
+				controls.motorR.set(.3);
+			
+				if (encValL > 400) {
 
 					controls.motorL.set(.7);
 					controls.motorR.set(-.7);
@@ -706,6 +636,269 @@ public class Robot extends IterativeRobot {
 		}
 	}
  	
+	public void Tote1Bin1Right(){
+		encValR = encoderR.get();
+		encValL = encoderL.get();
+		encValLift = encoderLift.get();
+		
+		/*System.out.println(encValLift);
+		System.out.println(encValL + "L");
+		System.out.println(encValR +"R");*/
+		switch (autoStage) { 	
+		case 1:
+		if (encValL > -100) {
+
+			controls.motorL.set(.5);
+			controls.motorR.set(-.5);
+			
+		}  else {
+
+			controls.motorL.set(-1);
+			controls.motorR.set(-1);
+
+			autoStage = 2;
+			rWeThereYet = false;
+
+			startPos = encValLift;
+			
+			controls.motorL.stopMotor();
+			controls.motorR.stopMotor();
+			
+			encoderR.reset();
+			encoderL.reset();
+			
+			controls.liftTarget = Const.liftLevel2;
+			
+			targetDistance = controls.liftTarget - startPos;
+		
+		}
+			
+		break;
+		case 2:
+		/*  start lifting to driving level, switch to stage 3 if half way
+			 up
+			targetDistance = controls.liftTarget - startPos;
+			controls.liftTarget = Const.liftLevel2;
+*/
+			nonPIDLift();
+
+			if (rWeThereYet == true) {
+
+				autoStage = 3;
+		
+				encoderR.reset();
+				encoderL.reset();
+
+			}
+		break;
+		case 3:
+			if(encValL > -300){
+				
+				controls.motorL.set(.5);
+				controls.motorR.set(-.5);	
+		}else {
+
+				controls.motorL.set(-1);
+				controls.motorR.set(-1);
+
+				autoStage = 4;
+				rWeThereYet = false;
+
+				startPos = encValLift;
+				
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+				
+				encoderR.reset();
+				encoderL.reset();
+				
+				controls.liftTarget = Const.liftLevelground;
+				
+				targetDistance = controls.liftTarget - startPos;
+				
+				rWeThereYet = false;
+				
+			}
+		break;
+		case 4:
+			
+			nonPIDLift();
+			
+			if(rWeThereYet == true){
+				
+				autoStage = 5;
+			
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+			
+				encoderR.reset();
+				encoderL.reset();
+			}
+		break;
+		case 5:
+			
+			controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);
+			controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);
+			
+			autoStage = 6;
+			rWeThereYet = false;
+
+			startPos = encValLift;
+			
+			controls.motorL.stopMotor();
+			controls.motorR.stopMotor();
+			
+			encoderR.reset();
+			encoderL.reset();
+			
+			controls.liftTarget = Const.liftLeveldrive;
+			
+			targetDistance = controls.liftTarget - startPos;
+		break;
+		case 6:
+			
+			nonPIDLift();
+
+			if (rWeThereYet == true) {
+
+				autoStage = 7;
+		
+				encoderR.reset();
+				encoderL.reset();
+
+			}
+		break;
+		case 7:
+			if (encValL < 910) {
+
+				controls.motorL.set(-.7);
+				
+				if (encValR < -910) {
+
+					controls.motorR.set(-.7);
+					
+				}
+
+			} else if (encValR< 910) { 
+
+				controls.motorR.set(-.7);
+				
+			} else {
+
+				controls.motorL.set(-1);
+				controls.motorR.set(-1);
+
+				autoStage = 8;
+				rWeThereYet = false;
+
+				startPos = encValLift;
+				
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+				
+				encoderR.reset();
+				encoderL.reset();
+				
+				controls.liftTarget = Const.liftLevel2;
+				
+				targetDistance = controls.liftTarget - startPos;
+			
+			}
+			break;
+		case 8: /* go backwards about nine feet to auto zone while still
+			 maintaining lift
+			 wheels are 4" in diameter, so 1 rotation is 12.56 inches,
+			 approx 1 foot
+			 so need to go about 8 rotations.
+			 there are x encoder ticks per wheel rotation, based on the
+			 gearing and 360 ticks per encoder rotation.
+			 think 480 ticks per wheel rotation.		
+			 big gear has 80 teeth, little gear has 60 teeth
+		
+			System.out.println(encValL);
+			System.out.println(encValR);*/
+	
+			controls.motorL.set(.4);
+			controls.motorR.set(-.4);
+				
+			if (encValL < -4000) {
+
+				controls.motorL.set(-1);
+				controls.motorR.set(1);
+			
+				/*controls.motorL.stopMotor();
+				controls.motorR.stopMotor();*/
+
+				autoStage = 9;
+				
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+				
+				encoderR.reset();
+				encoderL.reset();
+				
+				rWeThereYet = false;
+				
+				startPos = encValLift;
+				
+				encoderR.reset();
+				encoderL.reset();
+				
+				controls.liftTarget = Const.liftLevelground;
+				
+				targetDistance = controls.liftTarget - startPos;
+			
+			}
+				
+			break;	
+		
+			case 9:// lower container
+			
+				nonPIDLift();
+
+				if (rWeThereYet == true) {
+
+					autoStage = 10;
+
+					encoderR.reset();
+					encoderL.reset();
+
+				}
+				
+			break;
+			
+			case 10:
+				controls.intakeSol1.set(DoubleSolenoid.Value.kForward);
+				controls.intakeSol2.set(DoubleSolenoid.Value.kForward);
+
+				autoStage = 11;
+
+				encoderR.reset();
+				encoderL.reset();
+				
+				break;
+			
+			case 11: // back up tew foots
+				
+				controls.motorL.set(-.3);
+				controls.motorR.set(.3);
+			
+				if (encValL > 400) {
+
+					controls.motorL.set(.7);
+					controls.motorR.set(-.7);
+			
+					controls.motorL.stopMotor();
+					controls.motorR.stopMotor();
+				
+					autoStage = 99;
+
+				}
+				
+			break;
+		}
+	}
+	
 	public void teleopInit() {
 
 		controls.compressor.start();
@@ -713,25 +906,22 @@ public class Robot extends IterativeRobot {
 		liftPID = false;
 		manOverRide = false;
 
-		encoderLift.reset();// resets encoder
+		//encoderLift.reset();// resets encoder
 		encoderR.reset();
 		encoderL.reset();
 
 		SmartDashboard.putString("Teleop Status: ", "Active");
 
-		SmartDashboard.putString("Lift Status: ", "");// clears vals of smart
-		// window
+		SmartDashboard.putString("Lift Status: ", "");// clears vals of smart window
 
 	}
 
 	/**
+
 	 * This function is called periodically during operator control
 	 */
 
 	public void teleopPeriodic() {
-
-		encoderR.reset();
-		encoderL.reset();
 
 		valJoyLI = controls.joystickManLift.getRawAxis(1);
 
@@ -741,19 +931,26 @@ public class Robot extends IterativeRobot {
 		intakeControl();
 
 		encValLift = encoderLift.get();
-
-		encValLiftRaw = encoderLift.getRaw();
-
+		encoderL.reset();
+		encoderR.reset();
+	
+		if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawButton(5) == true && controls.joystickManLift.getRawButton(10) == true){
+			
+			encoderLift.reset();
+			encoderL.reset();
+			encoderR.reset();
+			
+		}
+		
 		manualLift();
 
-		System.out.println(encValLiftRaw + "raw");
+		//System.out.println(encValLift + " L");
+		
+		Timer.delay(0.005); /* wait for motor update time
 
-		Timer.delay(0.005); // wait for motor update time
-
-		// setTarget();
-		// System.out.println(liftPID + "Lift Tr place");
-
-		 liftTF();
+		 setTarget();
+		 System.out.println(liftPID + "Lift Tr place");
+		 */liftTF();
 
 		tankDrive();// drive shifter stuff
 
@@ -769,7 +966,7 @@ public class Robot extends IterativeRobot {
 /*
 		if (controls.valJoyR >= .001 || controls.valJoyR <= -.001) {
 
-			// System.out.println("tank active");
+			 System.out.println("tank active");
 
 			if (controls.up == true && controls.down == false) {
 
@@ -834,16 +1031,16 @@ public class Robot extends IterativeRobot {
 		if (controls.grab == true && controls.release == false) {
 
 			controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);// release
-			controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);// release
+			controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);/* release
 
-			// SmartDashboard.putString("Solenoid Status: ", "Forward");
+			*/ SmartDashboard.putString("Solenoid Status: ", "Forward");
 
 		} else if (controls.release == true && controls.grab == false) {
 
 			controls.intakeSol1.set(DoubleSolenoid.Value.kForward);// grab
-			controls.intakeSol2.set(DoubleSolenoid.Value.kForward);// grab
+			controls.intakeSol2.set(DoubleSolenoid.Value.kForward);/* grab
 
-			// SmartDashboard.putString("Solenoid Status: ", "Reverse");
+			*/ SmartDashboard.putString("Solenoid Status: ", "Reverse");
 
 		}
 	}
@@ -1019,15 +1216,60 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void manualLift() {
+		
+		encValLift = encoderLift.get();
+		
+		/*if(controls.joystickManLift.getRawButton(2) == true){
+			if(x == 0){
+				controls.EnvGlbValLift = encoderLift.get();
+				x++;
+			}
+			System.out.println(controls.EnvGlbValLift + "thingy");
+			if(controls.EnvGlbValLift > encValLift ){
+				controls.liftMotor.set(.3);
+			} else if(controls.EnvGlbValLift < encValLift){
+				controls.liftMotor.set(-.3);
+			}
+		}else {*/
+			if(controls.joystickManLift.getRawButton(1) == false){
+				if (valJoyLI >= .1 || valJoyLI <= -.1) {
 
-		if (valJoyLI >= .1 || valJoyLI <= -.1) {
-
+					controls.liftMotor.set(-valJoyLI * .5);
+					
+				} else {
+					
+					controls.liftMotor.stopMotor();
+					
 			
-		controls.liftMotor.set(-valJoyLI * .5);
-		} else {
-			controls.liftMotor.set(0);
-		}
+				}
+			} else if (controls.joystickManLift.getRawButton(1) == true){
+				if (valJoyLI >= .1 || valJoyLI <= -.1) {
 
+					controls.liftMotor.set(-valJoyLI * .8);
+					
+				} else {
+					
+					controls.liftMotor.stopMotor();
+					
+			
+				}
+			//}
+			x =0;
+		}
+		
+		
+		
+		/*if(encValLift <= -2100){  
+			System.out.println("hellx");
+			controls.liftMotor.set(-.1);
+			
+		} else if(encValLift > 25){  
+			System.out.println("hellx");
+			controls.liftMotor.set(.1);
+			
+		}  else{*/
+
+		
 		/*
 		 * if (controls.gamePad.getRawButton(Const.upBtn) == true) {
 		 * 
@@ -1051,9 +1293,23 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during test mode
 	 */
 
+	public void testInit(){
+		encoderR.reset();
+		encoderL.reset();
+		encoderLift.reset();
+	}
+	
 	public void testPeriodic() {
-
-		LiveWindow.run();
+		
+		encValLift = encoderLift.get();
+		encValL = encoderL.get();
+		encValR = encoderR.get();
+		
+		/*System.out.println(encValL + "L");
+		System.out.println(encValLift);
+		System.out.println(encValR + "R");
+	
+		LiveWindow.run();*/
 
 		SmartDashboard.putString("Test Status: ", "Enabled");
 
@@ -1095,8 +1351,7 @@ public class Robot extends IterativeRobot {
 
 			controls.liftMotor.set(-.3);
 
-		} else if (threeQuarterDist > encValLift && quaterDist <= encValLift) {// if
-																				// 25-75%
+		} else if (threeQuarterDist > encValLift && quaterDist <= encValLift) {// if 25-75%
 
 			controls.liftMotor.set(-.7);
 

@@ -28,8 +28,8 @@ public class OI {
 	Joystick gamePad; 
 	Joystick joystickManLift;
 	
-	DoubleSolenoid intakeSol1 = new DoubleSolenoid(0, 7);
-	DoubleSolenoid intakeSol2 = new DoubleSolenoid(3, 4);
+	DoubleSolenoid upperIntakeSol = new DoubleSolenoid(7, 0);
+	DoubleSolenoid lowerIntakeSol = new DoubleSolenoid(4, 3);
 	
 	Compressor compressor = new Compressor(0);//init compressor and mapsrf it
 	
@@ -62,12 +62,16 @@ public class OI {
 
 	public double output;
 	
-	boolean grab;
-	boolean release; 
+	boolean upperGrab;
+	boolean upperRelease; 
+	boolean lowerGrab;
+	boolean lowerRelease;
 	boolean up;
     boolean down;
     boolean deployPrep;
-
+    boolean lowerSolIn;
+    boolean lowerSolOut;
+    
 	public boolean halfSpeed;
 
 	float prevError;

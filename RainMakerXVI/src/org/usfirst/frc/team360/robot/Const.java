@@ -25,6 +25,7 @@ public class Const {
 	public static int stopMotorBtn = 6;
 	public static int outBtn = 7;     //grabber out
 	public static int inBtn = 9;      //grabber in
+	public static int lowInBtn = 6;      //lower grabber cntrl
 	public static int groundBtn = 10;
 	public static int offBtn = 12; //brake off
 	public static int onBtn = 14;     //brake on

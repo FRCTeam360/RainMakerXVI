@@ -1053,7 +1053,7 @@ public class Robot extends IterativeRobot {
 				controls.lowerSolOut = false;
 				controls.lowerSolIn = true;
 				
-				}	
+			}	
 			
 			
 

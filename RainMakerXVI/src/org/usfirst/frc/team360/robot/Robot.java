@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /*tank drive 2 Joysticks, left trigger engages down speed right trigger
  activates up speed
 */
+
 public class Robot extends IterativeRobot {
 
 /*	Command autonomousCommand;
@@ -37,7 +38,7 @@ public class Robot extends IterativeRobot {
 
 	private int autoStage;
 	private int iautochoose;
-	int x;
+	private int x;
 	
 	private double error;
 	private double integral;
@@ -79,8 +80,8 @@ public class Robot extends IterativeRobot {
 		encoderLift = new Encoder(4, 5, true, EncodingType.k1X);
 		encoderR = new Encoder(2, 3, true, EncodingType.k1X);
 		encoderL = new Encoder(0, 1, true, EncodingType.k1X);
-/*
-		autoChooser = new SendableChooser();
+		
+		/*autoChooser = new SendableChooser();
 
 		autoChooser.addDefault("default program", new testComAuto());
 		autoChooser.addObject("left", new autoGrabTurnLeft());
@@ -88,8 +89,8 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putData("Auto mode chooser", autoChooser);
 
-		 controls.init();
-*/
+		controls.init();*/
+		
 		encoderLift.reset();
 		encoderR.reset();
 		encoderL.reset();
@@ -107,8 +108,9 @@ public class Robot extends IterativeRobot {
 		encoderL.setDistancePerPulse(5);
 
 		/* encoderLift.setReverseDirection(true);
-		encoderR.setReverseDirection(true);
-*/		encoderL.setReverseDirection(true);
+		encoderR.setReverseDirection(true);*/
+		
+		encoderL.setReverseDirection(true);
 
 		encoderLift.setSamplesToAverage(7);
 		encoderR.setSamplesToAverage(7);
@@ -139,13 +141,7 @@ public class Robot extends IterativeRobot {
 
 	public void disabledPeriodic() {
 
-if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawButton(5) == true && controls.joystickManLift.getRawButton(10) == true){
-			
-			encoderLift.reset();
-			encoderL.reset();
-			encoderR.reset();
-			
-		}
+		resetLogic();
 
 		if (controls.gamePad.getRawButton(Const.iautograbturnright) == true) {
 			
@@ -219,24 +215,19 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 	 */
 
 	public void autonomousPeriodic() {
-	
 			
-if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawButton(5) == true && controls.joystickManLift.getRawButton(10) == true){
-			
-			encoderLift.reset();
-			encoderL.reset();
-			encoderR.reset();
-			
-		}
+		resetLogic();
 		
 		/*960 is apparrently a perfect right angle turn
 		Scheduler.getInstance().run();
 		 limit1.get();
-		 limit2.get();
-*/		double p = 0.001;
+		 limit2.get();*/
+		
+		double p = 0.001;
 		double i = 0;
 		double d = 0.0015;
 		double Dt = 0.01;
+		
 		controls.EnvGlbValR = encoderR.get();
 		controls.EnvGlbValL = encoderL.get();
 		controls.EnvGlbValLift = encoderLift.get();
@@ -273,6 +264,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 	
 		controls.myRobot.drive(0, 0);
 		*/
+		
 		}
 
 	public void autoForwardliftBack() {
@@ -424,8 +416,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 		encValL = encoderL.get();
 		encValLift = encoderLift.get();
 
-	/*	
-		System.out.println(encValL);*/
+		/*System.out.println(encValL);*/
 		
 		switch (autoStage) {
 
@@ -442,8 +433,8 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 
 				autoStage = 99;
 
-			
 			   }
+			
 			break;
 			
 			}
@@ -459,8 +450,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 		
 		case 1:
 			
-			controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);
-			controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);
+			controls.upperIntakeSol.set(DoubleSolenoid.Value.kForward);// release
 			
 			autoStage = 2;
 			
@@ -477,6 +467,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 			controls.liftTarget = Const.liftLeveldrive;
 			
 			targetDistance = controls.liftTarget - startPos;
+			
 			autoStage = 2;
 			
 			
@@ -605,9 +596,9 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 			break;
 			
 			case 6:
-				controls.intakeSol1.set(DoubleSolenoid.Value.kForward);
-				controls.intakeSol2.set(DoubleSolenoid.Value.kForward);
-
+				
+				controls.upperIntakeSol.set(DoubleSolenoid.Value.kReverse);// reverse
+				
 				autoStage = 7;
 
 				encoderR.reset();
@@ -637,6 +628,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 	}
  	
 	public void Tote1Bin1Right(){
+		
 		encValR = encoderR.get();
 		encValL = encoderL.get();
 		encValLift = encoderLift.get();
@@ -644,42 +636,44 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 		/*System.out.println(encValLift);
 		System.out.println(encValL + "L");
 		System.out.println(encValR +"R");*/
+		
 		switch (autoStage) { 	
 		case 1:
-		if (encValL > -100) {
-
-			controls.motorL.set(.5);
-			controls.motorR.set(-.5);
-			
-		}  else {
-
-			controls.motorL.set(-1);
-			controls.motorR.set(-1);
-
-			autoStage = 2;
-			rWeThereYet = false;
-
-			startPos = encValLift;
-			
-			controls.motorL.stopMotor();
-			controls.motorR.stopMotor();
-			
-			encoderR.reset();
-			encoderL.reset();
-			
-			controls.liftTarget = Const.liftLevel2;
-			
-			targetDistance = controls.liftTarget - startPos;
 		
-		}
+			if (encValL > -100) {
+
+				controls.motorL.set(.5);
+				controls.motorR.set(-.5);
 			
+			}  else {
+
+				controls.motorL.set(-1);
+				controls.motorR.set(-1);
+
+				autoStage = 2;
+				rWeThereYet = false;
+
+				startPos = encValLift;
+			
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+			
+				encoderR.reset();
+				encoderL.reset();
+			
+				controls.liftTarget = Const.liftLevel2;
+			
+				targetDistance = controls.liftTarget - startPos;
+		
+		}	
 		break;
 		case 2:
-		/*  start lifting to driving level, switch to stage 3 if half way
+		
+			/*  start lifting to driving level, switch to stage 3 if half way
 			 up
 			targetDistance = controls.liftTarget - startPos;
-			controls.liftTarget = Const.liftLevel2;
-*/
+			controls.liftTarget = Const.liftLevel2;*/
+			
 			nonPIDLift();
 
 			if (rWeThereYet == true) {
@@ -690,13 +684,16 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 				encoderL.reset();
 
 			}
+			
 		break;
 		case 3:
+			
 			if(encValL > -300){
 				
 				controls.motorL.set(.5);
-				controls.motorR.set(-.5);	
-		}else {
+				controls.motorR.set(-.5);
+				
+			}else {
 
 				controls.motorL.set(-1);
 				controls.motorR.set(-1);
@@ -733,12 +730,12 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 			
 				encoderR.reset();
 				encoderL.reset();
+				
 			}
 		break;
 		case 5:
 			
-			controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);
-			controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);
+			controls.upperIntakeSol.set(DoubleSolenoid.Value.kForward);// release
 			
 			autoStage = 6;
 			rWeThereYet = false;
@@ -754,6 +751,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 			controls.liftTarget = Const.liftLeveldrive;
 			
 			targetDistance = controls.liftTarget - startPos;
+			
 		break;
 		case 6:
 			
@@ -769,6 +767,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 			}
 		break;
 		case 7:
+			
 			if (encValL < 910) {
 
 				controls.motorL.set(-.7);
@@ -789,6 +788,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 				controls.motorR.set(-1);
 
 				autoStage = 8;
+				
 				rWeThereYet = false;
 
 				startPos = encValLift;
@@ -804,8 +804,10 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 				targetDistance = controls.liftTarget - startPos;
 			
 			}
-			break;
-		case 8: /* go backwards about nine feet to auto zone while still
+		break;
+		case 8:
+			
+			/* go backwards about nine feet to auto zone while still
 			 maintaining lift
 			 wheels are 4" in diameter, so 1 rotation is 12.56 inches,
 			 approx 1 foot
@@ -848,54 +850,49 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 				
 				targetDistance = controls.liftTarget - startPos;
 			
-			}
-				
-			break;	
-		
-			case 9:// lower container
+			}	
+		break;	
+		case 9:// lower container
 			
-				nonPIDLift();
+			nonPIDLift();
 
-				if (rWeThereYet == true) {
+			if (rWeThereYet == true) {
 
-					autoStage = 10;
-
-					encoderR.reset();
-					encoderL.reset();
-
-				}
-				
-			break;
-			
-			case 10:
-				controls.intakeSol1.set(DoubleSolenoid.Value.kForward);
-				controls.intakeSol2.set(DoubleSolenoid.Value.kForward);
-
-				autoStage = 11;
+				autoStage = 10;
 
 				encoderR.reset();
 				encoderL.reset();
-				
-				break;
-			
-			case 11: // back up tew foots
-				
-				controls.motorL.set(-.3);
-				controls.motorR.set(.3);
-			
-				if (encValL > 400) {
 
-					controls.motorL.set(.7);
-					controls.motorR.set(-.7);
-			
-					controls.motorL.stopMotor();
-					controls.motorR.stopMotor();
+			}
+		break;
+		case 10:
 				
-					autoStage = 99;
+			controls.upperIntakeSol.set(DoubleSolenoid.Value.kReverse);// reverse
 
-				}
+			autoStage = 11;
+
+			encoderR.reset();
+			encoderL.reset();
 				
-			break;
+		break;
+		case 11: // back up tew foots
+				
+			controls.motorL.set(-.3);
+			controls.motorR.set(.3);
+			
+			if (encValL > 400) {
+
+				controls.motorL.set(.7);
+				controls.motorR.set(-.7);
+			
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+				
+				autoStage = 99;
+
+			}
+				
+		break;
 		}
 	}
 	
@@ -907,6 +904,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 		manOverRide = false;
 
 		//encoderLift.reset();// resets encoder
+		
 		encoderR.reset();
 		encoderL.reset();
 
@@ -917,7 +915,6 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 	}
 
 	/**
-
 	 * This function is called periodically during operator control
 	 */
 
@@ -934,13 +931,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 		encoderL.reset();
 		encoderR.reset();
 	
-		if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawButton(5) == true && controls.joystickManLift.getRawButton(10) == true){
-			
-			encoderLift.reset();
-			encoderL.reset();
-			encoderR.reset();
-			
-		}
+		resetLogic();
 		
 		manualLift();
 
@@ -949,8 +940,9 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 		Timer.delay(0.005); /* wait for motor update time
 
 		 setTarget();
-		 System.out.println(liftPID + "Lift Tr place");
-		 */liftTF();
+		 System.out.println(liftPID + "Lift Tr place");*/
+		
+		liftTF();
 
 		tankDrive();// drive shifter stuff
 
@@ -963,36 +955,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 
 		controls.up = controls.stickR.getRawButton(1);
 		controls.down = controls.stickL.getRawButton(1);
-/*
-		if (controls.valJoyR >= .001 || controls.valJoyR <= -.001) {
-
-			 System.out.println("tank active");
-
-			if (controls.up == true && controls.down == false) {
-
-				controls.halfSpeed = true;
-
-			} else if (controls.down == true && controls.up == false) {
-
-				controls.halfSpeed = false;
-
-			}
-
-			if (controls.halfSpeed == false) {
-
-				fullSpeedDrive();
-
-				SmartDashboard.putString("Drive Status: ", "Full");
-
-			} else if (controls.halfSpeed == true) {
-
-				halfSpeedDrive();
-
-				SmartDashboard.putString("Drive Status: ", "Half");
-
-			}
-
-		}*/
+		
 		if (controls.valJoyL >= .001 || controls.valJoyL <= -.001) {
 
 			// System.out.println("tank active");
@@ -1009,38 +972,90 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 
 			if (controls.halfSpeed == false) {
 
-				fullSpeedDrive();
+				fullSpeedDriveL();
 
 				SmartDashboard.putString("Drive Status: ", "Full");
 
 			} else if (controls.halfSpeed == true) {
 
-				halfSpeedDrive();
+				halfSpeedDriveL();
+
+				SmartDashboard.putString("Drive Status: ", "Half");
+
+			}
+		}
+		if (controls.valJoyR >= .001 || controls.valJoyR <= -.001) {
+
+			// System.out.println("tank active");
+
+			if (controls.halfSpeed == false) {
+
+				fullSpeedDriveR();
+
+				SmartDashboard.putString("Drive Status: ", "Full");
+
+			} else if (controls.halfSpeed == true) {
+
+				halfSpeedDriveR();
 
 				SmartDashboard.putString("Drive Status: ", "Half");
 
 			}
 		}
 	}
-
+	
 	public void intakeControl() {
 
-		controls.grab = controls.gamePad.getRawButton(Const.inBtn);
-		controls.release = controls.gamePad.getRawButton(Const.outBtn);
+		controls.upperGrab = controls.gamePad.getRawButton(Const.inBtn);
+		controls.upperRelease = controls.gamePad.getRawButton(Const.outBtn);
+		controls.lowerRelease = controls.gamePad.getRawButton(Const.lowInBtn);
+		
+		if (controls.upperGrab == true && controls.upperRelease == false) {
 
-		if (controls.grab == true && controls.release == false) {
+			controls.upperIntakeSol.set(DoubleSolenoid.Value.kForward);// grab
+		
+			SmartDashboard.putString("Solenoid Status: ", "Forward");
+			
+			controls.lowerIntakeSol.set(DoubleSolenoid.Value.kReverse);// grab
+			
+			SmartDashboard.putString("Lower Solenoid Status: ", "Reverse");
+			
+			controls.lowerSolOut = false;
+			controls.lowerSolIn = true;
 
-			controls.intakeSol1.set(DoubleSolenoid.Value.kReverse);// release
-			controls.intakeSol2.set(DoubleSolenoid.Value.kReverse);/* release
+		} else if (controls.lowerRelease == true && controls.upperGrab == false) {
 
-			*/ SmartDashboard.putString("Solenoid Status: ", "Forward");
+			controls.upperIntakeSol.set(DoubleSolenoid.Value.kReverse);// reverse
+			
+			SmartDashboard.putString("Solenoid Status: ", "Reverse");
 
-		} else if (controls.release == true && controls.grab == false) {
+		}
+		if (controls.lowerRelease == true) {
+			if(controls.lowerSolOut == true){
+				
+				controls.lowerIntakeSol.set(DoubleSolenoid.Value.kForward);// grab
+				
+				SmartDashboard.putString("Lower Solenoid Status: ", "Forward");
+				
+				Timer.delay(0.5);
 
-			controls.intakeSol1.set(DoubleSolenoid.Value.kForward);// grab
-			controls.intakeSol2.set(DoubleSolenoid.Value.kForward);/* grab
-
-			*/ SmartDashboard.putString("Solenoid Status: ", "Reverse");
+				controls.lowerSolOut = true;
+				controls.lowerSolIn = false;
+			
+			} else if(controls.lowerSolIn == true){
+				
+				controls.lowerIntakeSol.set(DoubleSolenoid.Value.kReverse);// grab
+				
+				SmartDashboard.putString("Lower Solenoid Status: ", "Reverse");
+				
+				Timer.delay(0.5);
+				
+				controls.lowerSolOut = false;
+				controls.lowerSolIn = true;
+				
+				}	
+			
+			
 
 		}
 	}
@@ -1062,46 +1077,68 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 		if (manOverRide == true) {
 
 			manualLift();
-		}
-
-		else if (manOverRide == false) {
+		
+		}else if (manOverRide == false) {
 
 			nonPIDLift();
 
 		}
 	}
 
-	public void fullSpeedDrive() {
+	public void fullSpeedDriveL() {
 
-		double joyR = controls.stickR.getRawAxis(1);
 		double joyL = controls.stickL.getRawAxis(1);
 
 		Timer.delay(0.005);
 
-		joyR *= .95;
 		joyL *= .95;
 		
 		//controls.myRobot.tankDrive(-joyR, -joyL);
 
 		controls.motorR.set(joyL);
-		controls.motorL.set(-joyR);
 
 	}
 
-	public void halfSpeedDrive() {
+	public void halfSpeedDriveL() {
 
-		double joyR = controls.stickR.getRawAxis(1);
 		double joyL = controls.stickL.getRawAxis(1);
 
 		Timer.delay(0.005);
 
-		joyR *= .7;
 		joyL *= .7;
 
-//		controls.myRobot.tankDrive(-joyR, -joyL);
+		//controls.myRobot.tankDrive(-joyR, -joyL);
 
 		controls.motorR.set(joyL);
+
+	}
+
+	public void fullSpeedDriveR() {
+
+		double joyR = controls.stickR.getRawAxis(1);
+		
+		Timer.delay(0.005);
+
+		joyR *= .95;
+		
+		//controls.myRobot.tankDrive(-joyR, -joyL);
+
 		controls.motorL.set(-joyR);
+
+	}
+
+	public void halfSpeedDriveR() {
+
+		double joyR = controls.stickR.getRawAxis(1);
+
+		Timer.delay(0.005);
+
+		joyR *= .7;
+		
+		//controls.myRobot.tankDrive(-joyR, -joyL);
+
+		controls.motorL.set(-joyR);
+		
 	}
 
 	public void setTarget() {
@@ -1112,13 +1149,16 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 				&& controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
 				&& controls.gamePad.getRawButton(Const.groundBtn) == false
 				&& controls.gamePad.getRawButton(Const.level4Btn) == false) {
+			
 			rWeThereYet = false;
 			liftPID = true;
 
 			startPos = encValLift;
 
 			controls.liftTarget = Const.liftLevel1;
+			
 			targetDistance = controls.liftTarget - startPos;
+			
 			SmartDashboard.putString("Lift Status: ", "Level 1");
 
 		} else if (controls.gamePad.getRawButton(Const.level1Btn) == false
@@ -1127,13 +1167,16 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 				&& controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
 				&& controls.gamePad.getRawButton(Const.groundBtn) == false
 				&& controls.gamePad.getRawButton(Const.level4Btn) == false) {
+			
 			rWeThereYet = false;
 			liftPID = true;
 
 			startPos = encValLift;
 
 			controls.liftTarget = Const.liftLevel2;
+			
 			targetDistance = controls.liftTarget - startPos;
+			
 			SmartDashboard.putString("Lift Status: ", "Level 2");
 
 		} else if (controls.gamePad.getRawButton(Const.level1Btn) == false
@@ -1142,13 +1185,16 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 				&& controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
 				&& controls.gamePad.getRawButton(Const.groundBtn) == false
 				&& controls.gamePad.getRawButton(Const.level4Btn) == false) {
+			
 			rWeThereYet = false;
 			liftPID = true;
 
 			startPos = encValLift;
 
 			controls.liftTarget = Const.liftLevel3;
+			
 			targetDistance = controls.liftTarget - startPos;
+			
 			SmartDashboard.putString("Lift Status: ", "Lift Level Drive");
 
 		} else if (controls.gamePad.getRawButton(Const.level1Btn) == false
@@ -1157,27 +1203,34 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 				&& controls.gamePad.getRawButton(Const.drivingLevelBtn) == true
 				&& controls.gamePad.getRawButton(Const.groundBtn) == false
 				&& controls.gamePad.getRawButton(Const.level4Btn) == false) {
+			
 			rWeThereYet = false;
 			liftPID = true;
 
 			startPos = encValLift;
 
 			controls.liftTarget = Const.liftLeveldrive;
+			
 			targetDistance = controls.liftTarget - startPos;
+			
 			SmartDashboard.putString("Lift Status: ", "Level Drive");
+			
 		} else if (controls.gamePad.getRawButton(Const.level1Btn) == false
 				&& controls.gamePad.getRawButton(Const.level2Btn) == false
 				&& controls.gamePad.getRawButton(Const.level3Btn) == false
 				&& controls.gamePad.getRawButton(Const.drivingLevelBtn) == false
 				&& controls.gamePad.getRawButton(Const.groundBtn) == false
 				&& controls.gamePad.getRawButton(Const.level4Btn) == true) {
+			
 			rWeThereYet = false;
 			liftPID = true;
 
 			startPos = encValLift;
 
 			controls.liftTarget = Const.liftLevel4;
+			
 			targetDistance = controls.liftTarget - startPos;
+			
 			SmartDashboard.putString("Lift Status: ", "Level 4");
 
 		} else if (controls.gamePad.getRawButton(Const.level1Btn) == false
@@ -1196,20 +1249,20 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 			canSolFire1 = setSpeedDown();
 			canSolFire2 = setSpeedUp();
 
-			/*
-			 * if (canSolFire1 = true){
-			 * 
-			 * controls.intakeSol1.set(DoubleSolenoid.Value.kForward);//release
-			 * controls.intakeSol2.set(DoubleSolenoid.Value.kForward);//release
-			 * 
-			 * } else if (canSolFire2 = true){
-			 * 
-			 * controls.intakeSol1.set(DoubleSolenoid.Value.kForward);//release
-			 * controls.intakeSol2.set(DoubleSolenoid.Value.kForward);//release
-			 * 
-			 * }
-			 */
+			/* if (canSolFire1 = true){
+			  
+			 controls.intakeSol1.set(DoubleSolenoid.Value.kForward);//release
+			 controls.intakeSol2.set(DoubleSolenoid.Value.kForward);//release
+			  
+			 } else if (canSolFire2 = true){
+			  
+			 controls.intakeSol1.set(DoubleSolenoid.Value.kForward);//release
+			 controls.intakeSol2.set(DoubleSolenoid.Value.kForward);//release
+			  
+			  }*/
+			
 			controls.liftTarget = Const.liftLevelground;
+			
 			targetDistance = controls.liftTarget - startPos;
 
 		}
@@ -1219,18 +1272,26 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 		
 		encValLift = encoderLift.get();
 		
-		/*if(controls.joystickManLift.getRawButton(2) == true){
+		if(controls.joystickManLift.getRawButton(2) == true){
 			if(x == 0){
+				
 				controls.EnvGlbValLift = encoderLift.get();
+				
 				x++;
 			}
-			System.out.println(controls.EnvGlbValLift + "thingy");
+			
+			//System.out.println(controls.EnvGlbValLift + "thingy");
+			
 			if(controls.EnvGlbValLift > encValLift ){
+				
 				controls.liftMotor.set(.3);
+			
 			} else if(controls.EnvGlbValLift < encValLift){
+				
 				controls.liftMotor.set(-.3);
+			
 			}
-		}else {*/
+		}else {
 			if(controls.joystickManLift.getRawButton(1) == false){
 				if (valJoyLI >= .1 || valJoyLI <= -.1) {
 
@@ -1253,10 +1314,9 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 					
 			
 				}
-			//}
+			}
 			x =0;
 		}
-		
 		
 		
 		/*if(encValLift <= -2100){  
@@ -1294,9 +1354,11 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 	 */
 
 	public void testInit(){
+		
 		encoderR.reset();
 		encoderL.reset();
 		encoderLift.reset();
+		
 	}
 	
 	public void testPeriodic() {
@@ -1319,24 +1381,36 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 
 		if (rWeThereYet == false) {
 			if (targetDistance > 0) {// if target pos means we go up
-
 				if (encValLift >= controls.liftTarget) {
+					
 					controls.liftMotor.stopMotor();
+					
 					rWeThereYet = true;
+					
 				} else {
+					
 					setSpeedUp();
+					
 				}
 			} else if (targetDistance < 0) { // if target negative go down
 
 				if (encValLift <= controls.liftTarget) {
+					
 					controls.liftMotor.stopMotor();
+					
 					rWeThereYet = true;
+					
 				} else {
+					
 					setSpeedDown();
+					
 				}
 			} else if (targetDistance == 0) {
+				
 				controls.liftMotor.set(0);
+				
 				rWeThereYet = true;
+				
 			}
 		}
 	}
@@ -1347,6 +1421,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 		trueThreeQuarterDist = quaterDist * 3;
 		threeQuarterDist = trueThreeQuarterDist + startPos;
 		quaterDist = trueQuaterDist + startPos;
+		
 		if (quaterDist > encValLift) {// if 0-25%
 
 			controls.liftMotor.set(-.3);
@@ -1361,8 +1436,11 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 			controls.liftMotor.set(-.3);
 
 		} else {
+			
 			controls.liftMotor.stopMotor();
+			
 			solFire = true;
+			
 		}
 		return solFire;
 	}
@@ -1373,6 +1451,7 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 		trueThreeQuarterDist = quaterDist * 3;
 		threeQuarterDist = trueThreeQuarterDist + startPos;
 		quaterDist = trueQuaterDist + startPos;
+		
 		if (quaterDist < encValLift) {
 
 			controls.liftMotor.set(.3);
@@ -1387,9 +1466,13 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 			controls.liftMotor.set(.3);
 
 		} else {
+			
 			controls.liftMotor.stopMotor();
+			
 			solFire = true;
+		
 		}
+		
 		return solFire;
 
 	}
@@ -1397,9 +1480,25 @@ if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawBu
 	private static Robot instance;
 
 	public static Robot GetInstance() {
+		
 		if (instance == null) {
+			
 			instance = new Robot();
+		
 		}
+		
 		return instance;
+		
+	}
+
+	public void resetLogic(){
+		
+		if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawButton(5) == true && controls.joystickManLift.getRawButton(10) == true){
+			
+			encoderLift.reset();
+			encoderL.reset();
+			encoderR.reset();
+			
+		}
 	}
 }

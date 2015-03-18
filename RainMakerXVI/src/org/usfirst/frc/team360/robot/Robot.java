@@ -904,17 +904,17 @@ public class Robot extends IterativeRobot {
 	
 	public void teleopInit() {
 
-		controls.compressor.start();
+		controls.compressor.start();//start compressor
 
-		liftPID = false;
-		manOverRide = false;
+		liftPID = false;//set lift pid to false
+		manOverRide = false;// set manuel override to false
 
 		//encoderLift.reset();// resets encoder
 		
-		encoderR.reset();
-		encoderL.reset();
+		encoderR.reset();// resets encoders
+		encoderL.reset();//ditto
 
-		SmartDashboard.putString("Teleop Status: ", "Active");
+		SmartDashboard.putString("Teleop Status: ", "Active");//sets teleop readout to true
 
 		SmartDashboard.putString("Lift Status: ", "");// clears vals of smart window
 
@@ -926,32 +926,25 @@ public class Robot extends IterativeRobot {
 
 	public void teleopPeriodic() {
 
-		valJoyLI = controls.joystickManLift.getRawAxis(1);
+		TeleopEncReset();//resets the encoder
+		 
+		intakeControl();//solenoid/tote intake control
 
-		controls.valJoyR = controls.stickR.getRawAxis(1);
-		controls.valJoyL = controls.stickL.getRawAxis(1);
-
-		intakeControl();
-
-		encValLift = encoderLift.get();
-		encoderL.reset();
-		encoderR.reset();
-	
-		resetLogic();
+		resetLogic();//the emergency button reset
 		
-		manualLift();
+		manualLift();//joystick lift control
 
-		//System.out.println(encValLift + " L");
-		
-		Timer.delay(0.005); /* wait for motor update time
-
-		 setTarget();
-		 System.out.println(liftPID + "Lift Tr place");*/
-		
-		liftTF();
+		liftTF();//decides manuel lift or button lift
 
 		tankDrive();// drive shifter stuff
 
+		Timer.delay(0.005); /* wait for motor update time
+
+		setTarget();
+		System.out.println(liftPID + "Lift Tr place");
+		
+		System.out.println(encValLift + " L");*/
+		
 	}
 
 	public void tankDrive() {
@@ -962,27 +955,27 @@ public class Robot extends IterativeRobot {
 		controls.up = controls.stickR.getRawButton(1);
 		controls.down = controls.stickL.getRawButton(1);
 		
-		if (controls.valJoyL >= .001 || controls.valJoyL <= -.001) {
+		if (controls.valJoyL >= .001 || controls.valJoyL <= -.001) {//left buffer logic
 
 			// System.out.println("tank active");
 
-			if (controls.up == true && controls.down == false) {
+			if (controls.up == true && controls.down == false) {//shifter button logic
 
 				controls.halfSpeed = true;
 
-			} else if (controls.down == true && controls.up == false) {
+			} else if (controls.down == true && controls.up == false) {//ditto
 
 				controls.halfSpeed = false;
 
 			}
 
-			if (controls.halfSpeed == false) {
+			if (controls.halfSpeed == false) {//shifter speed logic
 
 				fullSpeedDriveL();
 
 				SmartDashboard.putString("Drive Status: ", "Full");
 
-			} else if (controls.halfSpeed == true) {
+			} else if (controls.halfSpeed == true) {//ditto
 
 				halfSpeedDriveL();
 
@@ -990,26 +983,26 @@ public class Robot extends IterativeRobot {
 
 			}
 		}
-		if (controls.valJoyR >= .001 || controls.valJoyR <= -.001) {
+		if (controls.valJoyR >= .001 || controls.valJoyR <= -.001) {//right buffer logic
 
 			// System.out.println("tank active");
 
-			if (controls.up == true && controls.down == false) {
+			if (controls.up == true && controls.down == false) {//shifter button logic
 
 				controls.halfSpeed = true;
 
-			} else if (controls.down == true && controls.up == false) {
+			} else if (controls.down == true && controls.up == false) {//ditto
 
 				controls.halfSpeed = false;
 
 			}
-			if (controls.halfSpeed == false) {
+			if (controls.halfSpeed == false) {//shifter speed logic
 
 				fullSpeedDriveR();
 
 				SmartDashboard.putString("Drive Status: ", "Full");
 
-			} else if (controls.halfSpeed == true) {
+			} else if (controls.halfSpeed == true) {//ditto
 
 				halfSpeedDriveR();
 
@@ -1031,7 +1024,7 @@ public class Robot extends IterativeRobot {
 		
 			SmartDashboard.putString("Solenoid Status: ", "Forward");
 			
-			controls.lowerIntakeSol.set(DoubleSolenoid.Value.kReverse);// grab
+			controls.lowerIntakeSol.set(DoubleSolenoid.Value.kReverse);
 			
 			SmartDashboard.putString("Lower Solenoid Status: ", "Reverse");
 			
@@ -1287,8 +1280,8 @@ public class Robot extends IterativeRobot {
 		
 		encValLift = encoderLift.get();
 		
-		if(controls.joystickManLift.getRawButton(2) == true){
-			if(x == 0){
+		if(controls.joystickManLift.getRawButton(2) == true){//if side grey button is pushed
+			if(x == 0){// holding logic runs once
 				
 				controls.EnvGlbValLift = encoderLift.get();
 				
@@ -1297,7 +1290,7 @@ public class Robot extends IterativeRobot {
 			
 			//System.out.println(controls.EnvGlbValLift + "thingy");
 			
-			if(controls.EnvGlbValLift > encValLift ){
+			if(controls.EnvGlbValLift > encValLift ){// move to keep the same encoder count so you bounce
 				
 				controls.liftMotor.set(.3);
 			
@@ -1306,7 +1299,7 @@ public class Robot extends IterativeRobot {
 				controls.liftMotor.set(-.3);
 			
 			}
-		}else {
+		}else {//uses normal control
 			if(controls.joystickManLift.getRawButton(1) == false){
 				if (valJoyLI >= .1 || valJoyLI <= -.1) {
 
@@ -1506,6 +1499,13 @@ public class Robot extends IterativeRobot {
 		
 	}
 
+	public void TeleopEncReset(){
+
+		encoderL.reset();
+		encoderR.reset();
+	
+	}
+
 	public void resetLogic(){
 		
 		if(controls.gamePad.getRawButton(1) == true && controls.joystickManLift.getRawButton(5) == true && controls.joystickManLift.getRawButton(10) == true){
@@ -1519,7 +1519,7 @@ public class Robot extends IterativeRobot {
 
 	public void dualJoystickTankDrive(){
 		
-		//joy must be mapped to port 1
+		//joystick must be mapped to port 1
 		
 		controls.valJoyR = controls.stickR.getRawAxis(1);
 		controls.valJoyL = controls.stickR.getRawAxis(3);

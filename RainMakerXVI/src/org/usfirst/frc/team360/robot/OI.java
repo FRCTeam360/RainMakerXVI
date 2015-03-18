@@ -28,8 +28,8 @@ public class OI {
 	Joystick gamePad; 
 	Joystick joystickManLift;
 	
-	DoubleSolenoid upperIntakeSol = new DoubleSolenoid(7, 0);
-	DoubleSolenoid lowerIntakeSol = new DoubleSolenoid(4, 3);
+	DoubleSolenoid upperIntakeSol = new DoubleSolenoid(0, 7);
+	DoubleSolenoid lowerIntakeSol = new DoubleSolenoid(3, 4);
 	
 	Compressor compressor = new Compressor(0);//init compressor and mapsrf it
 	

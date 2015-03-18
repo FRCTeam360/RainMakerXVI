@@ -988,6 +988,15 @@ public class Robot extends IterativeRobot {
 
 			// System.out.println("tank active");
 
+			if (controls.up == true && controls.down == false) {
+
+				controls.halfSpeed = true;
+
+			} else if (controls.down == true && controls.up == false) {
+
+				controls.halfSpeed = false;
+
+			}
 			if (controls.halfSpeed == false) {
 
 				fullSpeedDriveR();
@@ -1023,7 +1032,7 @@ public class Robot extends IterativeRobot {
 			controls.lowerSolOut = false;
 			controls.lowerSolIn = true;
 
-		} else if (controls.lowerRelease == true && controls.upperGrab == false) {
+		} else if (controls.upperRelease == true && controls.upperGrab == false) {
 
 			controls.upperIntakeSol.set(DoubleSolenoid.Value.kReverse);// reverse
 			
@@ -1039,8 +1048,8 @@ public class Robot extends IterativeRobot {
 				
 				Timer.delay(0.5);
 
-				controls.lowerSolOut = true;
-				controls.lowerSolIn = false;
+				controls.lowerSolOut = false;
+				controls.lowerSolIn = true;
 			
 			} else if(controls.lowerSolIn == true){
 				
@@ -1050,8 +1059,8 @@ public class Robot extends IterativeRobot {
 				
 				Timer.delay(0.5);
 				
-				controls.lowerSolOut = false;
-				controls.lowerSolIn = true;
+				controls.lowerSolOut = true;
+				controls.lowerSolIn = false;
 				
 			}	
 			

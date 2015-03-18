@@ -80,9 +80,9 @@ public class Robot extends IterativeRobot {
 
 		rWeThereYet = false;
 
-		encoderLift = new Encoder(4, 5, true, EncodingType.k1X);
-		encoderR = new Encoder(2, 3, true, EncodingType.k1X);
-		encoderL = new Encoder(0, 1, true, EncodingType.k1X);
+		encoderLift = new Encoder(4, 5, true, EncodingType.k1X);//inits and maps encoder
+		encoderR = new Encoder(2, 3, true, EncodingType.k1X);//ditto
+		encoderL = new Encoder(0, 1, true, EncodingType.k1X);//ditto
 		
 		/*autoChooser = new SendableChooser();
 
@@ -94,9 +94,9 @@ public class Robot extends IterativeRobot {
 
 		controls.init();*/
 		
-		encoderLift.reset();
-		encoderR.reset();
-		encoderL.reset();
+		encoderLift.reset();//resets the encoder
+		encoderR.reset();//ditto
+		encoderL.reset();//ditto
 
 		encoderLift.setMaxPeriod(.1);
 		encoderR.setMaxPeriod(.1);
@@ -132,16 +132,16 @@ public class Robot extends IterativeRobot {
 
 	public void disabledInit() {
 
-		controls.compressor.stop();// set percent to 0
+		controls.compressor.stop();// stops encoder
 
-		controls.motorL.stopMotor();
-		controls.motorR.stopMotor();
-		controls.liftMotor.stopMotor();
+		controls.motorL.stopMotor();//stops motor
+		controls.motorR.stopMotor();//ditto
+		controls.liftMotor.stopMotor();//ditto
 
-		SmartDashboard.putString("Robot Status: ", "Deactivated");
-		SmartDashboard.putString("Teleop Status: ", "");
-		SmartDashboard.putString("Autonomous Status: ", "");
-		SmartDashboard.putString("Test Status: ", "");
+		SmartDashboard.putString("Robot Status: ", "Deactivated");//sets robot readout to disabled
+		SmartDashboard.putString("Teleop Status: ", "");//clears readout
+		SmartDashboard.putString("Autonomous Status: ", "");//ditto
+		SmartDashboard.putString("Test Status: ", "");//ditto
 
 	}
 
@@ -149,6 +149,8 @@ public class Robot extends IterativeRobot {
 
 		resetLogic();
 
+		//auto chooser
+		
 		if (controls.gamePad.getRawButton(Const.iautograbturnright) == true) {
 			
 			iautochoose = Const.iautograbturnright;
@@ -198,16 +200,16 @@ public class Robot extends IterativeRobot {
 		/*autonomousCommand = (Command) autoChooser.getSelected();
 		autonomousCommand.start();
 */
-		autoStage = 1;
+		autoStage = 1;//sets auto stage to start
 
-		controls.compressor.start();
+		controls.compressor.start();//starts compressor
 
-		encoderR.reset();
-		encoderL.reset();
+		encoderR.reset();//resets the encoders
+		encoderL.reset();//ditto
 
 		controls.autoLoopCounter = 0;
 
-		SmartDashboard.putString("Autonomous Status: ", "Active");
+		SmartDashboard.putString("Autonomous Status: ", "Active");// sets auto readout to true
 
 		/*controls.myRobot.drive(.5, -.5);
 		
@@ -1363,9 +1365,9 @@ public class Robot extends IterativeRobot {
 
 	public void testInit(){
 		
-		encoderR.reset();
-		encoderL.reset();
-		encoderLift.reset();
+		encoderR.reset();// resets the encoders
+		encoderL.reset();//ditto
+		encoderLift.reset();//ditto
 		
 	}
 	
@@ -1520,7 +1522,8 @@ public class Robot extends IterativeRobot {
 	public void dualJoystickTankDrive(){
 		
 		//joystick must be mapped to port 1
-		
+		//FOR EMERGENCIES ONLY
+		//MUST USE DUAL JOYSTICK-THINGY
 		controls.valJoyR = controls.stickR.getRawAxis(1);
 		controls.valJoyL = controls.stickR.getRawAxis(3);
 		joyR = controls.stickR.getRawAxis(1);

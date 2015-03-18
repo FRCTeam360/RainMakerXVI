@@ -47,6 +47,9 @@ public class Robot extends IterativeRobot {
 	private double prevError;
 	private double valJoyLI;
 	private double encValLiftRaw;
+	private double speedFactor;
+	private double joyR;
+	private double joyL;
 	
 	private float encValLift;
 	private float encValR;
@@ -121,6 +124,9 @@ public class Robot extends IterativeRobot {
 		controls.liftMotor.enableDeadbandElimination(true);
 
 		iautochoose = 999;
+		
+		controls.lowerSolOut = true;
+		controls.lowerSolIn = false;
 		
 	}
 
@@ -1096,7 +1102,7 @@ public class Robot extends IterativeRobot {
 
 	public void fullSpeedDriveL() {
 
-		double joyL = controls.stickL.getRawAxis(1);
+		joyL = controls.stickL.getRawAxis(1);
 
 		Timer.delay(0.005);
 
@@ -1110,7 +1116,7 @@ public class Robot extends IterativeRobot {
 
 	public void halfSpeedDriveL() {
 
-		double joyL = controls.stickL.getRawAxis(1);
+		joyL = controls.stickL.getRawAxis(1);
 
 		Timer.delay(0.005);
 
@@ -1124,8 +1130,8 @@ public class Robot extends IterativeRobot {
 
 	public void fullSpeedDriveR() {
 
-		double joyR = controls.stickR.getRawAxis(1);
-		
+		joyR = controls.stickR.getRawAxis(1);
+	
 		Timer.delay(0.005);
 
 		joyR *= .95;
@@ -1138,7 +1144,7 @@ public class Robot extends IterativeRobot {
 
 	public void halfSpeedDriveR() {
 
-		double joyR = controls.stickR.getRawAxis(1);
+		joyR = controls.stickR.getRawAxis(1);
 
 		Timer.delay(0.005);
 
@@ -1510,4 +1516,69 @@ public class Robot extends IterativeRobot {
 			
 		}
 	}
+
+	public void dualJoystickTankDrive(){
+		
+		//joy must be mapped to port 1
+		
+		controls.valJoyR = controls.stickR.getRawAxis(1);
+		controls.valJoyL = controls.stickR.getRawAxis(3);
+		joyR = controls.stickR.getRawAxis(1);
+		joyL = controls.stickR.getRawAxis(3);
+		
+		controls.up = controls.stickR.getRawButton(7);
+		controls.down = controls.stickR.getRawButton(8);
+		
+		if (controls.up == true && controls.down == false) {
+
+			controls.halfSpeed = true;
+
+		} else if (controls.down == true && controls.up == false) {
+
+			controls.halfSpeed = false;
+
+		}
+		
+		if (controls.halfSpeed == false) {
+
+			speedFactor = .95;
+
+			SmartDashboard.putString("Drive Status: ", "Full");
+			
+		} else if (controls.halfSpeed == true) {
+
+			speedFactor = .7;
+
+			SmartDashboard.putString("Drive Status: ", "Half");
+
+		}
+		
+		if (controls.valJoyL >= .01 || controls.valJoyL <= -.01) {
+
+			// System.out.println("tank active");
+
+			controls.motorL.set(-joyL);
+			
+			SmartDashboard.putDouble("JoyL: ", joyL);
+			
+		} else {
+			
+			controls.motorL.stopMotor();
+			
+		}
+		
+		if (controls.valJoyR >= .01 || controls.valJoyR <= -.01) {
+
+			// System.out.println("tank active");
+
+			controls.motorR.set(-joyR);
+			
+			SmartDashboard.putDouble("JoyR: ", joyR);
+			
+		} else {
+			
+			controls.motorR.stopMotor();
+			
+		}
+	} 
 }

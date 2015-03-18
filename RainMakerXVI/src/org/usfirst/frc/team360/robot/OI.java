@@ -34,9 +34,6 @@ public class OI {
 	Compressor compressor = new Compressor(0);//init compressor and mapsrf it
 	
 	PIDController PID;
-	public float EnvGlbValR;
-	public float EnvGlbValL;
-	public float EnvGlbValLift;
 	
 	int autoLoopCounter;
 	int totes; //num of totes carried
@@ -78,7 +75,11 @@ public class OI {
 	float Wait;
 	float liftTarget;
 	float error;
-
+	
+	public float EnvGlbValR;
+	public float EnvGlbValL;
+	public float EnvGlbValLift;
+	
 	VictorSP motorL = new VictorSP(0);
 	VictorSP motorR = new VictorSP(1);
 	VictorSP liftMotor = new VictorSP(2);

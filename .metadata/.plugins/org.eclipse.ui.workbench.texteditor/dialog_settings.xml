@@ -6,20 +6,20 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="manOver" key="selection"/>
+		<item value="double" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="double"/>
+			<item value="joyR"/>
+			<item value="double joyR"/>
+			<item value="double joyL"/>
 			<item value="manOver"/>
 			<item value="manuallift"/>
 			<item value="manover"/>
 			<item value="intake"/>
-			<item value="intakeSol1"/>
-			<item value="controls.init"/>
-			<item value="liftmotor"/>
-			<item value="doPID(p, i, d, Dt, encVal, 546)"/>
 		</list>
 		<list key="replacehistory">
 			<item value=" "/>

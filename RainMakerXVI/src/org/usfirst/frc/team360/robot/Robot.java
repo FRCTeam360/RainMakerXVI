@@ -21,6 +21,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /*tank drive 2 Joysticks, left trigger engages down speed right trigger
  activates up speed
+ driver has 2 joystick right, left each joystick controls that side, 
+ left is mapped to port 0 right 1 
+ on the OP console
+ button 6 operates the lower sols
+ press once to fire in again for out
+ button 7 fire upper sols out
+ button 9 fires upper sols in
+ button 2 selects the turn grab tote and turn right auto // place with tote in robot
+ button 3 selects the go forward grab bin and go back // place as close to bin as possible
+ button 10 selects the go forward auto //place bot as close to autozone as possible
 */
 
 public class Robot extends IterativeRobot {
@@ -79,10 +89,6 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 
 		rWeThereYet = false;
-
-		encoderLift = new Encoder(4, 5, true, EncodingType.k1X);//inits and maps encoder
-		encoderR = new Encoder(2, 3, true, EncodingType.k1X);//ditto
-		encoderL = new Encoder(0, 1, true, EncodingType.k1X);//ditto
 		
 		/*autoChooser = new SendableChooser();
 
@@ -93,6 +99,25 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode chooser", autoChooser);
 
 		controls.init();*/
+		
+		encoderInits();
+		
+		LiveWindow.run();
+
+		controls.liftMotor.enableDeadbandElimination(true);
+
+		iautochoose = 999;
+		
+		controls.lowerSolOut = true;
+		controls.lowerSolIn = false;
+		
+	}
+
+	public void encoderInits(){
+		
+		encoderLift = new Encoder(4, 5, true, EncodingType.k1X);//inits and maps encoder
+		encoderR = new Encoder(2, 3, true, EncodingType.k1X);//ditto
+		encoderL = new Encoder(0, 1, true, EncodingType.k1X);//ditto
 		
 		encoderLift.reset();//resets the encoder
 		encoderR.reset();//ditto
@@ -119,17 +144,8 @@ public class Robot extends IterativeRobot {
 		encoderR.setSamplesToAverage(7);
 		encoderL.setSamplesToAverage(7);
 
-		LiveWindow.run();
-
-		controls.liftMotor.enableDeadbandElimination(true);
-
-		iautochoose = 999;
-		
-		controls.lowerSolOut = true;
-		controls.lowerSolIn = false;
-		
 	}
-
+	
 	public void disabledInit() {
 
 		controls.compressor.stop();// stops encoder
@@ -151,50 +167,59 @@ public class Robot extends IterativeRobot {
 
 		//auto chooser
 		
+		autoChooser();
+
+	}
+	
+	public void autoChooser(){
+		
 		if (controls.gamePad.getRawButton(Const.iautograbturnright) == true) {
 			
 			iautochoose = Const.iautograbturnright;
 			
 		}
-
 		if (controls.gamePad.getRawButton(Const.iautoforwardliftback) == true) {
 			
 			iautochoose = Const.iautoforwardliftback;
 			
 		}
-		
 		if (controls.gamePad.getRawButton(Const.iautoforward) == true) {
 			
 			iautochoose = Const.iautoforward;
 		
 		}
-
+		if(controls.gamePad.getRawButton(Const.istop) == true){
+			
+			iautochoose = Const.istop;
+		}
 		SmartDashboard.putString("iterativeautonomous", "");
 		
 		switch (iautochoose) {
 
 		case Const.iautograbturnright:
 			
-			SmartDashboard.putString("iterativeautonomous", "N/A");
+			SmartDashboard.putString("iterativeautonomous", "grab tote turn right");
 			
-			break;
-
+		break;
 		case Const.iautoforwardliftback:
 			
 			SmartDashboard.putString("iterativeautonomous", "container BACK");
 			
-			break;
-			
+		break;
 		case Const.iautoforward:
 			
 			SmartDashboard.putString("iterativeautonomous", "FORWARD");
 			
-			break;
-
+		break;
+		case Const.istop:
+			
+			SmartDashboard.putString("iterativeautonomous", "none selected");
+			
+		break;
+			
 		}
-
 	}
-
+ 	
 	public void autonomousInit() {
 
 		/*autonomousCommand = (Command) autoChooser.getSelected();
@@ -938,7 +963,7 @@ public class Robot extends IterativeRobot {
 
 		liftTF();//decides manuel lift or button lift
 
-		tankDrive();// drive shifter stuff
+		doubleJoystickTankDrive();// drive shifter stuff
 
 		Timer.delay(0.005); /* wait for motor update time
 
@@ -949,7 +974,7 @@ public class Robot extends IterativeRobot {
 		
 	}
 
-	public void tankDrive() {
+	public void doubleJoystickTankDrive() {
 
 		controls.valJoyR = controls.stickR.getRawAxis(1);
 		controls.valJoyL = controls.stickL.getRawAxis(1);
@@ -1519,11 +1544,11 @@ public class Robot extends IterativeRobot {
 		}
 	}
 
-	public void dualJoystickTankDrive(){
+	public void singleJoystickTankDrive(){
 		
 		//joystick must be mapped to port 1
 		//FOR EMERGENCIES ONLY
-		//MUST USE DUAL JOYSTICK-THINGY
+		//MUST USE DUAL JOYSTICK/GAMEPAD-THINGY
 		controls.valJoyR = controls.stickR.getRawAxis(1);
 		controls.valJoyL = controls.stickR.getRawAxis(3);
 		joyR = controls.stickR.getRawAxis(1);

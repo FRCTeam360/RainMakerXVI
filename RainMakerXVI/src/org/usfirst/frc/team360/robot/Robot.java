@@ -953,6 +953,10 @@ public class Robot extends IterativeRobot {
 
 	public void teleopPeriodic() {
 
+		encValLift = encoderLift.get();
+		
+		System.out.println(encValLift + " L");
+		
 		TeleopEncReset();//resets the encoder
 		 
 		intakeControl();//solenoid/tote intake control
@@ -961,10 +965,12 @@ public class Robot extends IterativeRobot {
 		
 		manualLift();//joystick lift control
 
-		liftTF();//decides manuel lift or button lift
+		//liftTF();//decides manuel lift or button lift
 
 		doubleJoystickTankDrive();// drive shifter stuff
 
+		//singleJoystickTankDrive();
+		
 		Timer.delay(0.005); /* wait for motor update time
 
 		setTarget();
@@ -1072,7 +1078,7 @@ public class Robot extends IterativeRobot {
 				
 				SmartDashboard.putString("Lower Solenoid Status: ", "Forward");
 				
-				Timer.delay(0.5);
+				Timer.delay(0.179);
 
 				controls.lowerSolOut = false;
 				controls.lowerSolIn = true;
@@ -1083,7 +1089,7 @@ public class Robot extends IterativeRobot {
 				
 				SmartDashboard.putString("Lower Solenoid Status: ", "Reverse");
 				
-				Timer.delay(0.5);
+				Timer.delay(0.179);
 				
 				controls.lowerSolOut = true;
 				controls.lowerSolIn = false;
@@ -1307,6 +1313,8 @@ public class Robot extends IterativeRobot {
 		
 		encValLift = encoderLift.get();
 		
+		valJoyLI = controls.joystickManLift.getRawAxis(1);
+		
 		if(controls.joystickManLift.getRawButton(2) == true){//if side grey button is pushed
 			if(x == 0){// holding logic runs once
 				
@@ -1319,50 +1327,57 @@ public class Robot extends IterativeRobot {
 			
 			if(controls.EnvGlbValLift > encValLift ){// move to keep the same encoder count so you bounce
 				
-				controls.liftMotor.set(.3);
+				controls.liftMotor.set(-.3);
 			
 			} else if(controls.EnvGlbValLift < encValLift){
 				
-				controls.liftMotor.set(-.3);
+				controls.liftMotor.set(.3);
 			
 			}
 		}else {//uses normal control
-			if(controls.joystickManLift.getRawButton(1) == false){
-				if (valJoyLI >= .1 || valJoyLI <= -.1) {
+			
+			if(encValLift <= -1200){  
+				
+				System.out.println("hellx");
+				
+				controls.liftMotor.set(-.1);
+				
+			} else if(encValLift > 25){  
+				
+				System.out.println("hellx");
+				
+				controls.liftMotor.set(.1);
+				
+			} else {
+				if(controls.joystickManLift.getRawButton(1) == false){
+					if (valJoyLI >= .1 || valJoyLI <= -.1) {
 
-					controls.liftMotor.set(-valJoyLI * .5);
+						controls.liftMotor.set(-valJoyLI * .5);
 					
-				} else {
+					} else {
 					
-					controls.liftMotor.stopMotor();
+						controls.liftMotor.stopMotor();
 					
 			
-				}
-			} else if (controls.joystickManLift.getRawButton(1) == true){
-				if (valJoyLI >= .1 || valJoyLI <= -.1) {
+					}
+				} else if (controls.joystickManLift.getRawButton(1) == true){
+					if (valJoyLI >= .1 || valJoyLI <= -.1) {
 
-					controls.liftMotor.set(-valJoyLI * .8);
+						controls.liftMotor.set(-valJoyLI * .8);
 					
-				} else {
+					} else {
 					
-					controls.liftMotor.stopMotor();
+						controls.liftMotor.stopMotor();
 					
 			
+					}
 				}
 			}
 			x =0;
 		}
 		
 		
-		/*if(encValLift <= -2100){  
-			System.out.println("hellx");
-			controls.liftMotor.set(-.1);
-			
-		} else if(encValLift > 25){  
-			System.out.println("hellx");
-			controls.liftMotor.set(.1);
-			
-		}  else{*/
+		 
 
 		
 		/*
@@ -1585,7 +1600,7 @@ public class Robot extends IterativeRobot {
 
 			// System.out.println("tank active");
 
-			controls.motorL.set(-joyL);
+			controls.motorL.set(joyL);
 			
 			SmartDashboard.putDouble("JoyL: ", joyL);
 			
@@ -1596,7 +1611,7 @@ public class Robot extends IterativeRobot {
 		}
 		
 		if (controls.valJoyR >= .01 || controls.valJoyR <= -.01) {
-
+ 
 			// System.out.println("tank active");
 
 			controls.motorR.set(-joyR);

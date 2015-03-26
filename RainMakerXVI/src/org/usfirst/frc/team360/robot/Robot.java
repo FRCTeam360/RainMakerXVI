@@ -204,6 +204,12 @@ public class Robot extends IterativeRobot {
 		
 		switch (iautochoose) {
 
+		case 0:
+			
+			SmartDashboard.putString("iterativeautonomous", "Ramp Left");
+			
+		break;
+		
 		case Const.iLeftRamp:
 			
 			SmartDashboard.putString("iterativeautonomous", "Ramp Left");

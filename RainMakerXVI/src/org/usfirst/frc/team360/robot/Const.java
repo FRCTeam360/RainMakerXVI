@@ -36,4 +36,6 @@ public class Const {
 	public static final int iautoforwardliftback = 3;
 	public static final int iautoforward = 10;
 	public static final int istop= 15;
+	public static final int iRightRamp= 5;
+	public static final int iLeftRamp= 4;
 }

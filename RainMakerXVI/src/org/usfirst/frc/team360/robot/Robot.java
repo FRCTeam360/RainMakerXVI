@@ -40,6 +40,8 @@ public class Robot extends IterativeRobot {
 	SendableChooser autoChooser;
 */
 	
+	Timer time;
+	
 	OI controls = OI.GetInstance(); // new OI();
 
 	Encoder encoderLift;
@@ -60,6 +62,7 @@ public class Robot extends IterativeRobot {
 	private double speedFactor;
 	private double joyR;
 	private double joyL;
+	private double demVoltz;
 	
 	private float encValLift;
 	private float encValR;
@@ -80,7 +83,8 @@ public class Robot extends IterativeRobot {
 	private boolean solFire;
 	private boolean canSolFire1;
 	private boolean canSolFire2;
-
+	private boolean rUReadyToRumble;
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -88,6 +92,8 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 
+		System.out.println("plz work ethernet cord m8");
+		
 		rWeThereYet = false;
 		
 		/*autoChooser = new SendableChooser();
@@ -101,6 +107,8 @@ public class Robot extends IterativeRobot {
 		controls.init();*/
 		
 		encoderInits();
+		
+		time = new Timer();
 		
 		LiveWindow.run();
 
@@ -181,6 +189,12 @@ public class Robot extends IterativeRobot {
 			
 		}
 		
+		if (controls.gamePad.getRawButton(Const.iRightRamp) == true) {
+			
+			iautochoose = Const.iRightRamp;
+			
+		}
+
 		if (controls.gamePad.getRawButton(Const.iautograbturnright) == true) {
 			
 			iautochoose = Const.iautograbturnright;
@@ -236,6 +250,12 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putString("iterativeautonomous", "none selected");
 			
 		break;
+		
+		case Const.iRightRamp:
+			
+			SmartDashboard.putString("iterativeautonomous", "right ramp");
+			
+		break;
 			
 		}
 	}
@@ -287,6 +307,10 @@ public class Robot extends IterativeRobot {
 
 		switch (iautochoose) {			
 		
+		case Const.iRightRamp:
+			rightRamp();
+			break;
+			
 		case Const.iLeftRamp:
 			leftRamp();
 			break;
@@ -311,7 +335,7 @@ public class Robot extends IterativeRobot {
 			
 		}
 		
-		
+		//rightRamp();
 		
 		/*Tote2Bin1();
 
@@ -1003,7 +1027,7 @@ public class Robot extends IterativeRobot {
 			
 			System.out.println(encValR);
 			
-			if (encValL > -600) {
+			if (encValL > -650) {
 
 				controls.motorL.set(.5);
 				controls.motorR.set(-.5);
@@ -1169,7 +1193,7 @@ System.out.println(encValL);
 			
 			//System.out.println(encValR);
 			
-			if (encValL < 60) {
+			if (encValL < 100) {
 
 				controls.motorL.set(-.5);
 				controls.motorR.set(.5);
@@ -1246,7 +1270,7 @@ System.out.println(encValL);
 		
 		}	
 		break;
-		case 13://turn
+		case 13://turn 3
 			System.out.println(encValL);
 			
 			if (encValL < 1200) {
@@ -1258,7 +1282,7 @@ System.out.println(encValL);
 
 					//controls.motorL.set(.5);
 					controls.motorR.set(-.5);
-				
+				 
 				}
 				
 			}  else {
@@ -1294,8 +1318,8 @@ System.out.println(encValL);
 		
 		}	
 			break;
-		case 14:
-			if (encValL > -900) {
+		case 14://drive @90
+			if (encValL > -1100) {
 
 				controls.motorL.set(.5);
 				controls.motorR.set(-.5);
@@ -1322,7 +1346,7 @@ System.out.println(encValL);
 		
 		}
 			break;
-		case 15:
+		case 15://turn to positioning turn
 			System.out.println(encValL);
 			
 			if (encValL > -1100) {
@@ -1370,7 +1394,7 @@ System.out.println(encValL);
 		
 		}	
 			break;
-		case 16:
+		case 16://positioning drive
 			if (encValL > -1000) {
 
 				controls.motorL.set(.5);
@@ -1382,6 +1406,8 @@ System.out.println(encValL);
 				controls.motorR.set(.5);
 				
 				Timer.delay(.075);*/
+				
+				controls.lowerIntakeSol.set(DoubleSolenoid.Value.kReverse);// release
 				
 				controls.motorL.stopMotor();
 				controls.motorR.stopMotor();
@@ -1406,12 +1432,12 @@ System.out.println(encValL);
 		case 17: //last turn
 //System.out.println(encValL);
 			
-			if (encValL > -1000) {
+			if (encValL > -1100) {
 
 				controls.motorL.set(.5);
 				//controls.motorR.set(.5);
 			
-				if (encValL > -1000) {
+				if (encValL > -1100) {
 
 					//controls.motorL.set(.5);
 					controls.motorR.set(.5);
@@ -1420,7 +1446,7 @@ System.out.println(encValL);
 				
 			}  else {
 
-				if (encValL > -1000) {
+				if (encValL > -1100) {
 
 					//controls.motorL.set(.5);
 					controls.motorR.set(.5);
@@ -1449,8 +1475,8 @@ System.out.println(encValL);
 		
 		}	
 			break;
-		case 18:
-			if (encValL > -2500) {
+		case 18://hit into wall
+			if (encValL > -2400) {
 
 				controls.motorL.set(.5);
 				controls.motorR.set(-.5);
@@ -1481,7 +1507,465 @@ System.out.println(encValL);
 	}
 
 	public void rightRamp(){
+		encValR = encoderR.get();
+		encValL = encoderL.get();
+		encValLift = encoderLift.get();
+
+		/*System.out.println(encValL);*/
 		
+		switch (autoStage) {
+
+		case 1: // init
+			
+			rWeThereYet = false;
+
+			startPos = encValLift;
+		
+			controls.motorL.stopMotor();
+			controls.motorR.stopMotor();
+		
+			encoderR.reset();
+			encoderL.reset();
+		
+			controls.liftTarget = Const.liftLevel2;
+		
+			targetDistance = controls.liftTarget - startPos;	
+			
+			autoStage = 2;
+			
+			break;
+		case 2://lift rc
+			nonPIDLift();
+
+			if (rWeThereYet == true) {
+
+				autoStage = 3;
+		
+				encoderR.reset();
+				encoderL.reset();
+				
+			}
+			break;
+		
+		case 3: //forward
+			
+			//System.out.println(encValR);
+			
+			if (encValL > -550) {
+
+				controls.motorL.set(.5);
+				controls.motorR.set(-.5);
+			
+			}  else {
+
+				/*controls.motorL.set(-.5);
+				controls.motorR.set(.5);*/
+				
+				//Timer.delay(.075);
+				
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+				
+				autoStage = 4;
+				rWeThereYet = false;
+
+				startPos = encValLift;
+			
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+			
+				encoderR.reset();
+				encoderL.reset();
+			
+				controls.liftTarget = Const.liftLevelground;
+			
+				targetDistance = controls.liftTarget - startPos;
+		
+		}	
+		break;
+		case 4://center
+			controls.lowerIntakeSol.set(DoubleSolenoid.Value.kReverse);// release
+			
+			autoStage = 5;
+			rWeThereYet = false;
+
+			startPos = encValLift;
+			
+			controls.motorL.stopMotor();
+			controls.motorR.stopMotor();
+			
+			encoderR.reset();
+			encoderL.reset();
+			
+			controls.liftTarget = 25;
+			
+			targetDistance = controls.liftTarget - startPos;
+			
+			//controls.lowerIntakeSol.set(DoubleSolenoid.Value.kForward);// release
+		break;
+		case 5://turn w/ tote
+			if (encValL > -1700) {
+
+				controls.motorL.set(.5);
+				
+				//controls.motorR.set(.5);
+			
+				if (encValL > -1700) {
+
+					//controls.motorL.set(.5);
+					
+					controls.motorR.set(.5);
+				
+				}
+				
+			}  else {
+
+				if (encValL > -1700) {
+
+					//controls.motorL.set(.5);
+				
+					controls.motorR.set(.5);
+				
+				}
+				
+				//Timer.dely(.2);
+				
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+
+				autoStage = 6;
+				rWeThereYet = false;
+
+				startPos = encValLift;
+			
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+			
+				encoderR.reset();
+				encoderL.reset();
+			
+				controls.liftTarget = Const.liftLevelground;
+			
+				targetDistance = controls.liftTarget - startPos;
+		
+			}
+			break;
+		case 6:
+			//center
+			controls.lowerIntakeSol.set(DoubleSolenoid.Value.kForward);// release
+			
+			autoStage = 7;
+			rWeThereYet = false;
+
+			startPos = encValLift;
+			
+			controls.motorL.stopMotor();
+			controls.motorR.stopMotor();
+			
+			encoderR.reset();
+			encoderL.reset();
+			
+			controls.liftTarget = 7;
+			
+			targetDistance = controls.liftTarget - startPos;
+			
+			//controls.lowerIntakeSol.set(DoubleSolenoid.Value.kForward);// release
+			
+		break;
+		case 7://back
+			
+			if (encValL <1200) {
+
+				controls.motorL.set(-.5);
+				controls.motorR.set(.5);
+			
+			}  else {
+
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+
+				autoStage = 8;
+				rWeThereYet = false;
+
+				startPos = encValLift;
+			
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+			
+				encoderR.reset();
+				encoderL.reset();
+			
+				controls.liftTarget = Const.liftLevelground;
+			
+				targetDistance = controls.liftTarget - startPos;
+		
+			}
+		break;
+		case 8:
+			if (encValL > -455) {
+
+				controls.motorL.set(.5);
+				
+				//controls.motorR.set(.5);
+			
+				if (encValL > -455) {
+
+					//controls.motorL.set(.5);
+					
+					controls.motorR.set(.5);
+				
+				}
+				
+			}  else {
+
+				if (encValL > -455) {
+
+					//controls.motorL.set(.5);
+				
+					controls.motorR.set(.5);
+				
+				}
+				
+				//Timer.delay(.2);
+				
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+
+				autoStage = 9;
+				rWeThereYet = false;
+
+				startPos = encValLift;
+			
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+			
+				encoderR.reset();
+				encoderL.reset();
+			
+				controls.liftTarget = Const.liftLevelground;
+			
+				targetDistance = controls.liftTarget - startPos;
+		
+			}
+		break;
+		case 9://forward // to tote
+			if (encValL > -1700) {
+
+				controls.motorL.set(.5);
+				controls.motorR.set(-.5);
+			
+			}  else {
+
+				/*controls.motorL.set(-.5);
+				controls.motorR.set(.5);*/
+				
+				//Timer.delay(.075);
+				
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+				
+				autoStage = 10;
+				rWeThereYet = false;
+
+				startPos = encValLift;
+			
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+			
+				encoderR.reset();
+				encoderL.reset();
+			
+				controls.liftTarget = Const.liftLevelground;
+			
+				targetDistance = controls.liftTarget - startPos;
+		
+			}
+		break;
+		case 10:
+			if (encValL > -655) {
+
+				controls.motorL.set(.5);
+				
+				//controls.motorR.set(.5);
+			
+				if (encValL > -655) {
+
+					//controls.motorL.set(.5);
+					
+					controls.motorR.set(.5);
+				
+				}
+				
+			}  else {
+
+				if (encValL > -655) {
+
+					//controls.motorL.set(.5);
+				
+					controls.motorR.set(.5);
+				
+				}
+				
+				//Timer.delay(.2);
+				
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+
+				autoStage = 11;
+				rWeThereYet = false;
+
+				startPos = encValLift;
+			
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+			
+				encoderR.reset();
+				encoderL.reset();
+			
+				controls.liftTarget = Const.liftLevelground;
+			
+				targetDistance = controls.liftTarget - startPos;
+		
+			}
+		break;
+		case 11:
+			
+			if (encValL < 1800) {
+
+				controls.motorL.set(-.5);
+				controls.motorR.set(.5);
+			
+			}  else {
+
+				/*controls.motorL.set(-.5);
+				controls.motorR.set(.5);*/
+				
+				//Timer.delay(.075);
+				
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+				
+				autoStage = 100;
+				rWeThereYet = false;
+
+				startPos = encValLift;
+			
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+			
+				encoderR.reset();
+				encoderL.reset();
+			
+				controls.liftTarget = Const.liftLevelground;
+			
+				targetDistance = controls.liftTarget - startPos;
+		
+			}
+			
+		break;
+		case 12:
+			if (encValL > -900) {
+
+				controls.motorL.set(.5);
+				
+				//controls.motorR.set(.5);
+			
+				if (encValL > -900) {
+
+					//controls.motorL.set(.5);
+					
+					controls.motorR.set(.5);
+				
+				}
+				
+			}  else {
+
+				if (encValL > -900) {
+
+					//controls.motorL.set(.5);
+				
+					controls.motorR.set(.5);
+				
+				}
+				
+				//Timer.delay(.2);
+				
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+
+				autoStage = 13;
+				rWeThereYet = false;
+
+				startPos = encValLift;
+			
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+			
+				encoderR.reset();
+				encoderL.reset();
+			
+				controls.liftTarget = Const.liftLevelground;
+			
+				targetDistance = controls.liftTarget - startPos;
+		
+			}
+		break;
+		case 13:
+			controls.lowerIntakeSol.set(DoubleSolenoid.Value.kReverse);// release
+			
+			autoStage = 14;
+			rWeThereYet = false;
+
+			startPos = encValLift;
+			
+			controls.motorL.stopMotor();
+			controls.motorR.stopMotor();
+			
+			encoderR.reset();
+			encoderL.reset();
+			
+			controls.liftTarget = 25;
+			
+			targetDistance = controls.liftTarget - startPos;
+			
+			//controls.lowerIntakeSol.set(DoubleSolenoid.Value.kForward);// release
+		
+		break;
+		case 14:
+			
+			if (encValL > -700) {
+
+				controls.motorL.set(.5);
+				controls.motorR.set(-.5);
+			
+			}  else {
+
+				/*controls.motorL.set(-.5);
+				controls.motorR.set(.5);*/
+				
+				//Timer.delay(.075);
+				
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+				
+				autoStage = 15;
+				rWeThereYet = false;
+
+				startPos = encValLift;
+			
+				controls.motorL.stopMotor();
+				controls.motorR.stopMotor();
+			
+				encoderR.reset();
+				encoderL.reset();
+			
+				controls.liftTarget = Const.liftLevelground;
+			
+				targetDistance = controls.liftTarget - startPos;
+		
+			}
+		break;
+		}
 	}
 	
 	public void teleopInit() {
@@ -1508,6 +1992,9 @@ System.out.println(encValL);
 
 	public void teleopPeriodic() {
 
+		//time.start();
+		
+		
 		encValLift = encoderLift.get();
 		
 		encValL = encoderL.get();
@@ -1640,26 +2127,41 @@ System.out.println(encValL);
 				
 				SmartDashboard.putString("Lower Solenoid Status: ", "Forward");
 				
-				Timer.delay(0.179);
+				//holUp(30);
+				
+				Timer.delay(.17);
+				
+				//if(rUReadyToRumble = true){ 
 
-				controls.lowerSolOut = false;
-				controls.lowerSolIn = true;
-			
+					controls.lowerSolOut = false;
+					controls.lowerSolIn = true;
+				//	rUReadyToRumble = false;
+							
+					//time.reset();
+					//time.stop();
+					
+			//	}
 			} else if(controls.lowerSolIn == true){
 				
 				controls.lowerIntakeSol.set(DoubleSolenoid.Value.kReverse);// grab
 				
 				SmartDashboard.putString("Lower Solenoid Status: ", "Reverse");
 				
-				Timer.delay(0.179);
+				Timer.delay(.17);
+				
+				//holUp(30);
+				
+				//if (rUReadyToRumble = true){
 				
 				controls.lowerSolOut = true;
 				controls.lowerSolIn = false;
+				//rUReadyToRumble = false;
 				
+				//time.reset();
+				//time.stop();
+				
+				//}
 			}	
-			
-			
-
 		}
 	}
 
@@ -1898,19 +2400,13 @@ System.out.println(encValL);
 			}
 		}else {//uses normal control
 			
-			/*if(encValLift <= -1200){  
-				
-				System.out.println("hellx");
-				
-				controls.liftMotor.set(-.1);
-				
-			} else if(encValLift > 25){  
+			 if(encValLift > 25){  
 				
 				System.out.println("hellx");
 				
 				controls.liftMotor.set(.1);
 				
-			} else {*/
+			} else {
 				if(controls.joystickManLift.getRawButton(1) == false){
 					if (valJoyLI >= .1 || valJoyLI <= -.1) {
 
@@ -1933,11 +2429,12 @@ System.out.println(encValL);
 					
 			
 					}
-				//}
+				}
 			}
 			x =0;
 		}
-		
+		//}
+	//}
 		
 		 
 
@@ -2121,6 +2618,24 @@ System.out.println(encValL);
 		}
 	}
 
+	public boolean holUp(double howLong){
+		
+		//time.start();
+		
+		/*if (time.get() > howLong){
+			
+			rUReadyToRumble = true;
+		
+		} else {
+		
+			rUReadyToRumble = false;
+		
+		}*/
+		
+		return rUReadyToRumble;
+		
+	}
+		
 	public void singleJoystickTankDrive(){
 		
 		//joystick must be mapped to port 1

@@ -52,6 +52,7 @@ public class Robot extends IterativeRobot {
 	private int iautochoose;
 	private int x;
 	
+	private double pressure;
 	private double error;
 	private double integral;
 	private double derivative;
@@ -156,7 +157,7 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledInit() {
 
-		iautochoose = Const.iLeftRamp;// run left ramp by default
+		iautochoose = Const.istop;// run left ramp by default
 		
 		controls.compressor.stop();// stops encoder
 
@@ -175,6 +176,8 @@ public class Robot extends IterativeRobot {
 
 		resetLogic();
 
+		getPressure();
+		
 		//auto chooser
 		
 		autoChooser();
@@ -2554,6 +2557,14 @@ System.out.println(encValL);
 		return solFire;
 	}
 
+	/*public void getPressure(){
+		
+		pressure = 
+		
+		SmartDashboard.putDouble("Robot Status: ", pressure);//sets robot readout to disabled
+	
+	}*/
+	
 	public boolean setSpeedDown() {
 
 		trueQuaterDist = targetDistance / 4;

@@ -176,7 +176,7 @@ public class Robot extends IterativeRobot {
 
 		resetLogic();
 
-		getPressure();
+		//getPressure();
 		
 		//auto chooser
 		
@@ -1995,39 +1995,31 @@ System.out.println(encValL);
 
 	public void teleopPeriodic() {
 
-		//time.start();
-		
+		time.start();
 		
 		encValLift = encoderLift.get();
-		
 		encValL = encoderL.get();
 		encValR = encoderR.get();
 		
-		System.out.println(encValLift + " L");
+		System.out.println(encValLift + " Lift, " + time);
+		System.out.println(encValL + " Left, " + time);
+		System.out.println(encValR + " Right, " + time);
 		
-		System.out.println(encValL + " Lift");
-		
-		System.out.println(encValR + " R");
-		
-		//TeleopEncReset();//resets the encoder
-		 
 		intakeControl();//solenoid/tote intake control
 
 		resetLogic();//the emergency button reset
 		
 		manualLift();//joystick lift control
 
-		//liftTF();//decides manuel lift or button lift
-
 		doubleJoystickTankDrive();// drive shifter stuff
-
-		//singleJoystickTankDrive();
 		
 		Timer.delay(0.005); /* wait for motor update time
 
+		TeleopEncReset();//resets the encoder
 		setTarget();
+		liftTF();//decides manuel lift or button lift
+		singleJoystickTankDrive();
 		System.out.println(liftPID + "Lift Tr place");
-		
 		System.out.println(encValLift + " L");*/
 		
 	}
@@ -2405,7 +2397,7 @@ System.out.println(encValL);
 			
 			 if(encValLift > 25){  
 				
-				System.out.println("hellx");
+				//System.out.println("hellx");
 				
 				controls.liftMotor.set(.1);
 				

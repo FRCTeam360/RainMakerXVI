@@ -6019,3 +6019,9 @@ java.net.UnknownHostException: download.eclipse.org
 
 !ENTRY WPILib_Java_Robot_Development 1 0 2015-04-23 06:54:20.984
 !MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-05-09 18:08:35.156
+!MESSAGE Running ant file: C:\Users\360\Desktop\RainMakerXVI\RainMakerXVI\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-05-09 18:08:35.156
+!MESSAGE Targets: deploy, Mode: run

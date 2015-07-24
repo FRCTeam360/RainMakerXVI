@@ -9,7 +9,6 @@ import org.usfirst.frc.team360.robot.commands.Shoot;
 import org.usfirst.frc.team360.robot.subsystems.Collector;
 import org.usfirst.frc.team360.robot.subsystems.Pivot;
 import org.usfirst.frc.team360.robot.triggers.DoubleButton;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,7 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * functionality from the real robot is available.
  */
 public class OI {
-	public Joystick joystick;
+	public Joystick  joystick;
 
 	public OI() {
 		joystick = new Joystick(0);

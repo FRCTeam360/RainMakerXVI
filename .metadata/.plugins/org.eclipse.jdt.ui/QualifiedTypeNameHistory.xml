@@ -7,7 +7,24 @@
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDController"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CounterBase.EncodingType"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter"/>
-<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.OI"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.smartdashboard.SmartDashboard"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.command.CommandGroup"/>
+<fullyQualifiedTypeName name="jaci.openrio.toast.lib.module.ToastModule"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.subsystems.Tains"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.subsystems.Centerers"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.subsystems.Lift"/>
+<fullyQualifiedTypeName name="java.util.Timer"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.commands.closeTains"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.commands.openTains"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.commands.driveLow"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.commands.driveHigh"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.commands.safeMode"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.commands.normalMode"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.commands.highLift"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Compressor"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.Robot"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.OI"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.RobotMap"/>
 </qualifiedTypeNameHistroy>

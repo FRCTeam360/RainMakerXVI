@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: edu.wpi.first.wpilib.plugins.core;singleton:=true
+Archiver-Version: Plexus Archiver
+Built-By: jenkins
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.jf
+ ace.text,org.eclipse.core.resources,org.eclipse.ui.editors,org.eclips
+ e.ui.ide,org.eclipse.ant.core;bundle-version="3.2.400",org.eclipse.an
+ t.launching;bundle-version="1.0.200",org.eclipse.debug.core;bundle-ve
+ rsion="3.7.100",org.eclipse.core.externaltools;bundle-version="1.0.10
+ 0",org.eclipse.debug.ui;bundle-version="3.8.1",org.eclipse.ui.externa
+ ltools;bundle-version="3.2.100",org.eclipse.ant.ui;bundle-version="3.
+ 5.300",org.eclipse.ui.console;bundle-version="3.5.100",org.eclipse.ui
+ .navigator;bundle-version="3.5.200",org.eclipse.ui.navigator.resource
+ s;bundle-version="3.4.400",org.eclipse.ui.intro,org.eclipse.ui.intro.
+ universal,org.eclipse.core.expressions;bundle-version="3.4.400",org.e
+ clipse.core.variables
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: edu.wpi.first.wpilib.plugins.core,edu.wpi.first.wpilib
+ .plugins.core.ant,edu.wpi.first.wpilib.plugins.core.installer,edu.wpi
+ .first.wpilib.plugins.core.launching,edu.wpi.first.wpilib.plugins.cor
+ e.nature,edu.wpi.first.wpilib.plugins.core.preferences,edu.wpi.first.
+ wpilib.plugins.core.wizards
+Bundle-Name: edu.wpi.first.wpilib.plugins.core
+Bundle-Version: 0.1.0.201501011639
+Bundle-Activator: edu.wpi.first.wpilib.plugins.core.WPILibCore
+Created-By: Apache Maven 3.2.1
+Build-Jdk: 1.8.0_11
+

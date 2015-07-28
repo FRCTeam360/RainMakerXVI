@@ -3,6 +3,8 @@ package org.usfirst.frc.team360.robot;
 import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team360.robot.MotionProfiles;
+import org.usfirst.frc.team360.robot.commands.autoLift;
 import org.usfirst.frc.team360.robot.commands.centerTote;
 import org.usfirst.frc.team360.robot.commands.closeTains;
 import org.usfirst.frc.team360.robot.commands.driveHigh;
@@ -32,6 +34,7 @@ public class OI {
     Joystick joyL;
     Joystick joyR;
 	Joystick OPJoy;
+	int r1 = MotionProfiles.t1;
 	public static boolean highSpeedDrive;
 	public static boolean safeModeEnabled;
 	public static boolean highManLift;
@@ -47,7 +50,8 @@ public class OI {
 
 		new JoystickButton(joyR, 1).whenPressed(new driveHigh());
 		new JoystickButton(joyL, 1).whenPressed(new driveLow());
-		new JoystickButton(OPJoy, 1).whileHeld(new highLift());		
+		new JoystickButton(OPJoy, 1).whileHeld(new highLift());	
+		new JoystickButton(OPJoy, 2).whenPressed(new autoLift(MotionProfiles.liftProfile1, MotionProfiles.liftConstants));	
 		new JoystickButton(OPJoy, 3).whenPressed(new centerTote());
 		new JoystickButton(OPJoy, 5).whenPressed(new closeTains());
 		new JoystickButton(OPJoy, 6).whenPressed(new openTains());

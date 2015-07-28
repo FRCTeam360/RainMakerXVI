@@ -1,0 +1,68 @@
+package org.usfirst.frc.team360.robot.commands;
+
+import org.usfirst.frc.team360.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
+
+/**
+ *
+ */
+public class autoLift extends Command {
+	double[][] Velocity, Acceleration;
+	int[][]Setpoint;
+	int position;
+	int setpoint;
+	int i;
+	double velocity, acceleration;
+    public autoLift(double[][] velocity, double[][] acceleration, int[][] setpoint) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	Velocity = velocity;
+    	Acceleration = acceleration;
+    	Setpoint = setpoint;
+    	requires(Robot.lift);
+    	requires(Robot.velocitypid);
+    }
+
+    // Called just before this Command runs the first time
+    protected void initialize() {
+         i = 0;
+    }
+
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+    
+    if(i > Setpoint.length || i > Velocity.length || i > Acceleration.length){
+    }else{
+    	
+        position =  Robot.lift.getEncoder();
+    	
+    	setpoint = Setpoint[i][1];
+    	velocity = Velocity[i][1];
+   		acceleration = Acceleration[i][1];
+    	
+   		double speed = Robot.velocitypid.run(position, setpoint, velocity, acceleration, .5, .5, .5);
+   		
+   		Robot.lift.runLift(speed);
+    		
+   		i++;
+    	
+    	}
+    }
+
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+        return false;
+    }
+
+    // Called once after isFinished returns true
+    protected void end() {
+    	Robot.lift.stop();
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    	end();
+    }
+}

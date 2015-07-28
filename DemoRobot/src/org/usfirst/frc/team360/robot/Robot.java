@@ -12,6 +12,7 @@ import org.usfirst.frc.team360.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team360.robot.subsystems.Lift;
 import org.usfirst.frc.team360.robot.subsystems.Pneumatics;
 import org.usfirst.frc.team360.robot.subsystems.Tains;
+import org.usfirst.frc.team360.robot.subsystems.velocityPID;
 
 
 /**
@@ -29,6 +30,8 @@ public class Robot extends IterativeRobot {
 	public static Centerers centerers;
 	public static Lift lift;
 	public static OI oi;
+	public static velocityPID velocitypid;
+	public static MotionProfiles motionprofiles;
 
     Command autonomousCommand;
 
@@ -43,6 +46,8 @@ public class Robot extends IterativeRobot {
 		tains = new Tains();
 		pneumatics = new Pneumatics();
 		centerers = new Centerers();
+		velocitypid = new velocityPID();
+		motionprofiles = new MotionProfiles();
         // instantiate the command used for the autonomous period
     }
 	

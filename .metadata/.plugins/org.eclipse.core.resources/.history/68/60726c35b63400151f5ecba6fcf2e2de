@@ -1,0 +1,7 @@
+package org.usfirst.frc.team360.robot;
+
+public class MotionProfiles {
+
+	double[][] liftProfile1[][];
+	
+}

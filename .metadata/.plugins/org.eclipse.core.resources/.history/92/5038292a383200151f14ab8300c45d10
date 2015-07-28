@@ -1,0 +1,36 @@
+package org.usfirst.frc.team360.robot.subsystems;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+/**
+ *
+ */
+public class velocityPID extends Subsystem {
+    
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
+	int positionError;
+	int position;
+	int desiredposition;
+	int desiredaccel;
+	int desiredvelocity;
+	int kp;
+	int ka;
+	int kv;
+	
+	public velocityPID(int desiredPosition, int desiredVelocity){
+		
+	}
+	public velocityPID(int Position, int desiredPosition, int desiredVelocity, int desiredAccel, int kP, int kA, int kV){
+		position = Position;
+		desiredposition = desiredPosition;
+		desiredvelocity = desiredVelocity;
+		 desiredaccel = desiredAccel;
+		
+	}
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    }
+}
+

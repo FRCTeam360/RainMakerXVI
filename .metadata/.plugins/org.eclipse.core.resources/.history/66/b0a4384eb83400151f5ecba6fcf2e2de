@@ -1,0 +1,64 @@
+package org.usfirst.frc.team360.robot.commands;
+
+import org.usfirst.frc.team360.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
+
+/**
+ *
+ */
+public class autoLift extends Command {
+	double[][] motionProfile;
+	int position;
+	int i;
+	double velocity, acceleration, setpoint;
+    public autoLift(double[][] motionProfile) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	motionProfile = this.motionProfile;
+    	requires(Robot.lift);
+    	requires(Robot.velocitypid);
+    }
+
+    // Called just before this Command runs the first time
+    protected void initialize() {
+         i = 0;
+    }
+
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+    
+    if(i > motionProfile.length){
+    }else{
+    	
+        position =  Robot.lift.getEncoder();
+    	
+    	setpoint = motionProfile[0][i];
+    	velocity = motionProfile[1][i];
+   		acceleration = motionProfile[2][i];
+    	
+   		double speed = Robot.velocitypid.run(position, (int) setpoint, velocity, acceleration, .5, .5, .5);
+   		
+   		Robot.lift.runLift(speed);
+    		
+   		i++;
+    	
+    	}
+    }
+
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+        return false;
+    }
+
+    // Called once after isFinished returns true
+    protected void end() {
+    	Robot.lift.stop();
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    	end();
+    }
+}

@@ -24,7 +24,7 @@ public class intakeTote extends CommandGroup {
     	addSequential(new centerTote());
     	addSequential(new openTains());
     	//addSequential(new closeTains());
-    	//addSequential(new autoLiftUp());
+    	//addSequential(new autoLift());
     	
         // A command group will require all of the subsystems that each member
         // would require.

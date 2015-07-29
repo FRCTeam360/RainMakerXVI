@@ -4,14 +4,13 @@ import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team360.robot.MotionProfiles;
+import org.usfirst.frc.team360.robot.commands.autoLift;
 import org.usfirst.frc.team360.robot.commands.centerTote;
 import org.usfirst.frc.team360.robot.commands.closeTains;
 import org.usfirst.frc.team360.robot.commands.driveHigh;
 import org.usfirst.frc.team360.robot.commands.driveLow;
-import org.usfirst.frc.team360.robot.commands.findFS;
 import org.usfirst.frc.team360.robot.commands.getMaxVel;
 import org.usfirst.frc.team360.robot.commands.highLift;
-import org.usfirst.frc.team360.robot.commands.intakeTote;
 import org.usfirst.frc.team360.robot.commands.normalMode;
 import org.usfirst.frc.team360.robot.commands.openTains;
 import org.usfirst.frc.team360.robot.commands.safeMode;
@@ -52,16 +51,15 @@ public class OI {
     	disablePressurize = false;
 
 		new JoystickButton(joyR, 1).whenPressed(new driveHigh());
-		//new JoystickButton(joyR, 2).whenPressed(new autoLift());
+		new JoystickButton(joyR, 2).whenPressed(new autoLift());
 		new JoystickButton(joyL, 1).whenPressed(new driveLow());
 		new JoystickButton(OPJoy, 1).whileHeld(new highLift());	
-		new JoystickButton(OPJoy, 2).whileHeld(new intakeTote());	
+		new JoystickButton(OPJoy, 2).whenPressed(new autoLift());	
 		new JoystickButton(OPJoy, 3).whenPressed(new centerTote());
 		new JoystickButton(OPJoy, 5).whenPressed(new closeTains());
 		new JoystickButton(OPJoy, 6).whenPressed(new openTains());
 		new JoystickButton(OPJoy, 10).whenPressed(new safeMode());
-		new JoystickButton(OPJoy, 7).whileHeld(new getMaxVel(-1910));
-		new JoystickButton(OPJoy, 8).whileHeld(new findFS());
+		new JoystickButton(OPJoy, 7).whenPressed(new getMaxVel(-1910));
 
 		new DoubleButton(OPJoy, 11, 12).whenActive(new normalMode());
     }

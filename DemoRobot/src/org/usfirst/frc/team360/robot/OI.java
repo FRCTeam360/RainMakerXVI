@@ -9,6 +9,7 @@ import org.usfirst.frc.team360.robot.commands.centerTote;
 import org.usfirst.frc.team360.robot.commands.closeTains;
 import org.usfirst.frc.team360.robot.commands.driveHigh;
 import org.usfirst.frc.team360.robot.commands.driveLow;
+import org.usfirst.frc.team360.robot.commands.getMaxVel;
 import org.usfirst.frc.team360.robot.commands.highLift;
 import org.usfirst.frc.team360.robot.commands.normalMode;
 import org.usfirst.frc.team360.robot.commands.openTains;
@@ -34,7 +35,8 @@ public class OI {
     Joystick joyL;
     Joystick joyR;
 	Joystick OPJoy;
-	int r1 = MotionProfiles.t1;
+	
+	public static int numTote;
 	public static boolean highSpeedDrive;
 	public static boolean safeModeEnabled;
 	public static boolean highManLift;
@@ -49,13 +51,16 @@ public class OI {
     	disablePressurize = false;
 
 		new JoystickButton(joyR, 1).whenPressed(new driveHigh());
+		new JoystickButton(joyR, 2).whenPressed(new autoLift());
 		new JoystickButton(joyL, 1).whenPressed(new driveLow());
 		new JoystickButton(OPJoy, 1).whileHeld(new highLift());	
-		new JoystickButton(OPJoy, 2).whenPressed(new autoLift(MotionProfiles.liftProfile1, MotionProfiles.liftConstants));	
+		new JoystickButton(OPJoy, 2).whenPressed(new autoLift());	
 		new JoystickButton(OPJoy, 3).whenPressed(new centerTote());
 		new JoystickButton(OPJoy, 5).whenPressed(new closeTains());
 		new JoystickButton(OPJoy, 6).whenPressed(new openTains());
 		new JoystickButton(OPJoy, 10).whenPressed(new safeMode());
+		new JoystickButton(OPJoy, 7).whenPressed(new getMaxVel(-1910));
+
 		new DoubleButton(OPJoy, 11, 12).whenActive(new normalMode());
     }
     // There are a few additional built in buttons you can use. Additionally,

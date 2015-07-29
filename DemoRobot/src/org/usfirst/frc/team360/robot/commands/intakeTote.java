@@ -22,11 +22,11 @@ public class intakeTote extends CommandGroup {
         // Command1 and Command2 will run in parallel.
 
     	addParallel(new centerTote());
-    	addSequential(new autoLift(MotionProfiles.liftProfile1, MotionProfiles.liftConstants));
+    	addSequential(new autoLift());
     	addSequential(new openTains());
-    	addSequential(new autoLift(MotionProfiles.liftProfile1, MotionProfiles.liftConstants));
+    	addSequential(new autoLift());
     	addSequential(new closeTains());
-    	addSequential(new autoLift(MotionProfiles.liftProfile1, MotionProfiles.liftConstants));
+    	addSequential(new autoLift());
     	
         // A command group will require all of the subsystems that each member
         // would require.

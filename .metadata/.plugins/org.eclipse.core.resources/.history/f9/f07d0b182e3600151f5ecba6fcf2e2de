@@ -32,7 +32,7 @@ public class OI {
     // Button button = new JoystickButton(stick, buttonNumber);
 	public static final int leftJoystickPort = 0;
 	public static final int rightJoystickPort = 1;
-	public static final int OPJoyPort = 3;
+	public static final int OPJoyPort = 2;
     Joystick joyL;
     Joystick joyR;
 	Joystick OPJoy;

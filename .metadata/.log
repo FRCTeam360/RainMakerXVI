@@ -3373,3 +3373,9 @@ java.lang.IllegalArgumentException: Index out of bounds
 
 !ENTRY WPILib_Java_Robot_Development 1 0 2015-07-29 11:50:55.207
 !MESSAGE Class: autoLiftDown Package: org.usfirst.frc.team360.robot.commands
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-07-29 16:36:52.741
+!MESSAGE Running ant file: /Users/josh/Desktop/RainMakerXVI/RainMakerXVI/build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2015-07-29 16:36:52.898
+!MESSAGE Targets: deploy, Mode: run

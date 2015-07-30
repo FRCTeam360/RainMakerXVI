@@ -29,10 +29,10 @@ public class Robot extends IterativeRobot {
 	public static Tains tains;
 	public static Centerers centerers;
 	public static Lift lift;
+	public static OI oi;
 	public static velocityPID velocitypid;
 	public static MotionProfiles motionprofiles;
-	public static OI oi;
-	
+
     Command autonomousCommand;
 
     /**

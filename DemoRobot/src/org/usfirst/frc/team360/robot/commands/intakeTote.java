@@ -1,7 +1,5 @@
 package org.usfirst.frc.team360.robot.commands;
 
-import org.usfirst.frc.team360.robot.MotionProfiles;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -23,8 +21,8 @@ public class intakeTote extends CommandGroup {
     	addParallel(new autoLiftDown());
     	addSequential(new centerTote());
     	addSequential(new openTains());
-    	//addSequential(new closeTains());
-    	//addSequential(new autoLiftUp());
+    	addSequential(new closeTains());
+    	addSequential(new autoLiftUp());
     	
         // A command group will require all of the subsystems that each member
         // would require.

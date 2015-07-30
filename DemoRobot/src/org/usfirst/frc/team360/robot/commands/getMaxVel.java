@@ -27,7 +27,8 @@ public class getMaxVel extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @SuppressWarnings("deprecation")
+	protected void execute() {
     	time.start();
     	if(Robot.lift.getEncoder()> length){
     		System.out.println(time.get());

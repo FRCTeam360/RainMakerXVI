@@ -3,7 +3,6 @@ package org.usfirst.frc.team360.robot;
 import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team360.robot.MotionProfiles;
 import org.usfirst.frc.team360.robot.commands.centerTote;
 import org.usfirst.frc.team360.robot.commands.closeTains;
 import org.usfirst.frc.team360.robot.commands.driveHigh;

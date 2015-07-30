@@ -24,7 +24,11 @@
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.commands.highLift"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Compressor"/>
-<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.Robot"/>
-<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.OI"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.RobotMap"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.Robot"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.commands.getMaxVel"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.OI"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.commands.intakeTote"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team360.robot.commands.findFS"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.command.Subsystem"/>
 </qualifiedTypeNameHistroy>

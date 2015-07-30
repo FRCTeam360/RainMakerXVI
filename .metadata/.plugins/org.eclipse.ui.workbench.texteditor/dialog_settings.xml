@@ -6,12 +6,13 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Output" key="selection"/>
+		<item value="liftProfileBin" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="liftProfile1"/>
 			<item value="output"/>
 			<item value="lower"/>
 			<item value="PathPlanner"/>
@@ -19,9 +20,9 @@
 			<item value="static"/>
 			<item value="leftPath"/>
 			<item value="velo"/>
-			<item value="accel"/>
 		</list>
 		<list key="replacehistory">
+			<item value="liftProfileBin"/>
 			<item value="upper"/>
 			<item value="planner"/>
 			<item value=" "/>

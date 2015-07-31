@@ -1,15 +1,5 @@
 package org.usfirst.frc.team360.robot;
 
-import jaci.openrio.toast.lib.module.ToastModule;
-
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.util.LinkedList;
-import java.util.List;
-
-
-
-//import usfirst.frc.team2168.robot.PathPlanner;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
@@ -43,7 +33,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  button 10 selects the go forward auto //place bot as close to autozone as possible
 */
 
-public class Robot extends ToastModule {
+public class Robot extends IterativeRobot {
 
 /*	Command autonomousCommand;
 
@@ -51,29 +41,6 @@ public class Robot extends ToastModule {
 */
 	
 	Timer time;
-	
-	public double[][] origPath;
-	public double[][] nodeOnlyPath;
-	public double[][] smoothPath;
-	public double[][] leftPath;
-	public double[][] rightPath;
-
-	//accumulated heading
-	public double[][] heading;
-
-	double totalTime;
-	double totalDistance;
-	double numFinalPoints;
-	static double speed;
-	public static double finalSpeed;
-
-	double pathAlpha;
-	double pathBeta;
-	double pathTolerance;
-
-	double velocityAlpha;
-	double velocityBeta;
-	double velocityTolerance;
 	
 	OI controls = OI.GetInstance(); // new OI();
 
@@ -118,7 +85,7 @@ public class Robot extends ToastModule {
 	private boolean canSolFire1;
 	private boolean canSolFire2;
 	private boolean rUReadyToRumble;
-	private boolean splinePathTF;
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -301,24 +268,6 @@ public class Robot extends ToastModule {
 		/*autonomousCommand = (Command) autoChooser.getSelected();
 		autonomousCommand.start();
 */
-		if (splinePathTF = true) {
-			
-			double[][] waypoints = new double[][]{
-					{1, 1},
-					{15,15},
-					{20, 1}
-			}; 
-			
-			
-			double totalTime = 155; //seconds
-			double timeStep = .03; //period of control loop on Rio, seconds
-			double robotTrackWidth = 1; //distance between left and right wheels, feet
-
-			final pathPlanner path = new pathPlanner(waypoints);
-			path.calculate(totalTime, timeStep, robotTrackWidth);
-			
-		}
-		
 		autoStage = 1;//sets auto stage to start
 
 		controls.compressor.start();//starts compressor
@@ -359,9 +308,7 @@ public class Robot extends ToastModule {
 		controls.EnvGlbValL = encoderL.get();
 		controls.EnvGlbValLift = encoderLift.get();
 
-		rightRamp();
-		
-		/*switch (iautochoose) {			
+		switch (iautochoose) {			
 		
 		case Const.iRightRamp:
 			rightRamp();
@@ -389,7 +336,7 @@ public class Robot extends ToastModule {
 			
 			break;
 			
-		}*/
+		}
 		
 		//rightRamp();
 		
@@ -2024,11 +1971,7 @@ System.out.println(encValL);
 		}
 	}
 	
-	public void splineGenedPath(){
-		
-	}
-	
- 	public void teleopInit() {
+	public void teleopInit() {
 
 		controls.compressor.start();//start compressor
 
@@ -2606,6 +2549,14 @@ System.out.println(encValL);
 		return solFire;
 	}
 
+	/*public void getPressure(){
+		
+		pressure = 
+		
+		SmartDashboard.putDouble("Robot Status: ", pressure);//sets robot readout to disabled
+	
+	}*/
+	
 	public boolean setSpeedDown() {
 
 		trueQuaterDist = targetDistance / 4;
@@ -2687,28 +2638,7 @@ System.out.println(encValL);
 		return rUReadyToRumble;
 		
 	}
-
-    public double doPID(double P, double I, double D, double dt, float position, float setPoint){ //arm to left is less than 470; to the right greater than 470
-    	
-    	//Timer.delay(dt);
 		
-    	error = position - setPoint;
-		
-		//System.out.println(position + "position");
-		//System.out.println(setPoint + "set point");
-		
-		integral = integral + (error * dt);
-		derivative = (error - prevError) / dt;
-		output = (P * error) + (I * integral) + (D * derivative);
-		prevError = error;
-		
-		//System.out.println(error + "error");
-		//System.out.println(output);
-
-		return -output;
-    	
-	}
-	
 	public void singleJoystickTankDrive(){
 		
 		//joystick must be mapped to port 1
@@ -2773,35 +2703,5 @@ System.out.println(encValL);
 			controls.motorR.stopMotor();
 			
 		}
-	}
-
-	
-	public BufferedImage createScreenCapture(Rectangle screen) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getModuleName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getModuleVersion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void prestart() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void start() {
-		// TODO Auto-generated method stub
-		//teleopPeriodic();
 	} 
 }

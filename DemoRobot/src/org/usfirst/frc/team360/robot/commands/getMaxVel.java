@@ -24,31 +24,33 @@ public class getMaxVel extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	time.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @SuppressWarnings("deprecation")
 	protected void execute() {
+
     	time.start();
-    	if(Robot.lift.getEncoder()> length){
-    		System.out.println(time.get());
-    		Robot.lift.stop();
-    	}else{
-    		Robot.lift.runLift(-1);
-			SmartDashboard.putInt("liftPos", Robot.lift.getEncoder());
-			SmartDashboard.putInt("liftVel", Robot.lift.getEncoder() - lastPos);
-			lastPos = Robot.lift.getEncoder();
-    	}
-    }
+   		Robot.lift.runLift(-1);
+		SmartDashboard.putInt("liftPos", Robot.lift.getEncoder());
+		SmartDashboard.putInt("liftVel", Robot.lift.getEncoder() - lastPos);
+		lastPos = Robot.lift.getEncoder();
+   	}
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.lift.getEncoder() > length;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+
+		System.out.println(time.get());
     	Robot.lift.stop();
+    	time.stop();
+    	
     }
 
     // Called when another command which requires one or more of the same

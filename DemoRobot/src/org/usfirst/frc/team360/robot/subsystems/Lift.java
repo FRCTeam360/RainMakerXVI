@@ -1,6 +1,8 @@
 package org.usfirst.frc.team360.robot.subsystems;
 
+import org.usfirst.frc.team360.robot.OI;
 import org.usfirst.frc.team360.robot.RobotMap;
+import org.usfirst.frc.team360.robot.commands.manLift;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
@@ -16,7 +18,6 @@ public class Lift extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	VictorSP motorLift;
-	Joystick OPJoy;
 	public Encoder liftEnc;
 	public int position;
 	public Lift(){
@@ -28,10 +29,10 @@ public class Lift extends Subsystem {
 		liftEnc.setDistancePerPulse(5);
 		liftEnc.setSamplesToAverage(7);
 	}
-	public void lowManuelLift(int OPJoyPlace){
-		OPJoy = new Joystick(OPJoyPlace);
-		if(OPJoy.getRawAxis(1) > .05 || OPJoy.getRawAxis(1) < -.05){
-			motorLift.set(OPJoy.getRawAxis(1)*5);
+	public void lowManuelLift(){
+
+		if(OI.OPJoy.getRawAxis(1) > .05 || OI.OPJoy.getRawAxis(1) < -.05){
+			motorLift.set(OI.OPJoy.getRawAxis(1)*3);
 		}
 	}
 	public int getEncoder(){
@@ -41,10 +42,9 @@ public class Lift extends Subsystem {
 	public void resetEncoder(){
 		liftEnc.reset();//resets the encoder
 	}
-	public void highManuelLift(int OPJoyPlace){
-		OPJoy = new Joystick(OPJoyPlace);
-		if(OPJoy.getRawAxis(1) > .05 || OPJoy.getRawAxis(1) < -.05){
-			motorLift.set(OPJoy.getRawAxis(1)*9);
+	public void highManuelLift(){
+		if(OI.OPJoy.getRawAxis(1) > .05 || OI.OPJoy.getRawAxis(1) < -.05){
+			motorLift.set(OI.OPJoy.getRawAxis(1)*5);
 		}
 	}
 	public void runLift(double speed) {
@@ -56,7 +56,7 @@ public class Lift extends Subsystem {
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new manLift());
     }
 }
 

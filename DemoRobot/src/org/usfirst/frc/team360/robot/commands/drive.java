@@ -25,9 +25,9 @@ public class drive extends Command {
     		Robot.drivetrain.stop();
     	}else if(OI.safeModeEnabled==false){
     		if(OI.highSpeedDrive == true){
-    			Robot.drivetrain.highTankDrive(OI.leftJoystickPort, OI.rightJoystickPort);
+    			Robot.drivetrain.highTankDrive();
     		} else if (OI.highSpeedDrive == false){
-    			Robot.drivetrain.lowTankDrive(OI.leftJoystickPort, OI.rightJoystickPort);
+    			Robot.drivetrain.lowTankDrive();
     		}
     	}
     }

@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class wait extends Command {
 	Timer time;
-	double timer;
+	double amountTime;
     public wait(double amountOfTime) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	time = new Timer();
-    	amountOfTime= timer;
+    	amountTime = amountOfTime;
     }
 
     // Called just before this Command runs the first time
@@ -28,15 +28,13 @@ public class wait extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(time.get() > timer){
-        	return true;
-        }else{
-        	return false;
-        }
+        	return time.hasPeriodPassed(amountTime);
+
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	System.out.println("done");
     	time.stop();
     	time.reset();
     }

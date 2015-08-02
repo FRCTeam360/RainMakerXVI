@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team360.robot.subsystems.Centerers;
 import org.usfirst.frc.team360.robot.subsystems.DriveTrain;
@@ -30,7 +30,6 @@ public class Robot extends IterativeRobot {
 	public static Centerers centerers;
 	public static Lift lift;
 	public static velocityPID velocitypid;
-	public static MotionProfiles motionprofiles;
 	public static OI oi;
 	
     Command autonomousCommand;
@@ -47,8 +46,13 @@ public class Robot extends IterativeRobot {
 		pneumatics = new Pneumatics();
 		centerers = new Centerers();
 		velocitypid = new velocityPID();
-		motionprofiles = new MotionProfiles();
 		oi = new OI();
+		SmartDashboard.putData(drivetrain);
+		SmartDashboard.putData(lift);
+		SmartDashboard.putData(tains);
+		SmartDashboard.putData(pneumatics);
+		SmartDashboard.putData(centerers);
+
         // instantiate the command used for the autonomous period
     }
 	

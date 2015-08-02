@@ -13,7 +13,7 @@ public class manLift extends Command {
 
     public manLift() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.lift);
     }
 
     // Called just before this Command runs the first time
@@ -26,9 +26,9 @@ public class manLift extends Command {
     		Robot.lift.stop();
     	}else if(OI.safeModeEnabled==false){
     		if(OI.highManLift == true){
-    			Robot.lift.highManuelLift(RobotMap.liftMotorPort);
+    			Robot.lift.highManuelLift();
     		} else if (OI.highManLift == false){
-    			Robot.lift.lowManuelLift(RobotMap.liftMotorPort);
+    			Robot.lift.lowManuelLift();
     		}
     	}
     }

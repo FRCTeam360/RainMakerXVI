@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import org.usfirst.frc.team360.robot.OI;
 import org.usfirst.frc.team360.robot.RobotMap;
 import org.usfirst.frc.team360.robot.commands.drive;
 /**
@@ -16,34 +17,27 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
 	VictorSP motorL;
 	VictorSP motorR;
-	Joystick joyL;
-	Joystick joyR;
 	public DriveTrain(){
 		motorL = new VictorSP(RobotMap.leftMotorPort);//init speed controllers/ motors
 		motorR = new VictorSP(RobotMap.rightMotorPort);
 		
 	}
-	public void highTankDrive(int joyLPlace, int joyRPlace){
-		
-		joyL = new Joystick(joyLPlace);
-		joyR = new Joystick(joyRPlace);
-		
-		if(joyL.getRawAxis(1) > .05 || joyL.getRawAxis(1) < -.05){
-			motorL.set(joyL.getRawAxis(1)*.95);//set to 95% of joy y then set motor speed to that 
+	public void highTankDrive(){
+	
+		if(OI.joyL.getRawAxis(1) > .05 || OI.joyL.getRawAxis(1) < -.05){
+			motorL.set(OI.joyL.getRawAxis(1)*.5);//set to 95% of joy y then set motor speed to that 
 		}
-		if(joyR.getRawAxis(1) > .05 || joyR.getRawAxis(1) < -.05){
-			motorR.set(joyR.getRawAxis(1)*.95);
+		if(OI.joyR.getRawAxis(1) > .05 || OI.joyR.getRawAxis(1) < -.05){
+			motorR.set(OI.joyR.getRawAxis(1)*.5);
 		}
 	}
-	public void lowTankDrive(int joyLPlace, int joyRPlace){
-		joyL = new Joystick(joyLPlace);
-		joyR = new Joystick(joyRPlace);
+	public void lowTankDrive(){
 		
-		if(joyL.getRawAxis(1) > .05 || joyL.getRawAxis(1) < -.05){
-		motorL.set(joyL.getRawAxis(1)*.5);//set to 50% of joy y then set motor speed to that 
+		if(OI.joyL.getRawAxis(1) > .05 || OI.joyL.getRawAxis(1) < -.05){
+		motorL.set(OI.joyL.getRawAxis(1)*.3);//set to 50% of joy y then set motor speed to that 
 		}
-		if(joyR.getRawAxis(1) > .05 || joyR.getRawAxis(1) < -.05){
-		motorR.set(joyR.getRawAxis(1)*.5);
+		if(OI.joyR.getRawAxis(1) > .05 || OI.joyR.getRawAxis(1) < -.05){
+		motorR.set(OI.joyR.getRawAxis(1)*.3);
 		}
 	}
 	public void stop() {

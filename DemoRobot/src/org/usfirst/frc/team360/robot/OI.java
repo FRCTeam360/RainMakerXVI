@@ -32,23 +32,17 @@ public class OI {
 	public static final int leftJoystickPort = 0;
 	public static final int rightJoystickPort = 1;
 	public static final int OPJoyPort = 3;
-    Joystick joyL;
-    Joystick joyR;
-	Joystick OPJoy;
+    public static Joystick joyL = new Joystick(leftJoystickPort);
+    public static Joystick joyR = new Joystick(rightJoystickPort);
+	public static Joystick OPJoy = new Joystick(OPJoyPort);;
 	
 	public static int numTote;
-	public static boolean highSpeedDrive;
-	public static boolean safeModeEnabled;
-	public static boolean highManLift;
-	public static boolean disablePressurize;
+	public static boolean highSpeedDrive = false;
+	public static boolean safeModeEnabled = false;
+	public static boolean highManLift = false;
+	public static boolean disablePressurize = false;
+	
     public OI() {
-    	joyL = new Joystick(leftJoystickPort);
-    	joyR = new Joystick(rightJoystickPort);
-    	OPJoy = new Joystick(OPJoyPort);
-    	highSpeedDrive = false;
-    	safeModeEnabled = false;
-    	highManLift = false;
-    	disablePressurize = false;
 
 		new JoystickButton(joyR, 1).whenPressed(new driveHigh());
 		//new JoystickButton(joyR, 2).whenPressed(new autoLift());
@@ -61,7 +55,6 @@ public class OI {
 		new JoystickButton(OPJoy, 10).whenPressed(new safeMode());
 		new JoystickButton(OPJoy, 7).whileHeld(new getMaxVel(-1910));
 		new JoystickButton(OPJoy, 8).whileHeld(new findFS());
-
 		new DoubleButton(OPJoy, 11, 12).whenActive(new normalMode());
     }
     // There are a few additional built in buttons you can use. Additionally,

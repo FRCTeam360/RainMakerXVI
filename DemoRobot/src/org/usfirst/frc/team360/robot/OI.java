@@ -45,16 +45,17 @@ public class OI {
     public OI() {
 
 		new JoystickButton(joyR, 1).whenPressed(new driveHigh());
-		//new JoystickButton(joyR, 2).whenPressed(new autoLift());
+		
 		new JoystickButton(joyL, 1).whenPressed(new driveLow());
+		
 		new JoystickButton(OPJoy, 1).whileHeld(new highLift());	
 		new JoystickButton(OPJoy, 2).whileHeld(new intakeTote());	
 		new JoystickButton(OPJoy, 3).whenPressed(new centerTote());
 		new JoystickButton(OPJoy, 5).whenPressed(new closeTains());
 		new JoystickButton(OPJoy, 6).whenPressed(new openTains());
-		new JoystickButton(OPJoy, 10).whenPressed(new safeMode());
 		new JoystickButton(OPJoy, 7).whileHeld(new getMaxVel(-1910));
 		new JoystickButton(OPJoy, 8).whileHeld(new findFS());
+		new JoystickButton(OPJoy, 10).whenPressed(new safeMode());
 		new DoubleButton(OPJoy, 11, 12).whenActive(new normalMode());
     }
     // There are a few additional built in buttons you can use. Additionally,

@@ -18,8 +18,8 @@ public class intakeTote extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
-    	addParallel(new autoLiftDown());
-    	addSequential(new centerTote());
+    	addParallel(new centerTote());
+    	addSequential(new autoLiftDown());
     	addSequential(new openTains());
     	addSequential(new closeTains());
     	addSequential(new autoLiftUp());
